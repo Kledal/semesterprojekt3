@@ -13,16 +13,21 @@
 <v>Output</v>
 </TreeKeys>
 <TreeStates>
-<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="i2ctest-000\i2ctest\Generated_Source\PSoC4">
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="i2ctest-000\i2ctest\Generated_Source\PSoC4\SPIS_1\SPIS_1_BOOT.c">
 <ExpandedNodeIds>
 <v>i2ctest-000</v>
 <v>i2ctest-000\i2ctest</v>
 <v>i2ctest-000\i2ctest\TopDesign.cysch</v>
 <v>i2ctest-000\i2ctest\i2ctest.cydwr</v>
 <v>i2ctest-000\i2ctest\Header Files</v>
-<v>i2ctest-000\i2ctest\Source Files</v>
+<v>i2ctest-000\i2ctest\Source Files\gps.c</v>
+<v>i2ctest-000\i2ctest\Source Files\gps.h</v>
 <v>i2ctest-000\i2ctest\Source Files\main.c</v>
+<v>i2ctest-000\i2ctest\Source Files\nunchuck.c</v>
+<v>i2ctest-000\i2ctest\Source Files\util.c</v>
+<v>i2ctest-000\i2ctest\Source Files\util.h</v>
 <v>i2ctest-000\i2ctest\Generated_Source</v>
+<v>i2ctest-000\i2ctest\Generated_Source\PSoC4</v>
 <v>i2ctest-000\i2ctest\Generated_Source\PSoC4\cy_boot\cm0gcc.ld</v>
 <v>i2ctest-000\i2ctest\Generated_Source\PSoC4\cy_boot\Cm0Iar.icf</v>
 <v>i2ctest-000\i2ctest\Generated_Source\PSoC4\cy_boot\Cm0RealView.scat</v>
@@ -43,24 +48,36 @@
 <v>i2ctest-000\i2ctest\Generated_Source\PSoC4\cy_boot\cyPm.h</v>
 <v>i2ctest-000\i2ctest\Generated_Source\PSoC4\cy_boot\cytypes.h</v>
 <v>i2ctest-000\i2ctest\Generated_Source\PSoC4\cy_boot\cyutils.c</v>
-<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\I2C_1\I2C_1.c</v>
-<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\I2C_1\I2C_1.h</v>
-<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\I2C_1\I2C_1_BOOT.c</v>
-<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\I2C_1\I2C_1_I2C.c</v>
-<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\I2C_1\I2C_1_I2C.h</v>
-<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\I2C_1\I2C_1_I2C_BOOT.c</v>
-<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\I2C_1\I2C_1_I2C_INT.c</v>
-<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\I2C_1\I2C_1_I2C_MASTER.c</v>
-<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\I2C_1\I2C_1_I2C_PVT.h</v>
-<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\I2C_1\I2C_1_PINS.h</v>
-<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\I2C_1\I2C_1_PM.c</v>
-<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\I2C_1\I2C_1_PVT.h</v>
-<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\I2C_1_scl\I2C_1_scl.c</v>
-<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\I2C_1_scl\I2C_1_scl.h</v>
-<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\I2C_1_scl\I2C_1_scl_aliases.h</v>
-<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\I2C_1_sda\I2C_1_sda.c</v>
-<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\I2C_1_sda\I2C_1_sda.h</v>
-<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\I2C_1_sda\I2C_1_sda_aliases.h</v>
+<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\SPIS_1</v>
+<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\SPIS_1\SPIS_1.c</v>
+<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\SPIS_1\SPIS_1.h</v>
+<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\SPIS_1\SPIS_1_BOOT.c</v>
+<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\SPIS_1\SPIS_1_PINS.h</v>
+<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\SPIS_1\SPIS_1_PM.c</v>
+<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\SPIS_1\SPIS_1_PVT.h</v>
+<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\SPIS_1\SPIS_1_SPI.c</v>
+<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\SPIS_1\SPIS_1_SPI_BOOT.c</v>
+<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\SPIS_1\SPIS_1_SPI_UART.c</v>
+<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\SPIS_1\SPIS_1_SPI_UART.h</v>
+<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\SPIS_1\SPIS_1_SPI_UART_INT.c</v>
+<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\SPIS_1\SPIS_1_SPI_UART_PVT.h</v>
+<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\SPIS_1_miso_s\SPIS_1_miso_s.c</v>
+<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\SPIS_1_miso_s\SPIS_1_miso_s.h</v>
+<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\SPIS_1_miso_s\SPIS_1_miso_s_aliases.h</v>
+<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\SPIS_1_mosi_s\SPIS_1_mosi_s.c</v>
+<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\SPIS_1_mosi_s\SPIS_1_mosi_s.h</v>
+<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\SPIS_1_mosi_s\SPIS_1_mosi_s_aliases.h</v>
+<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\SPIS_1_SCB_IRQ\SPIS_1_SCB_IRQ.c</v>
+<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\SPIS_1_SCB_IRQ\SPIS_1_SCB_IRQ.h</v>
+<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\SPIS_1_SCBCLK\SPIS_1_SCBCLK.c</v>
+<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\SPIS_1_SCBCLK\SPIS_1_SCBCLK.h</v>
+<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\SPIS_1_sclk_s\SPIS_1_sclk_s.c</v>
+<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\SPIS_1_sclk_s\SPIS_1_sclk_s.h</v>
+<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\SPIS_1_sclk_s\SPIS_1_sclk_s_aliases.h</v>
+<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\SPIS_1_ss_s</v>
+<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\SPIS_1_ss_s\SPIS_1_ss_s.c</v>
+<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\SPIS_1_ss_s\SPIS_1_ss_s.h</v>
+<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\SPIS_1_ss_s\SPIS_1_ss_s_aliases.h</v>
 <v>i2ctest-000\i2ctest\Generated_Source\PSoC4\UART_GPS\UART_GPS.c</v>
 <v>i2ctest-000\i2ctest\Generated_Source\PSoC4\UART_GPS\UART_GPS.h</v>
 <v>i2ctest-000\i2ctest\Generated_Source\PSoC4\UART_GPS\UART_GPS_BOOT.c</v>
@@ -68,6 +85,7 @@
 <v>i2ctest-000\i2ctest\Generated_Source\PSoC4\UART_GPS\UART_GPS_PM.c</v>
 <v>i2ctest-000\i2ctest\Generated_Source\PSoC4\UART_GPS_IntClock\UART_GPS_IntClock.c</v>
 <v>i2ctest-000\i2ctest\Generated_Source\PSoC4\UART_GPS_IntClock\UART_GPS_IntClock.h</v>
+<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\UART_PC</v>
 <v>i2ctest-000\i2ctest\Generated_Source\PSoC4\UART_PC\UART_PC.c</v>
 <v>i2ctest-000\i2ctest\Generated_Source\PSoC4\UART_PC\UART_PC.h</v>
 <v>i2ctest-000\i2ctest\Generated_Source\PSoC4\UART_PC\UART_PC_BOOT.c</v>
@@ -80,9 +98,11 @@
 <v>i2ctest-000\i2ctest\Generated_Source\PSoC4\UART_PC\UART_PC_SPI_UART_PVT.h</v>
 <v>i2ctest-000\i2ctest\Generated_Source\PSoC4\UART_PC\UART_PC_UART.c</v>
 <v>i2ctest-000\i2ctest\Generated_Source\PSoC4\UART_PC\UART_PC_UART_BOOT.c</v>
+<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\UART_PC_rx</v>
 <v>i2ctest-000\i2ctest\Generated_Source\PSoC4\UART_PC_rx\UART_PC_rx.c</v>
 <v>i2ctest-000\i2ctest\Generated_Source\PSoC4\UART_PC_rx\UART_PC_rx.h</v>
 <v>i2ctest-000\i2ctest\Generated_Source\PSoC4\UART_PC_rx\UART_PC_rx_aliases.h</v>
+<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\UART_PC_tx</v>
 <v>i2ctest-000\i2ctest\Generated_Source\PSoC4\UART_PC_tx\UART_PC_tx.c</v>
 <v>i2ctest-000\i2ctest\Generated_Source\PSoC4\UART_PC_tx\UART_PC_tx.h</v>
 <v>i2ctest-000\i2ctest\Generated_Source\PSoC4\UART_PC_tx\UART_PC_tx_aliases.h</v>
@@ -107,9 +127,38 @@
 <v>i2ctest-000\i2ctest\i2ctest.cydwr</v>
 <v>i2ctest-000\i2ctest\Header Files</v>
 <v>i2ctest-000\i2ctest\Source Files</v>
-<v>i2ctest-000\i2ctest\Source Files\main.c</v>
 <v>i2ctest-000\i2ctest\Generated_Source</v>
 <v>i2ctest-000\i2ctest\Generated_Source\PSoC4</v>
+<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\cy_boot</v>
+<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\SPIS_1</v>
+<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\SPIS_1\SPIS_1.c</v>
+<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\SPIS_1\SPIS_1.h</v>
+<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\SPIS_1\SPIS_1_BOOT.c</v>
+<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\SPIS_1\SPIS_1_PINS.h</v>
+<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\SPIS_1\SPIS_1_PM.c</v>
+<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\SPIS_1\SPIS_1_PVT.h</v>
+<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\SPIS_1\SPIS_1_SPI.c</v>
+<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\SPIS_1\SPIS_1_SPI_BOOT.c</v>
+<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\SPIS_1\SPIS_1_SPI_UART.c</v>
+<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\SPIS_1\SPIS_1_SPI_UART.h</v>
+<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\SPIS_1\SPIS_1_SPI_UART_INT.c</v>
+<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\SPIS_1\SPIS_1_SPI_UART_PVT.h</v>
+<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\SPIS_1_miso_s</v>
+<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\SPIS_1_mosi_s</v>
+<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\SPIS_1_SCB_IRQ</v>
+<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\SPIS_1_SCBCLK</v>
+<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\SPIS_1_sclk_s</v>
+<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\SPIS_1_ss_s</v>
+<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\SPIS_1_ss_s\SPIS_1_ss_s.c</v>
+<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\SPIS_1_ss_s\SPIS_1_ss_s.h</v>
+<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\SPIS_1_ss_s\SPIS_1_ss_s_aliases.h</v>
+<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\UART_GPS</v>
+<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\UART_GPS_IntClock</v>
+<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\UART_PC</v>
+<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\UART_PC\UART_PC.c</v>
+<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\UART_PC\UART_PC.h</v>
+<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\UART_PC\UART_PC_BOOT.c</v>
+<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\UART_PC\UART_PC_PINS.h</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 <CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
@@ -142,16 +191,22 @@
 <v>i2ctest-000\i2ctest\CortexM0\ARM_GCC_473\Debug\Listing Files\cymetadata.lst</v>
 <v>i2ctest-000\i2ctest\CortexM0\ARM_GCC_473\Debug\Listing Files\cyPm.lst</v>
 <v>i2ctest-000\i2ctest\CortexM0\ARM_GCC_473\Debug\Listing Files\cyutils.lst</v>
-<v>i2ctest-000\i2ctest\CortexM0\ARM_GCC_473\Debug\Listing Files\I2C_1.lst</v>
-<v>i2ctest-000\i2ctest\CortexM0\ARM_GCC_473\Debug\Listing Files\I2C_1_BOOT.lst</v>
-<v>i2ctest-000\i2ctest\CortexM0\ARM_GCC_473\Debug\Listing Files\I2C_1_I2C.lst</v>
-<v>i2ctest-000\i2ctest\CortexM0\ARM_GCC_473\Debug\Listing Files\I2C_1_I2C_BOOT.lst</v>
-<v>i2ctest-000\i2ctest\CortexM0\ARM_GCC_473\Debug\Listing Files\I2C_1_I2C_INT.lst</v>
-<v>i2ctest-000\i2ctest\CortexM0\ARM_GCC_473\Debug\Listing Files\I2C_1_I2C_MASTER.lst</v>
-<v>i2ctest-000\i2ctest\CortexM0\ARM_GCC_473\Debug\Listing Files\I2C_1_PM.lst</v>
-<v>i2ctest-000\i2ctest\CortexM0\ARM_GCC_473\Debug\Listing Files\I2C_1_scl.lst</v>
-<v>i2ctest-000\i2ctest\CortexM0\ARM_GCC_473\Debug\Listing Files\I2C_1_sda.lst</v>
+<v>i2ctest-000\i2ctest\CortexM0\ARM_GCC_473\Debug\Listing Files\gps.lst</v>
 <v>i2ctest-000\i2ctest\CortexM0\ARM_GCC_473\Debug\Listing Files\main.lst</v>
+<v>i2ctest-000\i2ctest\CortexM0\ARM_GCC_473\Debug\Listing Files\nunchuck.lst</v>
+<v>i2ctest-000\i2ctest\CortexM0\ARM_GCC_473\Debug\Listing Files\SPIS_1.lst</v>
+<v>i2ctest-000\i2ctest\CortexM0\ARM_GCC_473\Debug\Listing Files\SPIS_1_BOOT.lst</v>
+<v>i2ctest-000\i2ctest\CortexM0\ARM_GCC_473\Debug\Listing Files\SPIS_1_miso_s.lst</v>
+<v>i2ctest-000\i2ctest\CortexM0\ARM_GCC_473\Debug\Listing Files\SPIS_1_mosi_s.lst</v>
+<v>i2ctest-000\i2ctest\CortexM0\ARM_GCC_473\Debug\Listing Files\SPIS_1_PM.lst</v>
+<v>i2ctest-000\i2ctest\CortexM0\ARM_GCC_473\Debug\Listing Files\SPIS_1_SCB_IRQ.lst</v>
+<v>i2ctest-000\i2ctest\CortexM0\ARM_GCC_473\Debug\Listing Files\SPIS_1_SCBCLK.lst</v>
+<v>i2ctest-000\i2ctest\CortexM0\ARM_GCC_473\Debug\Listing Files\SPIS_1_sclk_s.lst</v>
+<v>i2ctest-000\i2ctest\CortexM0\ARM_GCC_473\Debug\Listing Files\SPIS_1_SPI.lst</v>
+<v>i2ctest-000\i2ctest\CortexM0\ARM_GCC_473\Debug\Listing Files\SPIS_1_SPI_BOOT.lst</v>
+<v>i2ctest-000\i2ctest\CortexM0\ARM_GCC_473\Debug\Listing Files\SPIS_1_SPI_UART.lst</v>
+<v>i2ctest-000\i2ctest\CortexM0\ARM_GCC_473\Debug\Listing Files\SPIS_1_SPI_UART_INT.lst</v>
+<v>i2ctest-000\i2ctest\CortexM0\ARM_GCC_473\Debug\Listing Files\SPIS_1_ss_s.lst</v>
 <v>i2ctest-000\i2ctest\CortexM0\ARM_GCC_473\Debug\Listing Files\UART_GPS.lst</v>
 <v>i2ctest-000\i2ctest\CortexM0\ARM_GCC_473\Debug\Listing Files\UART_GPS_BOOT.lst</v>
 <v>i2ctest-000\i2ctest\CortexM0\ARM_GCC_473\Debug\Listing Files\UART_GPS_INT.lst</v>
@@ -166,6 +221,7 @@
 <v>i2ctest-000\i2ctest\CortexM0\ARM_GCC_473\Debug\Listing Files\UART_PC_tx.lst</v>
 <v>i2ctest-000\i2ctest\CortexM0\ARM_GCC_473\Debug\Listing Files\UART_PC_UART.lst</v>
 <v>i2ctest-000\i2ctest\CortexM0\ARM_GCC_473\Debug\Listing Files\UART_PC_UART_BOOT.lst</v>
+<v>i2ctest-000\i2ctest\CortexM0\ARM_GCC_473\Debug\Listing Files\util.lst</v>
 <v>i2ctest-000\i2ctest\CortexM0\ARM_GCC_473\Debug\i2ctest.elf</v>
 <v>i2ctest-000\i2ctest\CortexM0\ARM_GCC_473\Debug\i2ctest.hex</v>
 <v>i2ctest-000\i2ctest\CortexM0\ARM_GCC_473\Debug\i2ctest.map</v>
@@ -175,17 +231,6 @@
 <VisibleNodeIds>
 <v>i2ctest-000</v>
 <v>i2ctest-000\i2ctest</v>
-<v>i2ctest-000\i2ctest\CortexM0</v>
-<v>i2ctest-000\i2ctest\CortexM0\ARM_GCC_473</v>
-<v>i2ctest-000\i2ctest\CortexM0\ARM_GCC_473\Debug</v>
-<v>i2ctest-000\i2ctest\CortexM0\ARM_GCC_473\Debug\Listing Files</v>
-<v>i2ctest-000\i2ctest\CortexM0\ARM_GCC_473\Debug\Listing Files\Cm0Start.lst</v>
-<v>i2ctest-000\i2ctest\CortexM0\ARM_GCC_473\Debug\Listing Files\CyBootAsmGnu.lst</v>
-<v>i2ctest-000\i2ctest\CortexM0\ARM_GCC_473\Debug\Listing Files\cyfitter_cfg.lst</v>
-<v>i2ctest-000\i2ctest\CortexM0\ARM_GCC_473\Debug\Listing Files\CyFlash.lst</v>
-<v>i2ctest-000\i2ctest\CortexM0\ARM_GCC_473\Debug\Listing Files\CyLib.lst</v>
-<v>i2ctest-000\i2ctest\CortexM0\ARM_GCC_473\Debug\Listing Files\cymetadata.lst</v>
-<v>i2ctest-000\i2ctest\CortexM0\ARM_GCC_473\Debug\Listing Files\cyPm.lst</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 </TreeStates>
@@ -201,6 +246,7 @@
 <v>i2ctest-000\i2ctest\PSoC 4200 Family Datasheet</v>
 <v>i2ctest-000\i2ctest\System Reference Guide v4_10</v>
 <v>i2ctest-000\i2ctest\cy_pins_v2_0</v>
+<v>i2ctest-000\i2ctest\SCB_P4_v1_10</v>
 <v>i2ctest-000\i2ctest\SCB_P4_v1_20</v>
 <v>i2ctest-000\i2ctest\UART_v2_30</v>
 </ExpandedNodeIds>
@@ -211,6 +257,7 @@
 <v>i2ctest-000\i2ctest\PSoC 4200 Family Datasheet</v>
 <v>i2ctest-000\i2ctest\System Reference Guide v4_10</v>
 <v>i2ctest-000\i2ctest\cy_pins_v2_0</v>
+<v>i2ctest-000\i2ctest\SCB_P4_v1_10</v>
 <v>i2ctest-000\i2ctest\SCB_P4_v1_20</v>
 <v>i2ctest-000\i2ctest\UART_v2_30</v>
 </VisibleNodeIds>

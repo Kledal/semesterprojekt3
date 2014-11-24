@@ -1,13 +1,23 @@
---------------- Build Started: 10/14/2014 19:00:18 Project: i2ctest, Configuration: ARM GCC 4.7.3 Debug ---------------
+--------------- Build Started: 11/24/2014 15:47:58 Project: i2ctest, Configuration: ARM GCC 4.7.3 Debug ---------------
 The code generation step is up to date.
-arm-none-eabi-gcc.exe -I. -I./Generated_Source/PSoC4 -Wno-main -mcpu=cortex-m0 -mthumb -Wall -g -D DEBUG -Wa,-alh=.\CortexM0\ARM_GCC_473\Debug\main.lst -ffunction-sections -c .\main.c -o .\CortexM0\ARM_GCC_473\Debug\main.o
-.\main.c: In function 'readGPSData':
-.\main.c:81:9: warning: variable 'completedGGA' set but not used [-Wunused-but-set-variable]
-arm-none-eabi-ar.exe -rs .\CortexM0\ARM_GCC_473\Debug\i2ctest.a .\CortexM0\ARM_GCC_473\Debug\cyfitter_cfg.o .\CortexM0\ARM_GCC_473\Debug\I2C_1.o .\CortexM0\ARM_GCC_473\Debug\I2C_1_I2C_INT.o .\CortexM0\ARM_GCC_473\Debug\I2C_1_I2C.o .\CortexM0\ARM_GCC_473\Debug\I2C_1_I2C_BOOT.o .\CortexM0\ARM_GCC_473\Debug\I2C_1_I2C_MASTER.o .\CortexM0\ARM_GCC_473\Debug\I2C_1_PM.o .\CortexM0\ARM_GCC_473\Debug\I2C_1_BOOT.o .\CortexM0\ARM_GCC_473\Debug\I2C_1_sda.o .\CortexM0\ARM_GCC_473\Debug\I2C_1_scl.o .\CortexM0\ARM_GCC_473\Debug\CyBootAsmGnu.o .\CortexM0\ARM_GCC_473\Debug\CyFlash.o .\CortexM0\ARM_GCC_473\Debug\CyLib.o .\CortexM0\ARM_GCC_473\Debug\cyPm.o .\CortexM0\ARM_GCC_473\Debug\cyutils.o .\CortexM0\ARM_GCC_473\Debug\UART_PC.o .\CortexM0\ARM_GCC_473\Debug\UART_PC_SPI_UART.o .\CortexM0\ARM_GCC_473\Debug\UART_PC_SPI_UART_INT.o .\CortexM0\ARM_GCC_473\Debug\UART_PC_PM.o .\CortexM0\ARM_GCC_473\Debug\UART_PC_UART.o .\CortexM0\ARM_GCC_473\Debug\UART_PC_BOOT.o .\CortexM0\ARM_GCC_473\Debug\UART_PC_UART_BOOT.o .\CortexM0\ARM_GCC_473\Debug\UART_PC_tx.o .\CortexM0\ARM_GCC_473\Debug\UART_PC_rx.o .\CortexM0\ARM_GCC_473\Debug\UART_GPS.o .\CortexM0\ARM_GCC_473\Debug\UART_GPS_PM.o .\CortexM0\ARM_GCC_473\Debug\UART_GPS_INT.o .\CortexM0\ARM_GCC_473\Debug\UART_GPS_BOOT.o .\CortexM0\ARM_GCC_473\Debug\UART_GPS_IntClock.o
+arm-none-eabi-gcc.exe -I. -I./Generated_Source/PSoC4 -Wno-main -mcpu=cortex-m0 -mthumb -Wall -g -D DEBUG -Wa,-alh=.\CortexM0\ARM_GCC_473\Debug\gps.lst -ffunction-sections -c .\gps.c -o .\CortexM0\ARM_GCC_473\Debug\gps.o
+.\gps.c: In function 'getGPSUartNumberOfSate':
+.\gps.c:43:5: warning: passing argument 2 of 'intToStr' makes pointer from integer without a cast [enabled by default]
+In file included from .\gps.c:7:0:
+.\util.h:2:5: note: expected 'char *' but argument is of type 'char'
+.\gps.c:44:5: warning: return makes pointer from integer without a cast [enabled by default]
+.\gps.c: In function 'getGPSUartSpeed':
+.\gps.c:48:5: warning: passing argument 2 of 'intToStr' makes pointer from integer without a cast [enabled by default]
+In file included from .\gps.c:7:0:
+.\util.h:2:5: note: expected 'char *' but argument is of type 'char'
+.\gps.c:49:5: warning: return makes pointer from integer without a cast [enabled by default]
+.\gps.c: In function 'readGPSData':
+.\gps.c:53:9: warning: variable 'completedGGA' set but not used [-Wunused-but-set-variable]
+arm-none-eabi-ar.exe -rs .\CortexM0\ARM_GCC_473\Debug\i2ctest.a .\CortexM0\ARM_GCC_473\Debug\cyfitter_cfg.o .\CortexM0\ARM_GCC_473\Debug\CyBootAsmGnu.o .\CortexM0\ARM_GCC_473\Debug\CyFlash.o .\CortexM0\ARM_GCC_473\Debug\CyLib.o .\CortexM0\ARM_GCC_473\Debug\cyPm.o .\CortexM0\ARM_GCC_473\Debug\cyutils.o .\CortexM0\ARM_GCC_473\Debug\UART_PC.o .\CortexM0\ARM_GCC_473\Debug\UART_PC_SPI_UART.o .\CortexM0\ARM_GCC_473\Debug\UART_PC_SPI_UART_INT.o .\CortexM0\ARM_GCC_473\Debug\UART_PC_PM.o .\CortexM0\ARM_GCC_473\Debug\UART_PC_UART.o .\CortexM0\ARM_GCC_473\Debug\UART_PC_BOOT.o .\CortexM0\ARM_GCC_473\Debug\UART_PC_UART_BOOT.o .\CortexM0\ARM_GCC_473\Debug\UART_PC_tx.o .\CortexM0\ARM_GCC_473\Debug\UART_PC_rx.o .\CortexM0\ARM_GCC_473\Debug\UART_GPS.o .\CortexM0\ARM_GCC_473\Debug\UART_GPS_PM.o .\CortexM0\ARM_GCC_473\Debug\UART_GPS_INT.o .\CortexM0\ARM_GCC_473\Debug\UART_GPS_BOOT.o .\CortexM0\ARM_GCC_473\Debug\UART_GPS_IntClock.o .\CortexM0\ARM_GCC_473\Debug\SPIS_1.o .\CortexM0\ARM_GCC_473\Debug\SPIS_1_SPI_UART.o .\CortexM0\ARM_GCC_473\Debug\SPIS_1_SPI_UART_INT.o .\CortexM0\ARM_GCC_473\Debug\SPIS_1_PM.o .\CortexM0\ARM_GCC_473\Debug\SPIS_1_SPI.o .\CortexM0\ARM_GCC_473\Debug\SPIS_1_BOOT.o .\CortexM0\ARM_GCC_473\Debug\SPIS_1_SPI_BOOT.o .\CortexM0\ARM_GCC_473\Debug\SPIS_1_mosi_s.o .\CortexM0\ARM_GCC_473\Debug\SPIS_1_sclk_s.o .\CortexM0\ARM_GCC_473\Debug\SPIS_1_SCB_IRQ.o .\CortexM0\ARM_GCC_473\Debug\SPIS_1_SCBCLK.o .\CortexM0\ARM_GCC_473\Debug\SPIS_1_miso_s.o .\CortexM0\ARM_GCC_473\Debug\SPIS_1_ss_s.o
 arm-none-eabi-ar.exe: creating .\CortexM0\ARM_GCC_473\Debug\i2ctest.a
-arm-none-eabi-gcc.exe -mthumb -march=armv6-m -T .\Generated_Source\PSoC4\cm0gcc.ld -g -Wl,-Map,.\CortexM0\ARM_GCC_473\Debug\i2ctest.map -specs=nano.specs -Wl,--gc-sections -Wl,--start-group -o .\CortexM0\ARM_GCC_473\Debug\i2ctest.elf .\CortexM0\ARM_GCC_473\Debug\main.o .\CortexM0\ARM_GCC_473\Debug\cymetadata.o .\CortexM0\ARM_GCC_473\Debug\Cm0Start.o .\CortexM0\ARM_GCC_473\Debug\i2ctest.a "C:\Program Files (x86)\Cypress\PSoC Creator\3.0\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CortexM0\ARM_GCC_473\Debug\CyComponentLibrary.a" -l m -Wl,--end-group
+arm-none-eabi-gcc.exe -mthumb -march=armv6-m -T .\Generated_Source\PSoC4\cm0gcc.ld -g -Wl,-Map,.\CortexM0\ARM_GCC_473\Debug\i2ctest.map -specs=nano.specs -Wl,--gc-sections -Wl,--start-group -o .\CortexM0\ARM_GCC_473\Debug\i2ctest.elf .\CortexM0\ARM_GCC_473\Debug\main.o .\CortexM0\ARM_GCC_473\Debug\nunchuck.o .\CortexM0\ARM_GCC_473\Debug\gps.o .\CortexM0\ARM_GCC_473\Debug\util.o .\CortexM0\ARM_GCC_473\Debug\cymetadata.o .\CortexM0\ARM_GCC_473\Debug\Cm0Start.o .\CortexM0\ARM_GCC_473\Debug\i2ctest.a "C:\Program Files (x86)\Cypress\PSoC Creator\3.0\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CortexM0\ARM_GCC_473\Debug\CyComponentLibrary.a" -l m -Wl,--end-group
 cyelftool.exe -C C:\psoc\i2c_test\i2ctest.cydsn\CortexM0\ARM_GCC_473\Debug\i2ctest.elf --flash_size 32768 --flash_row_size 128
 cyelftool.exe -S C:\psoc\i2c_test\i2ctest.cydsn\CortexM0\ARM_GCC_473\Debug\i2ctest.elf
-Flash used: 7344 of 32768 bytes (22,4 %).
-SRAM used: 1908 of 4096 bytes (46,6 %).
---------------- Build Succeeded: 10/14/2014 19:00:19 ---------------
+Flash used: 23608 of 32768 bytes (72,0 %).
+SRAM used: 2348 of 4096 bytes (57,3 %).
+--------------- Build Succeeded: 11/24/2014 15:48:00 ---------------

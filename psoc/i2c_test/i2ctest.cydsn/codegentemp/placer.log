@@ -6,7 +6,7 @@
 
 #Build Date:         Mar 26 2013 14:54:34
 
-#File Generated:     Oct 14 2014 18:55:29
+#File Generated:     Nov 24 2014 15:43:08
 
 #Purpose:            
 
@@ -55,7 +55,7 @@ Design Statistics after Packing
 Device Utilization Summary after Packing
     Macrocells                  :	25/32
     UDBS                        :	4/4
-    IOs                         :	6/36
+    IOs                         :	8/36
 
 
 D2088: Phase 3, elapsed time : 0.0 (sec)
@@ -82,9 +82,9 @@ Clock: CyILO                | Frequency: N/A       | Target:   0.0 MHz
 Clock: CyIMO                | Frequency: N/A       | Target:  24.0 MHz
 Clock: CyLFCLK              | Frequency: N/A       | Target:   0.0 MHz
 Clock: CySYSCLK             | Frequency: N/A       | Target:  24.0 MHz
-Clock: I2C_1_SCBCLK         | Frequency: N/A       | Target:   1.6 MHz
-Clock: I2C_1_SCBCLK(FFB)    | Frequency: N/A       | Target:   1.6 MHz
-Clock: UART_GPS_IntClock    | Frequency:  39.3 MHz | Target:   0.5 MHz
+Clock: SPIS_1_SCBCLK        | Frequency: N/A       | Target:  12.0 MHz
+Clock: SPIS_1_SCBCLK(FFB)   | Frequency: N/A       | Target:  12.0 MHz
+Clock: UART_GPS_IntClock    | Frequency:  39.3 MHz | Target:   0.1 MHz
 Clock: UART_PC_SCBCLK       | Frequency: N/A       | Target:   0.1 MHz
 Clock: UART_PC_SCBCLK(FFB)  | Frequency: N/A       | Target:   0.1 MHz
 
@@ -99,14 +99,14 @@ Phase 7
                      Clock Summary 
 ======================================================================
 Number of clocks: 10
-Clock: CyHFCLK              | Frequency:   2.2 MHz | Target:  24.0 MHz
+Clock: CyHFCLK              | Frequency:   1.1 MHz | Target:  24.0 MHz
 Clock: CyILO                | Frequency: N/A       | Target:   0.0 MHz
 Clock: CyIMO                | Frequency: N/A       | Target:  24.0 MHz
 Clock: CyLFCLK              | Frequency: N/A       | Target:   0.0 MHz
 Clock: CySYSCLK             | Frequency: N/A       | Target:  24.0 MHz
-Clock: I2C_1_SCBCLK         | Frequency: N/A       | Target:   1.6 MHz
-Clock: I2C_1_SCBCLK(FFB)    | Frequency: N/A       | Target:   1.6 MHz
-Clock: UART_GPS_IntClock    | Frequency:   2.2 MHz | Target:   0.5 MHz
+Clock: SPIS_1_SCBCLK        | Frequency: N/A       | Target:  12.0 MHz
+Clock: SPIS_1_SCBCLK(FFB)   | Frequency: N/A       | Target:  12.0 MHz
+Clock: UART_GPS_IntClock    | Frequency:   1.1 MHz | Target:   0.1 MHz
 Clock: UART_PC_SCBCLK       | Frequency: N/A       | Target:   0.1 MHz
 Clock: UART_PC_SCBCLK(FFB)  | Frequency: N/A       | Target:   0.1 MHz
 
@@ -123,11 +123,11 @@ Final Design Statistics
     Number of Status            	:	2
     Number of SyncCells         	:	0
     Number of count7cells       	:	1
-    Number of IOs       	:	6
+    Number of IOs       	:	8
 
 Device Utilization Summary
     Macrocells                  :	25/32
-    IOs                         :	6/36
+    IOs                         :	8/36
 
 
 
@@ -144,14 +144,14 @@ analysis after routing.
                      Clock Summary 
 ======================================================================
 Number of clocks: 10
-Clock: CyHFCLK              | Frequency:   2.2 MHz | Target:  24.0 MHz
+Clock: CyHFCLK              | Frequency:   1.1 MHz | Target:  24.0 MHz
 Clock: CyILO                | Frequency: N/A       | Target:   0.0 MHz
 Clock: CyIMO                | Frequency: N/A       | Target:  24.0 MHz
 Clock: CyLFCLK              | Frequency: N/A       | Target:   0.0 MHz
 Clock: CySYSCLK             | Frequency: N/A       | Target:  24.0 MHz
-Clock: I2C_1_SCBCLK         | Frequency: N/A       | Target:   1.6 MHz
-Clock: I2C_1_SCBCLK(FFB)    | Frequency: N/A       | Target:   1.6 MHz
-Clock: UART_GPS_IntClock    | Frequency:   2.2 MHz | Target:   0.5 MHz
+Clock: SPIS_1_SCBCLK        | Frequency: N/A       | Target:  12.0 MHz
+Clock: SPIS_1_SCBCLK(FFB)   | Frequency: N/A       | Target:  12.0 MHz
+Clock: UART_GPS_IntClock    | Frequency:   1.1 MHz | Target:   0.1 MHz
 Clock: UART_PC_SCBCLK       | Frequency: N/A       | Target:   0.1 MHz
 Clock: UART_PC_SCBCLK(FFB)  | Frequency: N/A       | Target:   0.1 MHz
 

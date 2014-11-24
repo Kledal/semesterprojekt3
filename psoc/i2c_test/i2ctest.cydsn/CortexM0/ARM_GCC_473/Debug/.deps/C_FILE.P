@@ -1,26 +1,38 @@
-C:/psoc/i2c_test/i2ctest.cydsn/CortexM0/ARM_GCC_473/Debug/main.o : C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/CyFlash.h C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/CyLib.h C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/I2C_1.h C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/I2C_1_I2C.h C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/I2C_1_I2C_PVT.h C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/I2C_1_PINS.h C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/I2C_1_PVT.h C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/I2C_1_scl.h C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/I2C_1_scl_aliases.h C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/I2C_1_sda.h C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/I2C_1_sda_aliases.h C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/UART_GPS.h C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/UART_GPS_IntClock.h C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/UART_PC.h C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/UART_PC_PINS.h C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/UART_PC_PVT.h C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/UART_PC_SPI_UART.h C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/UART_PC_SPI_UART_PVT.h C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/UART_PC_rx.h C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/UART_PC_rx_aliases.h C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/UART_PC_tx.h C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/UART_PC_tx_aliases.h C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/core_cm0.h C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/core_cm0_psoc4.h C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/core_cmFunc.h C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/core_cmInstr.h C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/cyPm.h C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/cydevice_trm.h C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/cydisabledsheets.h C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/cyfitter.h C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/cyfitter_cfg.h C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/cypins.h C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/cytypes.h C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/project.h C:/psoc/i2c_test/i2ctest.cydsn/main.c 
+C:/psoc/i2c_test/i2ctest.cydsn/CortexM0/ARM_GCC_473/Debug/gps.o : C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/CyFlash.h C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/CyLib.h C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/SPIS_1.h C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/SPIS_1_PINS.h C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/SPIS_1_PVT.h C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/SPIS_1_SCBCLK.h C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/SPIS_1_SCB_IRQ.h C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/SPIS_1_SPI_UART.h C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/SPIS_1_SPI_UART_PVT.h C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/SPIS_1_miso_s.h C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/SPIS_1_miso_s_aliases.h C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/SPIS_1_mosi_s.h C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/SPIS_1_mosi_s_aliases.h C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/SPIS_1_sclk_s.h C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/SPIS_1_sclk_s_aliases.h C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/SPIS_1_ss_s.h C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/SPIS_1_ss_s_aliases.h C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/UART_GPS.h C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/UART_GPS_IntClock.h C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/UART_PC.h C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/UART_PC_PINS.h C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/UART_PC_PVT.h C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/UART_PC_SPI_UART.h C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/UART_PC_SPI_UART_PVT.h C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/UART_PC_rx.h C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/UART_PC_rx_aliases.h C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/UART_PC_tx.h C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/UART_PC_tx_aliases.h C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/core_cm0.h C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/core_cm0_psoc4.h C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/core_cmFunc.h C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/core_cmInstr.h C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/cyPm.h C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/cydevice_trm.h C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/cydisabledsheets.h C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/cyfitter.h C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/cyfitter_cfg.h C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/cypins.h C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/cytypes.h C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/project.h C:/psoc/i2c_test/i2ctest.cydsn/gps.c C:/psoc/i2c_test/i2ctest.cydsn/gps.h C:/psoc/i2c_test/i2ctest.cydsn/util.h 
 
 C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/CyFlash.h : 
 
 C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/CyLib.h : 
 
-C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/I2C_1.h : 
+C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/SPIS_1.h : 
 
-C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/I2C_1_I2C.h : 
+C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/SPIS_1_PINS.h : 
 
-C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/I2C_1_I2C_PVT.h : 
+C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/SPIS_1_PVT.h : 
 
-C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/I2C_1_PINS.h : 
+C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/SPIS_1_SCBCLK.h : 
 
-C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/I2C_1_PVT.h : 
+C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/SPIS_1_SCB_IRQ.h : 
 
-C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/I2C_1_scl.h : 
+C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/SPIS_1_SPI_UART.h : 
 
-C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/I2C_1_scl_aliases.h : 
+C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/SPIS_1_SPI_UART_PVT.h : 
 
-C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/I2C_1_sda.h : 
+C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/SPIS_1_miso_s.h : 
 
-C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/I2C_1_sda_aliases.h : 
+C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/SPIS_1_miso_s_aliases.h : 
+
+C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/SPIS_1_mosi_s.h : 
+
+C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/SPIS_1_mosi_s_aliases.h : 
+
+C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/SPIS_1_sclk_s.h : 
+
+C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/SPIS_1_sclk_s_aliases.h : 
+
+C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/SPIS_1_ss_s.h : 
+
+C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/SPIS_1_ss_s_aliases.h : 
 
 C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/UART_GPS.h : 
 
@@ -68,5 +80,9 @@ C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/cytypes.h :
 
 C:/psoc/i2c_test/i2ctest.cydsn/Generated_Source/PSoC4/project.h : 
 
-C:/psoc/i2c_test/i2ctest.cydsn/main.c : 
+C:/psoc/i2c_test/i2ctest.cydsn/gps.c : 
+
+C:/psoc/i2c_test/i2ctest.cydsn/gps.h : 
+
+C:/psoc/i2c_test/i2ctest.cydsn/util.h : 
 

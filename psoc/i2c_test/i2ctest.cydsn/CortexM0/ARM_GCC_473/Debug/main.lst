@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\ALEXAN~1\AppData\Local\Temp\cc4DwPDE.s 			page 1
+ARM GAS  C:\Users\ALEXAN~1\AppData\Local\Temp\ccpswxDW.s 			page 1
 
 
    1              		.cpu cortex-m0
@@ -17,2413 +17,730 @@ ARM GAS  C:\Users\ALEXAN~1\AppData\Local\Temp\cc4DwPDE.s 			page 1
   14              		.text
   15              	.Ltext0:
   16              		.cfi_sections	.debug_frame
-  17              		.global	gpsBuffer
-  18              		.bss
-  19              		.align	2
-  20              		.type	gpsBuffer, %object
-  21              		.size	gpsBuffer, 300
-  22              	gpsBuffer:
-  23 0000 00000000 		.space	300
-  23      00000000 
-  23      00000000 
-  23      00000000 
-  23      00000000 
-  24              		.global	gpsBufferPointer
-  25              		.align	2
-  26              		.type	gpsBufferPointer, %object
-  27              		.size	gpsBufferPointer, 4
-  28              	gpsBufferPointer:
-  29 012c 00000000 		.space	4
-  30              		.global	gpvtg
-  31              		.section	.rodata
-  32              		.align	2
-  33              	.LC0:
-  34 0000 24475056 		.ascii	"$GPVTG\000"
-  34      544700
-  35              		.data
-  36              		.align	2
-  37              		.type	gpvtg, %object
-  38              		.size	gpvtg, 4
-  39              	gpvtg:
-  40 0000 00000000 		.word	.LC0
-  41              		.global	gpgga
-  42              		.section	.rodata
-  43 0007 00       		.align	2
-  44              	.LC1:
-  45 0008 24475047 		.ascii	"$GPGGA\000"
-  45      474100
-  46              		.data
-  47              		.align	2
-  48              		.type	gpgga, %object
-  49              		.size	gpgga, 4
-  50              	gpgga:
-  51 0004 08000000 		.word	.LC1
-ARM GAS  C:\Users\ALEXAN~1\AppData\Local\Temp\cc4DwPDE.s 			page 2
-
-
-  52              		.global	last_joystick_x
-  53              		.bss
-  54              		.align	2
-  55              		.type	last_joystick_x, %object
-  56              		.size	last_joystick_x, 4
-  57              	last_joystick_x:
-  58 0130 00000000 		.space	4
-  59              		.comm	readBuf,6,4
-  60              		.section	.rodata
-  61 000f 00       		.align	2
-  62              	.LC2:
-  63 0010 24504D54 		.ascii	"$PMTK220,200*2C\000"
-  63      4B323230 
-  63      2C323030 
-  63      2A324300 
-  64              		.align	2
-  65              	.LC4:
-  66 0020 24504D54 		.ascii	"$PMTK300,200,0,0,0,0*2F\000"
-  66      4B333030 
-  66      2C323030 
-  66      2C302C30 
-  66      2C302C30 
-  67              		.global	__aeabi_idivmod
-  68              		.section	.text.main,"ax",%progbits
-  69              		.align	2
-  70              		.global	main
-  71              		.code	16
-  72              		.thumb_func
-  73              		.type	main, %function
-  74              	main:
-  75              	.LFB33:
-  76              		.file 1 ".\\main.c"
-   1:.\main.c      **** /* ========================================
-   2:.\main.c      ****  *
-   3:.\main.c      ****  * Copyright YOUR COMPANY, THE YEAR
-   4:.\main.c      ****  * All Rights Reserved
-   5:.\main.c      ****  * UNPUBLISHED, LICENSED SOFTWARE.
-   6:.\main.c      ****  *
-   7:.\main.c      ****  * CONFIDENTIAL AND PROPRIETARY INFORMATION
-   8:.\main.c      ****  * WHICH IS THE PROPERTY OF your company.
-   9:.\main.c      ****  *
-  10:.\main.c      ****  * ========================================
-  11:.\main.c      **** */
-  12:.\main.c      **** #include <project.h>
-  13:.\main.c      **** #include <string.h>
-  14:.\main.c      **** #include <stdio.h>
-  15:.\main.c      **** #include <stdlib.h>
-  16:.\main.c      **** #include<math.h>
+  17              		.section	.text.main,"ax",%progbits
+  18              		.align	2
+  19              		.global	main
+  20              		.code	16
+  21              		.thumb_func
+  22              		.type	main, %function
+  23              	main:
+  24              	.LFB33:
+  25              		.file 1 ".\\main.c"
+   1:.\main.c      **** #include <project.h>
+   2:.\main.c      **** #include <string.h>
+   3:.\main.c      **** #include <stdio.h>
+   4:.\main.c      **** #include <stdlib.h>
+   5:.\main.c      **** #include <math.h>
+   6:.\main.c      **** 
+   7:.\main.c      **** #include "gps.h"
+   8:.\main.c      **** 
+   9:.\main.c      **** /* I2C slave address to communicate with */
+  10:.\main.c      **** #define I2C_SLAVE_ADDR  (0x52u)
+  11:.\main.c      **** 
+  12:.\main.c      **** void processUSBUart();
+  13:.\main.c      **** 
+  14:.\main.c      **** /******** SPI ***************/
+  15:.\main.c      **** CY_ISR_PROTO(isr_spi_rx);
+  16:.\main.c      **** /********* /SPI *************/
   17:.\main.c      **** 
-  18:.\main.c      **** /* I2C slave address to communicate with */
-  19:.\main.c      **** #define I2C_SLAVE_ADDR  (0x52u)
-  20:.\main.c      **** 
-  21:.\main.c      **** uint32 ReadStatusPacket(void);
-  22:.\main.c      **** void SendHandshake();
-  23:.\main.c      **** void SendZero();
-  24:.\main.c      **** uint8 DecodeByte(uint8 input);
-  25:.\main.c      **** void GetDataFromNunChuck();
-ARM GAS  C:\Users\ALEXAN~1\AppData\Local\Temp\cc4DwPDE.s 			page 3
+  18:.\main.c      **** void reverse(char *str, int len);
+  19:.\main.c      **** int intToStr(int x, char str[], int d);
+  20:.\main.c      **** void ftoa(float n, char *res, int afterpoint);
+  21:.\main.c      **** 
+  22:.\main.c      **** int main()
+  23:.\main.c      **** {
+  26              		.loc 1 23 0
+  27              		.cfi_startproc
+  28 0000 80B5     		push	{r7, lr}
+  29              	.LCFI0:
+  30              		.cfi_def_cfa_offset 8
+  31              		.cfi_offset 7, -8
+  32              		.cfi_offset 14, -4
+  33 0002 00AF     		add	r7, sp, #0
+  34              	.LCFI1:
+ARM GAS  C:\Users\ALEXAN~1\AppData\Local\Temp\ccpswxDW.s 			page 2
 
 
-  26:.\main.c      **** 
-  27:.\main.c      **** void processUSBUart();
-  28:.\main.c      **** /********** GPS  ***************/
-  29:.\main.c      **** void readGPSData();
-  30:.\main.c      **** int compareGPSCMD(char* cmd);
-  31:.\main.c      **** void resetGPSBuffer();
-  32:.\main.c      **** void handleGPSData(char* cmd);
-  33:.\main.c      **** 
-  34:.\main.c      **** char gpsBuffer[300] = "";
-  35:.\main.c      **** int gpsBufferPointer = 0;
-  36:.\main.c      **** char* gpvtg = "$GPVTG";
-  37:.\main.c      **** char* gpgga = "$GPGGA";
-  38:.\main.c      **** 
-  39:.\main.c      **** /********** /GPS  ***************/
-  40:.\main.c      **** 
-  41:.\main.c      **** int last_joystick_x = 0;
-  42:.\main.c      **** uint8 readBuf[6];
-  43:.\main.c      **** 
-  44:.\main.c      **** void reverse(char *str, int len);
-  45:.\main.c      **** int intToStr(int x, char str[], int d);
-  46:.\main.c      **** void ftoa(float n, char *res, int afterpoint);
-  47:.\main.c      **** 
-  48:.\main.c      **** int main()
-  49:.\main.c      **** {
-  77              		.loc 1 49 0
-  78              		.cfi_startproc
-  79 0000 80B5     		push	{r7, lr}
-  80              	.LCFI0:
-  81              		.cfi_def_cfa_offset 8
-  82              		.cfi_offset 7, -8
-  83              		.cfi_offset 14, -4
-  84 0002 82B0     		sub	sp, sp, #8
-  85              	.LCFI1:
-  86              		.cfi_def_cfa_offset 16
-  87 0004 00AF     		add	r7, sp, #0
-  88              	.LCFI2:
-  89              		.cfi_def_cfa_register 7
-  50:.\main.c      ****     I2C_1_Start();
-  90              		.loc 1 50 0
-  91 0006 FFF7FEFF 		bl	I2C_1_Start
-  51:.\main.c      ****     UART_PC_Start();
-  92              		.loc 1 51 0
-  93 000a FFF7FEFF 		bl	UART_PC_Start
-  52:.\main.c      ****     UART_GPS_Start();
-  94              		.loc 1 52 0
-  95 000e FFF7FEFF 		bl	UART_GPS_Start
-  53:.\main.c      ****     
-  54:.\main.c      ****     /* CyGlobalIntEnable; */ /* Uncomment this line to enable global interrupts. */
+  35              		.cfi_def_cfa_register 7
+  24:.\main.c      ****    
+  25:.\main.c      ****     CyGlobalIntEnable; /* Uncomment this line to enable global interrupts. */
+  36              		.loc 1 25 0
+  37              	@ 25 ".\main.c" 1
+  38 0004 62B6     		CPSIE   i
+  39              	@ 0 "" 2
+  26:.\main.c      ****     //I2C_1_Start();
+  27:.\main.c      ****     UART_PC_Start();
+  40              		.loc 1 27 0
+  41              		.code	16
+  42 0006 FFF7FEFF 		bl	UART_PC_Start
+  28:.\main.c      ****     UART_GPS_Start();
+  43              		.loc 1 28 0
+  44 000a FFF7FEFF 		bl	UART_GPS_Start
+  29:.\main.c      ****     
+  30:.\main.c      ****     SPIS_1_SetCustomInterruptHandler(isr_spi_rx);
+  45              		.loc 1 30 0
+  46 000e 054B     		ldr	r3, .L3
+  47 0010 181C     		mov	r0, r3
+  48 0012 FFF7FEFF 		bl	SPIS_1_SetCustomInterruptHandler
+  31:.\main.c      **** 	SPIS_1_SpiUartClearTxBuffer();
+  49              		.loc 1 31 0
+  50 0016 FFF7FEFF 		bl	SPIS_1_SpiUartClearTxBuffer
+  32:.\main.c      ****     SPIS_1_Start();
+  51              		.loc 1 32 0
+  52 001a FFF7FEFF 		bl	SPIS_1_Start
+  53              	.L2:
+  33:.\main.c      ****  
+  34:.\main.c      ****     for(;;)
+  35:.\main.c      ****     {
+  36:.\main.c      ****         readGPSData();
+  54              		.loc 1 36 0 discriminator 1
+  55 001e FFF7FEFF 		bl	readGPSData
+  37:.\main.c      **** //        UART_PC_UartPutString("GPS Speed: ");
+  38:.\main.c      **** //        UART_PC_UartPutString(getGPSUartSpeed());
+  39:.\main.c      **** //        UART_PC_UartPutChar(0xd);
+  40:.\main.c      **** //        
+  41:.\main.c      **** //        UART_PC_UartPutString("Number of satelites: ");
+  42:.\main.c      **** //        UART_PC_UartPutString(GetGPSTime());
+  43:.\main.c      **** //        UART_PC_UartPutChar(0xd);
+  44:.\main.c      ****     }
+  56              		.loc 1 44 0 discriminator 1
+  57 0022 FCE7     		b	.L2
+  58              	.L4:
+  59              		.align	2
+  60              	.L3:
+  61 0024 00000000 		.word	isr_spi_rx
+  62              		.cfi_endproc
+  63              	.LFE33:
+  64              		.size	main, .-main
+  65              		.section	.text.isr_spi_rx,"ax",%progbits
+  66              		.align	2
+  67              		.global	isr_spi_rx
+  68              		.code	16
+  69              		.thumb_func
+  70              		.type	isr_spi_rx, %function
+ARM GAS  C:\Users\ALEXAN~1\AppData\Local\Temp\ccpswxDW.s 			page 3
+
+
+  71              	isr_spi_rx:
+  72              	.LFB34:
+  45:.\main.c      **** }
+  46:.\main.c      **** 
+  47:.\main.c      **** CY_ISR(isr_spi_rx) {
+  73              		.loc 1 47 0
+  74              		.cfi_startproc
+  75 0000 80B5     		push	{r7, lr}
+  76              	.LCFI2:
+  77              		.cfi_def_cfa_offset 8
+  78              		.cfi_offset 7, -8
+  79              		.cfi_offset 14, -4
+  80 0002 82B0     		sub	sp, sp, #8
+  81              	.LCFI3:
+  82              		.cfi_def_cfa_offset 16
+  83 0004 00AF     		add	r7, sp, #0
+  84              	.LCFI4:
+  85              		.cfi_def_cfa_register 7
+  48:.\main.c      **** 
+  49:.\main.c      **** 	uint16 rxvalue;
+  50:.\main.c      **** 	uint8 cmd, rddata, addr;
+  51:.\main.c      **** 	rxvalue = SPIS_1_SpiUartReadRxData();
+  86              		.loc 1 51 0
+  87 0006 FFF7FEFF 		bl	SPIS_1_SpiUartReadRxData
+  88 000a 021C     		mov	r2, r0
+  89 000c BB1D     		add	r3, r7, #6
+  90 000e 1A80     		strh	r2, [r3]
+  52:.\main.c      **** 	cmd = (rxvalue >> 14) & 0x3;  // cmd = rdvalue[15:14]
+  91              		.loc 1 52 0
+  92 0010 BB1D     		add	r3, r7, #6
+  93 0012 1B88     		ldrh	r3, [r3]
+  94 0014 9B0B     		lsr	r3, r3, #14
+  95 0016 9BB2     		uxth	r3, r3
+  96 0018 D9B2     		uxtb	r1, r3
+  97 001a 7B1D     		add	r3, r7, #5
+  98 001c 0322     		mov	r2, #3
+  99 001e 0A40     		and	r2, r1
+ 100 0020 1A70     		strb	r2, [r3]
+  53:.\main.c      **** 	addr = (rxvalue >> 8) & 0x3f; // addr = rdvalue[13:8]
+ 101              		.loc 1 53 0
+ 102 0022 BB1D     		add	r3, r7, #6
+ 103 0024 1B88     		ldrh	r3, [r3]
+ 104 0026 1B0A     		lsr	r3, r3, #8
+ 105 0028 9BB2     		uxth	r3, r3
+ 106 002a D9B2     		uxtb	r1, r3
+ 107 002c 3B1D     		add	r3, r7, #4
+ 108 002e 3F22     		mov	r2, #63
+ 109 0030 0A40     		and	r2, r1
+ 110 0032 1A70     		strb	r2, [r3]
+  54:.\main.c      **** 	rddata = rxvalue & 0xff;      // data = rdvalue[7:0]
+ 111              		.loc 1 54 0
+ 112 0034 FB1C     		add	r3, r7, #3
+ 113 0036 BA1D     		add	r2, r7, #6
+ 114 0038 1288     		ldrh	r2, [r2]
+ 115 003a 1A70     		strb	r2, [r3]
   55:.\main.c      ****     
-  56:.\main.c      ****     // Set GPS to 10 Hz
-  57:.\main.c      ****     UART_GPS_PutString("$PMTK220,200*2C");
-  96              		.loc 1 57 0
-  97 0012 164B     		ldr	r3, .L4
-  98 0014 181C     		mov	r0, r3
-  99 0016 FFF7FEFF 		bl	UART_GPS_PutString
-  58:.\main.c      ****     UART_GPS_PutChar(13);
- 100              		.loc 1 58 0
-ARM GAS  C:\Users\ALEXAN~1\AppData\Local\Temp\cc4DwPDE.s 			page 4
+  56:.\main.c      **** 	switch (addr) {
+ARM GAS  C:\Users\ALEXAN~1\AppData\Local\Temp\ccpswxDW.s 			page 4
 
 
- 101 001a 0D20     		mov	r0, #13
- 102 001c FFF7FEFF 		bl	UART_GPS_PutChar
-  59:.\main.c      ****     UART_GPS_PutChar(10);
- 103              		.loc 1 59 0
- 104 0020 0A20     		mov	r0, #10
- 105 0022 FFF7FEFF 		bl	UART_GPS_PutChar
-  60:.\main.c      ****     UART_GPS_PutString("$PMTK300,200,0,0,0,0*2F");
- 106              		.loc 1 60 0
- 107 0026 124B     		ldr	r3, .L4+4
- 108 0028 181C     		mov	r0, r3
- 109 002a FFF7FEFF 		bl	UART_GPS_PutString
-  61:.\main.c      ****     UART_GPS_PutChar(13);
- 110              		.loc 1 61 0
- 111 002e 0D20     		mov	r0, #13
- 112 0030 FFF7FEFF 		bl	UART_GPS_PutChar
-  62:.\main.c      ****     UART_GPS_PutChar(10);
- 113              		.loc 1 62 0
- 114 0034 0A20     		mov	r0, #10
- 115 0036 FFF7FEFF 		bl	UART_GPS_PutChar
-  63:.\main.c      ****     
-  64:.\main.c      ****     SendHandshake();
- 116              		.loc 1 64 0
- 117 003a FFF7FEFF 		bl	SendHandshake
-  65:.\main.c      ****     SendZero();
- 118              		.loc 1 65 0
- 119 003e FFF7FEFF 		bl	SendZero
-  66:.\main.c      ****     
-  67:.\main.c      ****     int shiftMode = 0;
- 120              		.loc 1 67 0
- 121 0042 0023     		mov	r3, #0
- 122 0044 7B60     		str	r3, [r7, #4]
- 123              	.L3:
-  68:.\main.c      ****     for(;;)
-  69:.\main.c      ****     {
-  70:.\main.c      ****         GetDataFromNunChuck();
- 124              		.loc 1 70 0
- 125 0046 FFF7FEFF 		bl	GetDataFromNunChuck
-  71:.\main.c      ****         if (shiftMode%10 == 0) {
- 126              		.loc 1 71 0
- 127 004a 7B68     		ldr	r3, [r7, #4]
- 128 004c 181C     		mov	r0, r3
- 129 004e 0A21     		mov	r1, #10
- 130 0050 FFF7FEFF 		bl	__aeabi_idivmod
- 131 0054 0B1C     		mov	r3, r1
- 132 0056 002B     		cmp	r3, #0
- 133 0058 03D1     		bne	.L2
-  72:.\main.c      ****             readGPSData();
- 134              		.loc 1 72 0
- 135 005a FFF7FEFF 		bl	readGPSData
-  73:.\main.c      ****             shiftMode = 0;   
- 136              		.loc 1 73 0
- 137 005e 0023     		mov	r3, #0
- 138 0060 7B60     		str	r3, [r7, #4]
- 139              	.L2:
-  74:.\main.c      ****         }
-  75:.\main.c      ****         shiftMode++;
- 140              		.loc 1 75 0
-ARM GAS  C:\Users\ALEXAN~1\AppData\Local\Temp\cc4DwPDE.s 			page 5
-
-
- 141 0062 7B68     		ldr	r3, [r7, #4]
- 142 0064 0133     		add	r3, r3, #1
- 143 0066 7B60     		str	r3, [r7, #4]
-  76:.\main.c      ****         
-  77:.\main.c      ****     }
- 144              		.loc 1 77 0
- 145 0068 EDE7     		b	.L3
- 146              	.L5:
- 147 006a C046     		.align	2
- 148              	.L4:
- 149 006c 10000000 		.word	.LC2
- 150 0070 20000000 		.word	.LC4
+ 116              		.loc 1 56 0
+ 117 003c 3B1D     		add	r3, r7, #4
+ 118 003e 1B78     		ldrb	r3, [r3]
+ 119 0040 012B     		cmp	r3, #1
+ 120 0042 0AD1     		bne	.L9
+ 121              	.L7:
+  57:.\main.c      ****         case 0x1:
+  58:.\main.c      ****             SPIS_1_SpiUartClearTxBuffer();
+ 122              		.loc 1 58 0
+ 123 0044 FFF7FEFF 		bl	SPIS_1_SpiUartClearTxBuffer
+  59:.\main.c      **** 			SPIS_1_SpiUartWriteTxData( (int16)GetGPSTime() );
+ 124              		.loc 1 59 0
+ 125 0048 FFF7FEFF 		bl	GetGPSTime
+ 126 004c 031C     		mov	r3, r0
+ 127 004e 9BB2     		uxth	r3, r3
+ 128 0050 1BB2     		sxth	r3, r3
+ 129 0052 181C     		mov	r0, r3
+ 130 0054 FFF7FEFF 		bl	SPIS_1_SpiUartWriteTxData
+  60:.\main.c      ****             break;
+ 131              		.loc 1 60 0
+ 132 0058 00E0     		b	.L8
+ 133              	.L9:
+  61:.\main.c      **** 		default:
+  62:.\main.c      **** 			break;
+ 134              		.loc 1 62 0
+ 135 005a C046     		mov	r8, r8
+ 136              	.L8:
+  63:.\main.c      **** 	}
+  64:.\main.c      **** 	
+  65:.\main.c      **** 	SPIS_1_ClearRxInterruptSource(SPIS_1_GetRxInterruptSource());
+ 137              		.loc 1 65 0
+ 138 005c 034B     		ldr	r3, .L10
+ 139 005e 034A     		ldr	r2, .L10
+ 140 0060 1268     		ldr	r2, [r2]
+ 141 0062 1A60     		str	r2, [r3]
+  66:.\main.c      **** }...
+ 142              		.loc 1 66 0
+ 143 0064 BD46     		mov	sp, r7
+ 144 0066 02B0     		add	sp, sp, #8
+ 145              		@ sp needed for prologue
+ 146 0068 80BD     		pop	{r7, pc}
+ 147              	.L11:
+ 148 006a C046     		.align	2
+ 149              	.L10:
+ 150 006c C00F0740 		.word	1074204608
  151              		.cfi_endproc
- 152              	.LFE33:
- 153              		.size	main, .-main
- 154              		.section	.rodata
- 155              		.align	2
- 156              	.LC9:
- 157 0038 47504747 		.ascii	"GPGGA\000"
- 157      4100
- 158 003e 0000     		.align	2
- 159              	.LC12:
- 160 0040 47505654 		.ascii	"GPVTG\000"
- 160      4700
- 161              		.section	.text.readGPSData,"ax",%progbits
- 162              		.align	2
- 163              		.global	readGPSData
- 164              		.code	16
- 165              		.thumb_func
- 166              		.type	readGPSData, %function
- 167              	readGPSData:
- 168              	.LFB34:
-  78:.\main.c      **** }
-  79:.\main.c      **** 
-  80:.\main.c      **** void readGPSData() {
- 169              		.loc 1 80 0
- 170              		.cfi_startproc
- 171 0000 90B5     		push	{r4, r7, lr}
- 172              	.LCFI3:
- 173              		.cfi_def_cfa_offset 12
- 174              		.cfi_offset 4, -12
- 175              		.cfi_offset 7, -8
- 176              		.cfi_offset 14, -4
- 177 0002 85B0     		sub	sp, sp, #20
- 178              	.LCFI4:
- 179              		.cfi_def_cfa_offset 32
- 180 0004 00AF     		add	r7, sp, #0
- 181              	.LCFI5:
- 182              		.cfi_def_cfa_register 7
-  81:.\main.c      ****     int completedGGA = 0;
- 183              		.loc 1 81 0
- 184 0006 0023     		mov	r3, #0
- 185 0008 BB60     		str	r3, [r7, #8]
-  82:.\main.c      ****     int completedVTG = 0;
- 186              		.loc 1 82 0
- 187 000a 0023     		mov	r3, #0
- 188 000c FB60     		str	r3, [r7, #12]
-ARM GAS  C:\Users\ALEXAN~1\AppData\Local\Temp\cc4DwPDE.s 			page 6
-
-
-  83:.\main.c      ****     while(!completedVTG) {
- 189              		.loc 1 83 0
- 190 000e 46E0     		b	.L7
- 191              	.L11:
- 192              	.LBB2:
-  84:.\main.c      ****         uint8 rxHasData = UART_GPS_GetRxBufferSize();
- 193              		.loc 1 84 0
- 194 0010 FC1D     		add	r4, r7, #7
- 195 0012 FFF7FEFF 		bl	UART_GPS_GetRxBufferSize
- 196 0016 031C     		mov	r3, r0
- 197 0018 2370     		strb	r3, [r4]
-  85:.\main.c      ****         if (rxHasData) {
- 198              		.loc 1 85 0
- 199 001a FB1D     		add	r3, r7, #7
- 200 001c 1B78     		ldrb	r3, [r3]
- 201 001e 002B     		cmp	r3, #0
- 202 0020 3DD0     		beq	.L7
- 203              	.LBB3:
-  86:.\main.c      ****             char rxData = UART_GPS_ReadRxData();
- 204              		.loc 1 86 0
- 205 0022 BC1D     		add	r4, r7, #6
- 206 0024 FFF7FEFF 		bl	UART_GPS_ReadRxData
- 207 0028 031C     		mov	r3, r0
- 208 002a 2370     		strb	r3, [r4]
-  87:.\main.c      ****             gpsBuffer[gpsBufferPointer] = rxData;
- 209              		.loc 1 87 0
- 210 002c 1F4B     		ldr	r3, .L12
- 211 002e 1B68     		ldr	r3, [r3]
- 212 0030 1F4A     		ldr	r2, .L12+4
- 213 0032 B91D     		add	r1, r7, #6
- 214 0034 0978     		ldrb	r1, [r1]
- 215 0036 D154     		strb	r1, [r2, r3]
-  88:.\main.c      ****             gpsBufferPointer++;
- 216              		.loc 1 88 0
- 217 0038 1C4B     		ldr	r3, .L12
- 218 003a 1B68     		ldr	r3, [r3]
- 219 003c 5A1C     		add	r2, r3, #1
- 220 003e 1B4B     		ldr	r3, .L12
- 221 0040 1A60     		str	r2, [r3]
-  89:.\main.c      ****             
-  90:.\main.c      ****             if (rxData == 0x10) {
- 222              		.loc 1 90 0
- 223 0042 BB1D     		add	r3, r7, #6
- 224 0044 1B78     		ldrb	r3, [r3]
- 225 0046 102B     		cmp	r3, #16
- 226 0048 04D1     		bne	.L8
-  91:.\main.c      ****                 gpsBufferPointer = 0;
- 227              		.loc 1 91 0
- 228 004a 184B     		ldr	r3, .L12
- 229 004c 0022     		mov	r2, #0
- 230 004e 1A60     		str	r2, [r3]
-  92:.\main.c      ****                 resetGPSBuffer();
- 231              		.loc 1 92 0
- 232 0050 FFF7FEFF 		bl	resetGPSBuffer
- 233              	.L8:
-  93:.\main.c      ****             }
-  94:.\main.c      ****             //UART_PC_UartPutChar(rxData);
-ARM GAS  C:\Users\ALEXAN~1\AppData\Local\Temp\cc4DwPDE.s 			page 7
-
-
-  95:.\main.c      ****             // Data completed. Received a full gps packet.
-  96:.\main.c      ****             if (rxData == 13) {            
- 234              		.loc 1 96 0
- 235 0054 BB1D     		add	r3, r7, #6
- 236 0056 1B78     		ldrb	r3, [r3]
- 237 0058 0D2B     		cmp	r3, #13
- 238 005a 20D1     		bne	.L7
-  97:.\main.c      ****                 if (compareGPSCMD(gpgga)){
- 239              		.loc 1 97 0
- 240 005c 154B     		ldr	r3, .L12+8
- 241 005e 1B68     		ldr	r3, [r3]
- 242 0060 181C     		mov	r0, r3
- 243 0062 FFF7FEFF 		bl	compareGPSCMD
- 244 0066 031C     		mov	r3, r0
- 245 0068 002B     		cmp	r3, #0
- 246 006a 05D0     		beq	.L9
-  98:.\main.c      ****                     handleGPSData("GPGGA");
- 247              		.loc 1 98 0
- 248 006c 124B     		ldr	r3, .L12+12
- 249 006e 181C     		mov	r0, r3
- 250 0070 FFF7FEFF 		bl	handleGPSData
-  99:.\main.c      ****                     completedGGA = 1;
- 251              		.loc 1 99 0
- 252 0074 0123     		mov	r3, #1
- 253 0076 BB60     		str	r3, [r7, #8]
- 254              	.L9:
- 100:.\main.c      ****                 }
- 101:.\main.c      ****                 if (compareGPSCMD(gpvtg)){
- 255              		.loc 1 101 0
- 256 0078 104B     		ldr	r3, .L12+16
- 257 007a 1B68     		ldr	r3, [r3]
- 258 007c 181C     		mov	r0, r3
- 259 007e FFF7FEFF 		bl	compareGPSCMD
- 260 0082 031C     		mov	r3, r0
- 261 0084 002B     		cmp	r3, #0
- 262 0086 05D0     		beq	.L10
- 102:.\main.c      ****                     handleGPSData("GPVTG");
- 263              		.loc 1 102 0
- 264 0088 0D4B     		ldr	r3, .L12+20
- 265 008a 181C     		mov	r0, r3
- 266 008c FFF7FEFF 		bl	handleGPSData
- 103:.\main.c      ****                     completedVTG = 1;
- 267              		.loc 1 103 0
- 268 0090 0123     		mov	r3, #1
- 269 0092 FB60     		str	r3, [r7, #12]
- 270              	.L10:
- 104:.\main.c      ****                 }
- 105:.\main.c      ****                 
- 106:.\main.c      ****                 gpsBufferPointer = 0;
- 271              		.loc 1 106 0
- 272 0094 054B     		ldr	r3, .L12
- 273 0096 0022     		mov	r2, #0
- 274 0098 1A60     		str	r2, [r3]
- 107:.\main.c      ****                 resetGPSBuffer();
- 275              		.loc 1 107 0
- 276 009a FFF7FEFF 		bl	resetGPSBuffer
- 277              	.L7:
-ARM GAS  C:\Users\ALEXAN~1\AppData\Local\Temp\cc4DwPDE.s 			page 8
-
-
- 278              	.LBE3:
- 279              	.LBE2:
-  83:.\main.c      ****     while(!completedVTG) {
- 280              		.loc 1 83 0 discriminator 1
- 281 009e FB68     		ldr	r3, [r7, #12]
- 282 00a0 002B     		cmp	r3, #0
- 283 00a2 B5D0     		beq	.L11
- 108:.\main.c      ****             }
- 109:.\main.c      ****         }
- 110:.\main.c      ****     }
- 111:.\main.c      **** }
- 284              		.loc 1 111 0
- 285 00a4 BD46     		mov	sp, r7
- 286 00a6 05B0     		add	sp, sp, #20
- 287              		@ sp needed for prologue
- 288 00a8 90BD     		pop	{r4, r7, pc}
- 289              	.L13:
- 290 00aa C046     		.align	2
- 291              	.L12:
- 292 00ac 00000000 		.word	gpsBufferPointer
- 293 00b0 00000000 		.word	gpsBuffer
- 294 00b4 00000000 		.word	gpgga
- 295 00b8 38000000 		.word	.LC9
- 296 00bc 00000000 		.word	gpvtg
- 297 00c0 40000000 		.word	.LC12
- 298              		.cfi_endproc
- 299              	.LFE34:
- 300              		.size	readGPSData, .-readGPSData
- 301              		.section	.text.handleGPSData,"ax",%progbits
- 302              		.align	2
- 303              		.global	handleGPSData
- 304              		.code	16
- 305              		.thumb_func
- 306              		.type	handleGPSData, %function
- 307              	handleGPSData:
- 308              	.LFB35:
- 112:.\main.c      **** void handleGPSData(char* cmd) {
- 309              		.loc 1 112 0
- 310              		.cfi_startproc
- 311 0000 F0B5     		push	{r4, r5, r6, r7, lr}
- 312              	.LCFI6:
- 313              		.cfi_def_cfa_offset 20
- 314              		.cfi_offset 4, -20
- 315              		.cfi_offset 5, -16
- 316              		.cfi_offset 6, -12
- 317              		.cfi_offset 7, -8
- 318              		.cfi_offset 14, -4
- 319 0002 4746     		mov	r7, r8
- 320 0004 80B4     		push	{r7}
- 321              	.LCFI7:
- 322              		.cfi_def_cfa_offset 24
- 323              		.cfi_offset 8, -24
- 324 0006 88B0     		sub	sp, sp, #32
- 325              	.LCFI8:
- 326              		.cfi_def_cfa_offset 56
- 327 0008 00AF     		add	r7, sp, #0
- 328              	.LCFI9:
-ARM GAS  C:\Users\ALEXAN~1\AppData\Local\Temp\cc4DwPDE.s 			page 9
-
-
- 329              		.cfi_def_cfa_register 7
- 330 000a F860     		str	r0, [r7, #12]
- 331 000c 6846     		mov	r0, sp
- 332 000e 8046     		mov	r8, r0
- 113:.\main.c      ****     int i = 0;
- 333              		.loc 1 113 0
- 334 0010 0020     		mov	r0, #0
- 335 0012 F861     		str	r0, [r7, #28]
- 114:.\main.c      ****     char packet[gpsBufferPointer-1];
- 336              		.loc 1 114 0
- 337 0014 2348     		ldr	r0, .L17
- 338 0016 0068     		ldr	r0, [r0]
- 339 0018 0138     		sub	r0, r0, #1
- 340 001a 421E     		sub	r2, r0, #1
- 341 001c 9446     		mov	ip, r2
- 342 001e 6346     		mov	r3, ip
- 343 0020 BB61     		str	r3, [r7, #24]
- 344 0022 8446     		mov	ip, r0
- 345 0024 6146     		mov	r1, ip
- 346 0026 0024     		mov	r4, #0
- 347 0028 A446     		mov	ip, r4
- 348 002a 6246     		mov	r2, ip
- 349 002c 4B0F     		lsr	r3, r1, #29
- 350 002e 9C46     		mov	ip, r3
- 351 0030 D400     		lsl	r4, r2, #3
- 352 0032 7C60     		str	r4, [r7, #4]
- 353 0034 6346     		mov	r3, ip
- 354 0036 7C68     		ldr	r4, [r7, #4]
- 355 0038 2343     		orr	r3, r4
- 356 003a 7B60     		str	r3, [r7, #4]
- 357 003c CB00     		lsl	r3, r1, #3
- 358 003e 021C     		mov	r2, r0
- 359 0040 131C     		mov	r3, r2
- 360 0042 0022     		mov	r2, #0
- 361 0044 141C     		mov	r4, r2
- 362 0046 5A0F     		lsr	r2, r3, #29
- 363 0048 E600     		lsl	r6, r4, #3
- 364 004a 1643     		orr	r6, r2
- 365 004c DD00     		lsl	r5, r3, #3
- 366 004e 031C     		mov	r3, r0
- 367 0050 0733     		add	r3, r3, #7
- 368 0052 DB08     		lsr	r3, r3, #3
- 369 0054 DB00     		lsl	r3, r3, #3
- 370 0056 6C46     		mov	r4, sp
- 371 0058 E41A     		sub	r4, r4, r3
- 372 005a A546     		mov	sp, r4
- 373 005c 6B46     		mov	r3, sp
- 374 005e 0033     		add	r3, r3, #0
- 375 0060 7B61     		str	r3, [r7, #20]
- 115:.\main.c      ****     for(i =1;i<gpsBufferPointer-1;i++) {
- 376              		.loc 1 115 0
- 377 0062 0123     		mov	r3, #1
- 378 0064 FB61     		str	r3, [r7, #28]
- 379 0066 0AE0     		b	.L15
- 380              	.L16:
- 116:.\main.c      ****         packet[i-1] = gpsBuffer[i];
- 381              		.loc 1 116 0 discriminator 2
-ARM GAS  C:\Users\ALEXAN~1\AppData\Local\Temp\cc4DwPDE.s 			page 10
-
-
- 382 0068 FB69     		ldr	r3, [r7, #28]
- 383 006a 013B     		sub	r3, r3, #1
- 384 006c 0E49     		ldr	r1, .L17+4
- 385 006e FA69     		ldr	r2, [r7, #28]
- 386 0070 8A18     		add	r2, r1, r2
- 387 0072 1178     		ldrb	r1, [r2]
- 388 0074 7A69     		ldr	r2, [r7, #20]
- 389 0076 D154     		strb	r1, [r2, r3]
- 115:.\main.c      ****     for(i =1;i<gpsBufferPointer-1;i++) {
- 390              		.loc 1 115 0 discriminator 2
- 391 0078 FB69     		ldr	r3, [r7, #28]
- 392 007a 0133     		add	r3, r3, #1
- 393 007c FB61     		str	r3, [r7, #28]
- 394              	.L15:
- 115:.\main.c      ****     for(i =1;i<gpsBufferPointer-1;i++) {
- 395              		.loc 1 115 0 is_stmt 0 discriminator 1
- 396 007e 094B     		ldr	r3, .L17
- 397 0080 1B68     		ldr	r3, [r3]
- 398 0082 5A1E     		sub	r2, r3, #1
- 399 0084 FB69     		ldr	r3, [r7, #28]
- 400 0086 9A42     		cmp	r2, r3
- 401 0088 EEDC     		bgt	.L16
- 117:.\main.c      ****     }
- 118:.\main.c      ****     
- 119:.\main.c      ****     UART_PC_UartPutString(packet);
- 402              		.loc 1 119 0 is_stmt 1
- 403 008a 7B69     		ldr	r3, [r7, #20]
- 404 008c 181C     		mov	r0, r3
- 405 008e FFF7FEFF 		bl	UART_PC_UartPutString
- 120:.\main.c      ****     UART_PC_UartPutChar(0xd);
- 406              		.loc 1 120 0
- 407 0092 0D20     		mov	r0, #13
- 408 0094 FFF7FEFF 		bl	UART_PC_SpiUartWriteTxData
- 409 0098 C546     		mov	sp, r8
- 121:.\main.c      ****     
- 122:.\main.c      **** //    char* token = strtok(packet, ",");
- 123:.\main.c      **** //    i = 0;
- 124:.\main.c      **** //    while( token != NULL ) 
- 125:.\main.c      **** //    {
- 126:.\main.c      **** //        if (i == 2 && strcmp(cmd, "GPGGA") == 0) {
- 127:.\main.c      **** //            latitude = atof(token);
- 128:.\main.c      **** //        }
- 129:.\main.c      **** //        if (i == 3 && strcmp(cmd, "GPGGA") == 0) {
- 130:.\main.c      **** //            sscanf(token, "%c", &latitude_pos);
- 131:.\main.c      **** //        }
- 132:.\main.c      **** //        if (i == 4 && strcmp(cmd, "GPGGA") == 0) {
- 133:.\main.c      **** //            longitude = atof(token);;
- 134:.\main.c      **** //        }
- 135:.\main.c      **** //        if (i == 5 && strcmp(cmd, "GPGGA") == 0) {
- 136:.\main.c      **** //            sscanf(token, "%c", &longitude_pos);
- 137:.\main.c      **** //        }
- 138:.\main.c      **** //        if (i == 7 && strcmp(cmd, "GPGGA") == 0) {
- 139:.\main.c      **** //            sscanf(token, "%d", &number_of_satelites);
- 140:.\main.c      **** //        }
- 141:.\main.c      **** //        if (i == 9 && strcmp(cmd, "GPGGA") == 0) {
- 142:.\main.c      **** //            altitude = atof(token);
- 143:.\main.c      **** //        }
-ARM GAS  C:\Users\ALEXAN~1\AppData\Local\Temp\cc4DwPDE.s 			page 11
-
-
- 144:.\main.c      **** //        if (i == 6 && strcmp(cmd, "GPVTG") == 0) {
- 145:.\main.c      **** //            ground_speed = atof(token);
- 146:.\main.c      **** //        }
- 147:.\main.c      **** //        token = strtok(NULL, ",");
- 148:.\main.c      **** //        i++;
- 149:.\main.c      **** //    }
- 150:.\main.c      **** }
- 410              		.loc 1 150 0
- 411 009a BD46     		mov	sp, r7
- 412 009c 08B0     		add	sp, sp, #32
- 413              		@ sp needed for prologue
- 414 009e 04BC     		pop	{r2}
- 415 00a0 9046     		mov	r8, r2
- 416 00a2 F0BD     		pop	{r4, r5, r6, r7, pc}
- 417              	.L18:
- 418              		.align	2
- 419              	.L17:
- 420 00a4 00000000 		.word	gpsBufferPointer
- 421 00a8 00000000 		.word	gpsBuffer
- 422              		.cfi_endproc
- 423              	.LFE35:
- 424              		.size	handleGPSData, .-handleGPSData
- 425              		.section	.text.compareGPSCMD,"ax",%progbits
- 426              		.align	2
- 427              		.global	compareGPSCMD
- 428              		.code	16
- 429              		.thumb_func
- 430              		.type	compareGPSCMD, %function
- 431              	compareGPSCMD:
- 432              	.LFB36:
- 151:.\main.c      **** 
- 152:.\main.c      **** int compareGPSCMD(char* cmd) {
- 433              		.loc 1 152 0
- 434              		.cfi_startproc
- 435 0000 80B5     		push	{r7, lr}
- 436              	.LCFI10:
- 437              		.cfi_def_cfa_offset 8
- 438              		.cfi_offset 7, -8
- 439              		.cfi_offset 14, -4
- 440 0002 84B0     		sub	sp, sp, #16
- 441              	.LCFI11:
- 442              		.cfi_def_cfa_offset 24
- 443 0004 00AF     		add	r7, sp, #0
- 444              	.LCFI12:
- 445              		.cfi_def_cfa_register 7
- 446 0006 7860     		str	r0, [r7, #4]
- 153:.\main.c      ****     int i = 0;
- 447              		.loc 1 153 0
- 448 0008 0023     		mov	r3, #0
- 449 000a FB60     		str	r3, [r7, #12]
- 154:.\main.c      ****     int correct = 0;
- 450              		.loc 1 154 0
- 451 000c 0023     		mov	r3, #0
- 452 000e BB60     		str	r3, [r7, #8]
- 155:.\main.c      ****     for(i =1;i<7;i++) {
- 453              		.loc 1 155 0
- 454 0010 0123     		mov	r3, #1
-ARM GAS  C:\Users\ALEXAN~1\AppData\Local\Temp\cc4DwPDE.s 			page 12
-
-
- 455 0012 FB60     		str	r3, [r7, #12]
- 456 0014 10E0     		b	.L20
- 457              	.L22:
- 156:.\main.c      ****         if (cmd[i-1] == gpsBuffer[i])
- 458              		.loc 1 156 0
- 459 0016 FB68     		ldr	r3, [r7, #12]
- 460 0018 013B     		sub	r3, r3, #1
- 461 001a 7A68     		ldr	r2, [r7, #4]
- 462 001c D318     		add	r3, r2, r3
- 463 001e 1A78     		ldrb	r2, [r3]
- 464 0020 0B49     		ldr	r1, .L24
- 465 0022 FB68     		ldr	r3, [r7, #12]
- 466 0024 CB18     		add	r3, r1, r3
- 467 0026 1B78     		ldrb	r3, [r3]
- 468 0028 9A42     		cmp	r2, r3
- 469 002a 02D1     		bne	.L21
- 157:.\main.c      ****             correct++;
- 470              		.loc 1 157 0
- 471 002c BB68     		ldr	r3, [r7, #8]
- 472 002e 0133     		add	r3, r3, #1
- 473 0030 BB60     		str	r3, [r7, #8]
- 474              	.L21:
- 155:.\main.c      ****     for(i =1;i<7;i++) {
- 475              		.loc 1 155 0
- 476 0032 FB68     		ldr	r3, [r7, #12]
- 477 0034 0133     		add	r3, r3, #1
- 478 0036 FB60     		str	r3, [r7, #12]
- 479              	.L20:
- 155:.\main.c      ****     for(i =1;i<7;i++) {
- 480              		.loc 1 155 0 is_stmt 0 discriminator 1
- 481 0038 FB68     		ldr	r3, [r7, #12]
- 482 003a 062B     		cmp	r3, #6
- 483 003c EBDD     		ble	.L22
- 158:.\main.c      ****     }
- 159:.\main.c      ****     return correct == 6;
- 484              		.loc 1 159 0 is_stmt 1
- 485 003e BB68     		ldr	r3, [r7, #8]
- 486 0040 063B     		sub	r3, r3, #6
- 487 0042 5A42     		neg	r2, r3
- 488 0044 5341     		adc	r3, r3, r2
- 489 0046 DBB2     		uxtb	r3, r3
- 160:.\main.c      **** }
- 490              		.loc 1 160 0
- 491 0048 181C     		mov	r0, r3
- 492 004a BD46     		mov	sp, r7
- 493 004c 04B0     		add	sp, sp, #16
- 494              		@ sp needed for prologue
- 495 004e 80BD     		pop	{r7, pc}
- 496              	.L25:
- 497              		.align	2
- 498              	.L24:
- 499 0050 00000000 		.word	gpsBuffer
- 500              		.cfi_endproc
- 501              	.LFE36:
- 502              		.size	compareGPSCMD, .-compareGPSCMD
- 503              		.section	.text.resetGPSBuffer,"ax",%progbits
- 504              		.align	2
-ARM GAS  C:\Users\ALEXAN~1\AppData\Local\Temp\cc4DwPDE.s 			page 13
-
-
- 505              		.global	resetGPSBuffer
- 506              		.code	16
- 507              		.thumb_func
- 508              		.type	resetGPSBuffer, %function
- 509              	resetGPSBuffer:
- 510              	.LFB37:
- 161:.\main.c      **** void resetGPSBuffer() {
- 511              		.loc 1 161 0
- 512              		.cfi_startproc
- 513 0000 80B5     		push	{r7, lr}
- 514              	.LCFI13:
- 515              		.cfi_def_cfa_offset 8
- 516              		.cfi_offset 7, -8
- 517              		.cfi_offset 14, -4
- 518 0002 82B0     		sub	sp, sp, #8
- 519              	.LCFI14:
- 520              		.cfi_def_cfa_offset 16
- 521 0004 00AF     		add	r7, sp, #0
- 522              	.LCFI15:
- 523              		.cfi_def_cfa_register 7
- 162:.\main.c      ****     int i;
- 163:.\main.c      ****     for (i=0;i<300;i++){
- 524              		.loc 1 163 0
- 525 0006 0023     		mov	r3, #0
- 526 0008 7B60     		str	r3, [r7, #4]
- 527 000a 07E0     		b	.L27
- 528              	.L28:
- 164:.\main.c      ****      gpsBuffer[i]=' ';             
- 529              		.loc 1 164 0 discriminator 2
- 530 000c 074A     		ldr	r2, .L29
- 531 000e 7B68     		ldr	r3, [r7, #4]
- 532 0010 D318     		add	r3, r2, r3
- 533 0012 2022     		mov	r2, #32
- 534 0014 1A70     		strb	r2, [r3]
- 163:.\main.c      ****     for (i=0;i<300;i++){
- 535              		.loc 1 163 0 discriminator 2
- 536 0016 7B68     		ldr	r3, [r7, #4]
- 537 0018 0133     		add	r3, r3, #1
- 538 001a 7B60     		str	r3, [r7, #4]
- 539              	.L27:
- 163:.\main.c      ****     for (i=0;i<300;i++){
- 540              		.loc 1 163 0 is_stmt 0 discriminator 1
- 541 001c 7A68     		ldr	r2, [r7, #4]
- 542 001e 044B     		ldr	r3, .L29+4
- 543 0020 9A42     		cmp	r2, r3
- 544 0022 F3DD     		ble	.L28
- 165:.\main.c      ****    } 
- 166:.\main.c      **** }
- 545              		.loc 1 166 0 is_stmt 1
- 546 0024 BD46     		mov	sp, r7
- 547 0026 02B0     		add	sp, sp, #8
- 548              		@ sp needed for prologue
- 549 0028 80BD     		pop	{r7, pc}
- 550              	.L30:
- 551 002a C046     		.align	2
- 552              	.L29:
- 553 002c 00000000 		.word	gpsBuffer
-ARM GAS  C:\Users\ALEXAN~1\AppData\Local\Temp\cc4DwPDE.s 			page 14
-
-
- 554 0030 2B010000 		.word	299
- 555              		.cfi_endproc
- 556              	.LFE37:
- 557              		.size	resetGPSBuffer, .-resetGPSBuffer
- 558              		.section	.text.DecodeByte,"ax",%progbits
- 559              		.align	2
- 560              		.global	DecodeByte
- 561              		.code	16
- 562              		.thumb_func
- 563              		.type	DecodeByte, %function
- 564              	DecodeByte:
- 565              	.LFB38:
- 167:.\main.c      **** 
- 168:.\main.c      **** uint8 DecodeByte(uint8 input) {
- 566              		.loc 1 168 0
- 567              		.cfi_startproc
- 568 0000 80B5     		push	{r7, lr}
- 569              	.LCFI16:
- 570              		.cfi_def_cfa_offset 8
- 571              		.cfi_offset 7, -8
- 572              		.cfi_offset 14, -4
- 573 0002 82B0     		sub	sp, sp, #8
- 574              	.LCFI17:
- 575              		.cfi_def_cfa_offset 16
- 576 0004 00AF     		add	r7, sp, #0
- 577              	.LCFI18:
- 578              		.cfi_def_cfa_register 7
- 579 0006 021C     		mov	r2, r0
- 580 0008 FB1D     		add	r3, r7, #7
- 581 000a 1A70     		strb	r2, [r3]
- 169:.\main.c      ****     return (input ^ 0x17) + 0x17;
- 582              		.loc 1 169 0
- 583 000c FB1D     		add	r3, r7, #7
- 584 000e 1B78     		ldrb	r3, [r3]
- 585 0010 1722     		mov	r2, #23
- 586 0012 5340     		eor	r3, r2
- 587 0014 DBB2     		uxtb	r3, r3
- 588 0016 1733     		add	r3, r3, #23
- 589 0018 DBB2     		uxtb	r3, r3
- 170:.\main.c      **** }
- 590              		.loc 1 170 0
- 591 001a 181C     		mov	r0, r3
- 592 001c BD46     		mov	sp, r7
- 593 001e 02B0     		add	sp, sp, #8
- 594              		@ sp needed for prologue
- 595 0020 80BD     		pop	{r7, pc}
- 596              		.cfi_endproc
- 597              	.LFE38:
- 598              		.size	DecodeByte, .-DecodeByte
- 599 0022 C046     		.section	.rodata
- 600 0046 0000     		.align	2
- 601              	.LC19:
- 602 0048 3100     		.ascii	"1\000"
- 603 004a 0000     		.align	2
- 604              	.LC21:
- 605 004c 3000     		.ascii	"0\000"
- 606              		.section	.text.GetDataFromNunChuck,"ax",%progbits
-ARM GAS  C:\Users\ALEXAN~1\AppData\Local\Temp\cc4DwPDE.s 			page 15
-
-
- 607              		.align	2
- 608              		.global	GetDataFromNunChuck
- 609              		.code	16
- 610              		.thumb_func
- 611              		.type	GetDataFromNunChuck, %function
- 612              	GetDataFromNunChuck:
- 613              	.LFB39:
- 171:.\main.c      **** void GetDataFromNunChuck() {
- 614              		.loc 1 171 0
- 615              		.cfi_startproc
- 616 0000 80B5     		push	{r7, lr}
- 617              	.LCFI19:
- 618              		.cfi_def_cfa_offset 8
- 619              		.cfi_offset 7, -8
- 620              		.cfi_offset 14, -4
- 621 0002 86B0     		sub	sp, sp, #24
- 622              	.LCFI20:
- 623              		.cfi_def_cfa_offset 32
- 624 0004 00AF     		add	r7, sp, #0
- 625              	.LCFI21:
- 626              		.cfi_def_cfa_register 7
- 172:.\main.c      ****     I2C_1_I2CMasterSendStart(I2C_SLAVE_ADDR, 1);
- 627              		.loc 1 172 0
- 628 0006 5220     		mov	r0, #82
- 629 0008 0121     		mov	r1, #1
- 630 000a FFF7FEFF 		bl	I2C_1_I2CMasterSendStart
- 173:.\main.c      ****     int i = 0;
- 631              		.loc 1 173 0
- 632 000e 0023     		mov	r3, #0
- 633 0010 7B61     		str	r3, [r7, #20]
- 174:.\main.c      ****     for(i=0;i<6;i++) {
- 634              		.loc 1 174 0
- 635 0012 0023     		mov	r3, #0
- 636 0014 7B61     		str	r3, [r7, #20]
- 637 0016 10E0     		b	.L34
- 638              	.L35:
- 175:.\main.c      ****         readBuf[i] = DecodeByte(I2C_1_I2CMasterReadByte(0));
- 639              		.loc 1 175 0 discriminator 2
- 640 0018 0020     		mov	r0, #0
- 641 001a FFF7FEFF 		bl	I2C_1_I2CMasterReadByte
- 642 001e 031C     		mov	r3, r0
- 643 0020 DBB2     		uxtb	r3, r3
- 644 0022 181C     		mov	r0, r3
- 645 0024 FFF7FEFF 		bl	DecodeByte
- 646 0028 031C     		mov	r3, r0
- 647 002a 1A1C     		mov	r2, r3
- 648 002c 2749     		ldr	r1, .L40
- 649 002e 7B69     		ldr	r3, [r7, #20]
- 650 0030 CB18     		add	r3, r1, r3
- 651 0032 1A70     		strb	r2, [r3]
- 174:.\main.c      ****     for(i=0;i<6;i++) {
- 652              		.loc 1 174 0 discriminator 2
- 653 0034 7B69     		ldr	r3, [r7, #20]
- 654 0036 0133     		add	r3, r3, #1
- 655 0038 7B61     		str	r3, [r7, #20]
- 656              	.L34:
- 174:.\main.c      ****     for(i=0;i<6;i++) {
-ARM GAS  C:\Users\ALEXAN~1\AppData\Local\Temp\cc4DwPDE.s 			page 16
-
-
- 657              		.loc 1 174 0 is_stmt 0 discriminator 1
- 658 003a 7B69     		ldr	r3, [r7, #20]
- 659 003c 052B     		cmp	r3, #5
- 660 003e EBDD     		ble	.L35
- 176:.\main.c      ****         // UART_PC_UartPutChar(readBuf[i]);
- 177:.\main.c      ****     }
- 178:.\main.c      ****     I2C_1_I2CMasterSendStop();
- 661              		.loc 1 178 0 is_stmt 1
- 662 0040 FFF7FEFF 		bl	I2C_1_I2CMasterSendStop
- 179:.\main.c      ****     // UART_PC_UartPutString("\n\r");
- 180:.\main.c      **** 
- 181:.\main.c      ****     int cButton = !(readBuf[0] & (1 << 1));
- 663              		.loc 1 181 0
- 664 0044 214B     		ldr	r3, .L40
- 665 0046 1B78     		ldrb	r3, [r3]
- 666 0048 1A1C     		mov	r2, r3
- 667 004a 0223     		mov	r3, #2
- 668 004c 1340     		and	r3, r2
- 669 004e 5A42     		neg	r2, r3
- 670 0050 5341     		adc	r3, r3, r2
- 671 0052 DBB2     		uxtb	r3, r3
- 672 0054 3B61     		str	r3, [r7, #16]
- 182:.\main.c      ****     int zButton =  !(readBuf[0] & (1 << 0));
- 673              		.loc 1 182 0
- 674 0056 1D4B     		ldr	r3, .L40
- 675 0058 1B78     		ldrb	r3, [r3]
- 676 005a 1A1C     		mov	r2, r3
- 677 005c 0123     		mov	r3, #1
- 678 005e 1340     		and	r3, r2
- 679 0060 5A42     		neg	r2, r3
- 680 0062 5341     		adc	r3, r3, r2
- 681 0064 DBB2     		uxtb	r3, r3
- 682 0066 FB60     		str	r3, [r7, #12]
- 183:.\main.c      ****     if (cButton) {
- 683              		.loc 1 183 0
- 684 0068 3B69     		ldr	r3, [r7, #16]
- 685 006a 002B     		cmp	r3, #0
- 686 006c 04D0     		beq	.L36
- 184:.\main.c      ****         UART_PC_UartPutString("1");
- 687              		.loc 1 184 0
- 688 006e 184B     		ldr	r3, .L40+4
- 689 0070 181C     		mov	r0, r3
- 690 0072 FFF7FEFF 		bl	UART_PC_UartPutString
- 691 0076 03E0     		b	.L37
- 692              	.L36:
- 185:.\main.c      ****     }else{
- 186:.\main.c      ****         UART_PC_UartPutString("0");
- 693              		.loc 1 186 0
- 694 0078 164B     		ldr	r3, .L40+8
- 695 007a 181C     		mov	r0, r3
- 696 007c FFF7FEFF 		bl	UART_PC_UartPutString
- 697              	.L37:
- 187:.\main.c      ****     }
- 188:.\main.c      ****     if (zButton) {
- 698              		.loc 1 188 0
- 699 0080 FB68     		ldr	r3, [r7, #12]
- 700 0082 002B     		cmp	r3, #0
-ARM GAS  C:\Users\ALEXAN~1\AppData\Local\Temp\cc4DwPDE.s 			page 17
-
-
- 701 0084 04D0     		beq	.L38
- 189:.\main.c      ****         UART_PC_UartPutString("1");
- 702              		.loc 1 189 0
- 703 0086 124B     		ldr	r3, .L40+4
- 704 0088 181C     		mov	r0, r3
- 705 008a FFF7FEFF 		bl	UART_PC_UartPutString
- 706 008e 03E0     		b	.L39
- 707              	.L38:
- 190:.\main.c      ****     } else {
- 191:.\main.c      ****         UART_PC_UartPutString("0");
- 708              		.loc 1 191 0
- 709 0090 104B     		ldr	r3, .L40+8
- 710 0092 181C     		mov	r0, r3
- 711 0094 FFF7FEFF 		bl	UART_PC_UartPutString
- 712              	.L39:
- 192:.\main.c      ****     }
- 193:.\main.c      **** 
- 194:.\main.c      ****     int joystick_x = readBuf[1];
- 713              		.loc 1 194 0
- 714 0098 0C4B     		ldr	r3, .L40
- 715 009a 5B78     		ldrb	r3, [r3, #1]
- 716 009c BB60     		str	r3, [r7, #8]
- 195:.\main.c      ****     int joystick_y = readBuf[2];
- 717              		.loc 1 195 0
- 718 009e 0B4B     		ldr	r3, .L40
- 719 00a0 9B78     		ldrb	r3, [r3, #2]
- 720 00a2 7B60     		str	r3, [r7, #4]
- 196:.\main.c      **** 
- 197:.\main.c      ****     UART_PC_UartPutChar(joystick_x);
- 721              		.loc 1 197 0
- 722 00a4 BB68     		ldr	r3, [r7, #8]
- 723 00a6 181C     		mov	r0, r3
- 724 00a8 FFF7FEFF 		bl	UART_PC_SpiUartWriteTxData
- 198:.\main.c      ****     UART_PC_UartPutChar(joystick_y);
- 725              		.loc 1 198 0
- 726 00ac 7B68     		ldr	r3, [r7, #4]
- 727 00ae 181C     		mov	r0, r3
- 728 00b0 FFF7FEFF 		bl	UART_PC_SpiUartWriteTxData
- 199:.\main.c      ****     UART_PC_UartPutChar(13);
- 729              		.loc 1 199 0
- 730 00b4 0D20     		mov	r0, #13
- 731 00b6 FFF7FEFF 		bl	UART_PC_SpiUartWriteTxData
- 200:.\main.c      **** 
- 201:.\main.c      ****     SendZero();
- 732              		.loc 1 201 0
- 733 00ba FFF7FEFF 		bl	SendZero
- 202:.\main.c      ****     CyDelay(10);
- 734              		.loc 1 202 0
- 735 00be 0A20     		mov	r0, #10
- 736 00c0 FFF7FEFF 		bl	CyDelay
- 203:.\main.c      **** }
- 737              		.loc 1 203 0
- 738 00c4 BD46     		mov	sp, r7
- 739 00c6 06B0     		add	sp, sp, #24
- 740              		@ sp needed for prologue
- 741 00c8 80BD     		pop	{r7, pc}
- 742              	.L41:
-ARM GAS  C:\Users\ALEXAN~1\AppData\Local\Temp\cc4DwPDE.s 			page 18
-
-
- 743 00ca C046     		.align	2
- 744              	.L40:
- 745 00cc 00000000 		.word	readBuf
- 746 00d0 48000000 		.word	.LC19
- 747 00d4 4C000000 		.word	.LC21
- 748              		.cfi_endproc
- 749              	.LFE39:
- 750              		.size	GetDataFromNunChuck, .-GetDataFromNunChuck
- 751              		.section	.text.SendZero,"ax",%progbits
- 752              		.align	2
- 753              		.global	SendZero
- 754              		.code	16
- 755              		.thumb_func
- 756              		.type	SendZero, %function
- 757              	SendZero:
- 758              	.LFB40:
- 204:.\main.c      **** void SendZero() {
- 759              		.loc 1 204 0
- 760              		.cfi_startproc
- 761 0000 80B5     		push	{r7, lr}
- 762              	.LCFI22:
- 763              		.cfi_def_cfa_offset 8
- 764              		.cfi_offset 7, -8
- 765              		.cfi_offset 14, -4
- 766 0002 00AF     		add	r7, sp, #0
- 767              	.LCFI23:
- 768              		.cfi_def_cfa_register 7
- 205:.\main.c      ****     I2C_1_I2CMasterSendStart(I2C_SLAVE_ADDR, 0);
- 769              		.loc 1 205 0
- 770 0004 5220     		mov	r0, #82
- 771 0006 0021     		mov	r1, #0
- 772 0008 FFF7FEFF 		bl	I2C_1_I2CMasterSendStart
- 206:.\main.c      ****     I2C_1_I2CMasterWriteByte(0x00);
- 773              		.loc 1 206 0
- 774 000c 0020     		mov	r0, #0
- 775 000e FFF7FEFF 		bl	I2C_1_I2CMasterWriteByte
- 207:.\main.c      ****     I2C_1_I2CMasterSendStop();
- 776              		.loc 1 207 0
- 777 0012 FFF7FEFF 		bl	I2C_1_I2CMasterSendStop
- 208:.\main.c      ****     //I2C_1_I2CMasterClearStatus();
- 209:.\main.c      ****     //UART_1_UartPutString("SendZero done\n\r");
- 210:.\main.c      **** }
- 778              		.loc 1 210 0
- 779 0016 BD46     		mov	sp, r7
- 780              		@ sp needed for prologue
- 781 0018 80BD     		pop	{r7, pc}
- 782              		.cfi_endproc
- 783              	.LFE40:
- 784              		.size	SendZero, .-SendZero
- 785 001a C046     		.section	.rodata
- 786 004e 0000     		.align	2
- 787              	.LC23:
- 788 0050 48616E64 		.ascii	"Handshake done\012\015\000"
- 788      7368616B 
- 788      6520646F 
- 788      6E650A0D 
- 788      00
-ARM GAS  C:\Users\ALEXAN~1\AppData\Local\Temp\cc4DwPDE.s 			page 19
-
-
- 789 0061 000000   		.section	.text.SendHandshake,"ax",%progbits
- 790              		.align	2
- 791              		.global	SendHandshake
- 792              		.code	16
- 793              		.thumb_func
- 794              		.type	SendHandshake, %function
- 795              	SendHandshake:
- 796              	.LFB41:
- 211:.\main.c      **** void SendHandshake()
- 212:.\main.c      **** {    
- 797              		.loc 1 212 0
- 798              		.cfi_startproc
- 799 0000 80B5     		push	{r7, lr}
- 800              	.LCFI24:
- 801              		.cfi_def_cfa_offset 8
- 802              		.cfi_offset 7, -8
- 803              		.cfi_offset 14, -4
- 804 0002 00AF     		add	r7, sp, #0
- 805              	.LCFI25:
- 806              		.cfi_def_cfa_register 7
- 213:.\main.c      ****     I2C_1_I2CMasterSendStart(I2C_SLAVE_ADDR, 0);
- 807              		.loc 1 213 0
- 808 0004 5220     		mov	r0, #82
- 809 0006 0021     		mov	r1, #0
- 810 0008 FFF7FEFF 		bl	I2C_1_I2CMasterSendStart
- 214:.\main.c      ****     I2C_1_I2CMasterWriteByte(0x40);
- 811              		.loc 1 214 0
- 812 000c 4020     		mov	r0, #64
- 813 000e FFF7FEFF 		bl	I2C_1_I2CMasterWriteByte
- 215:.\main.c      ****     I2C_1_I2CMasterWriteByte(0x00);
- 814              		.loc 1 215 0
- 815 0012 0020     		mov	r0, #0
- 816 0014 FFF7FEFF 		bl	I2C_1_I2CMasterWriteByte
- 216:.\main.c      ****     I2C_1_I2CMasterSendStop();
- 817              		.loc 1 216 0
- 818 0018 FFF7FEFF 		bl	I2C_1_I2CMasterSendStop
- 217:.\main.c      ****     //(void) I2C_1_I2CMasterClearStatus();
- 218:.\main.c      ****     
- 219:.\main.c      ****     UART_PC_UartPutString("Handshake done\n\r");
- 819              		.loc 1 219 0
- 820 001c 054B     		ldr	r3, .L44
- 821 001e 181C     		mov	r0, r3
- 822 0020 FFF7FEFF 		bl	UART_PC_UartPutString
- 220:.\main.c      ****     
- 221:.\main.c      ****     CyDelay(300);
- 823              		.loc 1 221 0
- 824 0024 9623     		mov	r3, #150
- 825 0026 5B00     		lsl	r3, r3, #1
- 826 0028 181C     		mov	r0, r3
- 827 002a FFF7FEFF 		bl	CyDelay
- 222:.\main.c      **** }
- 828              		.loc 1 222 0
- 829 002e BD46     		mov	sp, r7
- 830              		@ sp needed for prologue
- 831 0030 80BD     		pop	{r7, pc}
- 832              	.L45:
- 833 0032 C046     		.align	2
-ARM GAS  C:\Users\ALEXAN~1\AppData\Local\Temp\cc4DwPDE.s 			page 20
-
-
- 834              	.L44:
- 835 0034 50000000 		.word	.LC23
- 836              		.cfi_endproc
- 837              	.LFE41:
- 838              		.size	SendHandshake, .-SendHandshake
- 839              		.text
- 840              	.Letext0:
- 841              		.file 2 "./Generated_Source/PSoC4/cytypes.h"
- 842              		.section	.debug_info,"",%progbits
- 843              	.Ldebug_info0:
- 844 0000 43030000 		.4byte	0x343
- 845 0004 0200     		.2byte	0x2
- 846 0006 00000000 		.4byte	.Ldebug_abbrev0
- 847 000a 04       		.byte	0x4
- 848 000b 01       		.uleb128 0x1
- 849 000c BB010000 		.4byte	.LASF43
- 850 0010 01       		.byte	0x1
- 851 0011 56000000 		.4byte	.LASF44
- 852 0015 96010000 		.4byte	.LASF45
- 853 0019 00000000 		.4byte	.Ldebug_ranges0+0
- 854 001d 00000000 		.4byte	0
- 855 0021 00000000 		.4byte	0
- 856 0025 00000000 		.4byte	.Ldebug_line0
- 857 0029 02       		.uleb128 0x2
- 858 002a 01       		.byte	0x1
- 859 002b 06       		.byte	0x6
- 860 002c 23020000 		.4byte	.LASF0
- 861 0030 02       		.uleb128 0x2
- 862 0031 01       		.byte	0x1
- 863 0032 08       		.byte	0x8
- 864 0033 42000000 		.4byte	.LASF1
- 865 0037 02       		.uleb128 0x2
- 866 0038 02       		.byte	0x2
- 867 0039 05       		.byte	0x5
- 868 003a 8C010000 		.4byte	.LASF2
- 869 003e 02       		.uleb128 0x2
- 870 003f 02       		.byte	0x2
- 871 0040 07       		.byte	0x7
- 872 0041 7B000000 		.4byte	.LASF3
- 873 0045 02       		.uleb128 0x2
- 874 0046 04       		.byte	0x4
- 875 0047 05       		.byte	0x5
- 876 0048 0E020000 		.4byte	.LASF4
- 877 004c 02       		.uleb128 0x2
- 878 004d 04       		.byte	0x4
- 879 004e 07       		.byte	0x7
- 880 004f 69000000 		.4byte	.LASF5
- 881 0053 02       		.uleb128 0x2
- 882 0054 08       		.byte	0x8
- 883 0055 05       		.byte	0x5
- 884 0056 50010000 		.4byte	.LASF6
- 885 005a 02       		.uleb128 0x2
- 886 005b 08       		.byte	0x8
- 887 005c 07       		.byte	0x7
- 888 005d F9000000 		.4byte	.LASF7
- 889 0061 03       		.uleb128 0x3
- 890 0062 04       		.byte	0x4
-ARM GAS  C:\Users\ALEXAN~1\AppData\Local\Temp\cc4DwPDE.s 			page 21
-
-
- 891 0063 05       		.byte	0x5
- 892 0064 696E7400 		.ascii	"int\000"
- 893 0068 02       		.uleb128 0x2
- 894 0069 04       		.byte	0x4
- 895 006a 07       		.byte	0x7
- 896 006b EC000000 		.4byte	.LASF8
- 897 006f 04       		.uleb128 0x4
- 898 0070 B5010000 		.4byte	.LASF9
- 899 0074 02       		.byte	0x2
- 900 0075 5B       		.byte	0x5b
- 901 0076 30000000 		.4byte	0x30
- 902 007a 04       		.uleb128 0x4
- 903 007b E5000000 		.4byte	.LASF10
- 904 007f 02       		.byte	0x2
- 905 0080 5D       		.byte	0x5d
- 906 0081 4C000000 		.4byte	0x4c
- 907 0085 02       		.uleb128 0x2
- 908 0086 04       		.byte	0x4
- 909 0087 04       		.byte	0x4
- 910 0088 2B000000 		.4byte	.LASF11
- 911 008c 02       		.uleb128 0x2
- 912 008d 08       		.byte	0x8
- 913 008e 04       		.byte	0x4
- 914 008f D2000000 		.4byte	.LASF12
- 915 0093 02       		.uleb128 0x2
- 916 0094 01       		.byte	0x1
- 917 0095 08       		.byte	0x8
- 918 0096 79010000 		.4byte	.LASF13
- 919 009a 02       		.uleb128 0x2
- 920 009b 04       		.byte	0x4
- 921 009c 07       		.byte	0x7
- 922 009d 41010000 		.4byte	.LASF14
- 923 00a1 05       		.uleb128 0x5
- 924 00a2 04       		.byte	0x4
- 925 00a3 93000000 		.4byte	0x93
- 926 00a7 02       		.uleb128 0x2
- 927 00a8 08       		.byte	0x8
- 928 00a9 04       		.byte	0x4
- 929 00aa 17020000 		.4byte	.LASF15
- 930 00ae 06       		.uleb128 0x6
- 931 00af 01       		.byte	0x1
- 932 00b0 D9000000 		.4byte	.LASF21
- 933 00b4 01       		.byte	0x1
- 934 00b5 30       		.byte	0x30
- 935 00b6 61000000 		.4byte	0x61
- 936 00ba 00000000 		.4byte	.LFB33
- 937 00be 74000000 		.4byte	.LFE33
- 938 00c2 00000000 		.4byte	.LLST0
- 939 00c6 01       		.byte	0x1
- 940 00c7 DA000000 		.4byte	0xda
- 941 00cb 07       		.uleb128 0x7
- 942 00cc 04020000 		.4byte	.LASF16
- 943 00d0 01       		.byte	0x1
- 944 00d1 43       		.byte	0x43
- 945 00d2 61000000 		.4byte	0x61
- 946 00d6 02       		.byte	0x2
- 947 00d7 91       		.byte	0x91
-ARM GAS  C:\Users\ALEXAN~1\AppData\Local\Temp\cc4DwPDE.s 			page 22
-
-
- 948 00d8 74       		.sleb128 -12
- 949 00d9 00       		.byte	0
- 950 00da 08       		.uleb128 0x8
- 951 00db 01       		.byte	0x1
- 952 00dc 6D010000 		.4byte	.LASF25
- 953 00e0 01       		.byte	0x1
- 954 00e1 50       		.byte	0x50
- 955 00e2 00000000 		.4byte	.LFB34
- 956 00e6 C4000000 		.4byte	.LFE34
- 957 00ea 38000000 		.4byte	.LLST1
- 958 00ee 01       		.byte	0x1
- 959 00ef 40010000 		.4byte	0x140
- 960 00f3 07       		.uleb128 0x7
- 961 00f4 26010000 		.4byte	.LASF17
- 962 00f8 01       		.byte	0x1
- 963 00f9 51       		.byte	0x51
- 964 00fa 61000000 		.4byte	0x61
- 965 00fe 02       		.byte	0x2
- 966 00ff 91       		.byte	0x91
- 967 0100 68       		.sleb128 -24
- 968 0101 07       		.uleb128 0x7
- 969 0102 3D020000 		.4byte	.LASF18
- 970 0106 01       		.byte	0x1
- 971 0107 52       		.byte	0x52
- 972 0108 61000000 		.4byte	0x61
- 973 010c 02       		.byte	0x2
- 974 010d 91       		.byte	0x91
- 975 010e 6C       		.sleb128 -20
- 976 010f 09       		.uleb128 0x9
- 977 0110 10000000 		.4byte	.LBB2
- 978 0114 9E000000 		.4byte	.LBE2
- 979 0118 07       		.uleb128 0x7
- 980 0119 5F000000 		.4byte	.LASF19
- 981 011d 01       		.byte	0x1
- 982 011e 54       		.byte	0x54
- 983 011f 6F000000 		.4byte	0x6f
- 984 0123 02       		.byte	0x2
- 985 0124 91       		.byte	0x91
- 986 0125 67       		.sleb128 -25
- 987 0126 09       		.uleb128 0x9
- 988 0127 22000000 		.4byte	.LBB3
- 989 012b 9E000000 		.4byte	.LBE3
- 990 012f 07       		.uleb128 0x7
- 991 0130 A2000000 		.4byte	.LASF20
- 992 0134 01       		.byte	0x1
- 993 0135 56       		.byte	0x56
- 994 0136 93000000 		.4byte	0x93
- 995 013a 02       		.byte	0x2
- 996 013b 91       		.byte	0x91
- 997 013c 66       		.sleb128 -26
- 998 013d 00       		.byte	0
- 999 013e 00       		.byte	0
- 1000 013f 00       		.byte	0
- 1001 0140 0A       		.uleb128 0xa
- 1002 0141 01       		.byte	0x1
- 1003 0142 2F020000 		.4byte	.LASF22
- 1004 0146 01       		.byte	0x1
-ARM GAS  C:\Users\ALEXAN~1\AppData\Local\Temp\cc4DwPDE.s 			page 23
-
-
- 1005 0147 70       		.byte	0x70
- 1006 0148 01       		.byte	0x1
- 1007 0149 00000000 		.4byte	.LFB35
- 1008 014d AC000000 		.4byte	.LFE35
- 1009 0151 70000000 		.4byte	.LLST2
- 1010 0155 01       		.byte	0x1
- 1011 0156 84010000 		.4byte	0x184
- 1012 015a 0B       		.uleb128 0xb
- 1013 015b 636D6400 		.ascii	"cmd\000"
- 1014 015f 01       		.byte	0x1
- 1015 0160 70       		.byte	0x70
- 1016 0161 A1000000 		.4byte	0xa1
- 1017 0165 02       		.byte	0x2
- 1018 0166 91       		.byte	0x91
- 1019 0167 54       		.sleb128 -44
- 1020 0168 0C       		.uleb128 0xc
- 1021 0169 6900     		.ascii	"i\000"
- 1022 016b 01       		.byte	0x1
- 1023 016c 71       		.byte	0x71
- 1024 016d 61000000 		.4byte	0x61
- 1025 0171 02       		.byte	0x2
- 1026 0172 91       		.byte	0x91
- 1027 0173 64       		.sleb128 -28
- 1028 0174 07       		.uleb128 0x7
- 1029 0175 DE000000 		.4byte	.LASF23
- 1030 0179 01       		.byte	0x1
- 1031 017a 72       		.byte	0x72
- 1032 017b 84010000 		.4byte	0x184
- 1033 017f 03       		.byte	0x3
- 1034 0180 91       		.byte	0x91
- 1035 0181 5C       		.sleb128 -36
- 1036 0182 06       		.byte	0x6
- 1037 0183 00       		.byte	0
- 1038 0184 0D       		.uleb128 0xd
- 1039 0185 93000000 		.4byte	0x93
- 1040 0189 97010000 		.4byte	0x197
- 1041 018d 0E       		.uleb128 0xe
- 1042 018e 9A000000 		.4byte	0x9a
- 1043 0192 03       		.byte	0x3
- 1044 0193 91       		.byte	0x91
- 1045 0194 60       		.sleb128 -32
- 1046 0195 06       		.byte	0x6
- 1047 0196 00       		.byte	0
- 1048 0197 0F       		.uleb128 0xf
- 1049 0198 01       		.byte	0x1
- 1050 0199 33010000 		.4byte	.LASF27
- 1051 019d 01       		.byte	0x1
- 1052 019e 98       		.byte	0x98
- 1053 019f 01       		.byte	0x1
- 1054 01a0 61000000 		.4byte	0x61
- 1055 01a4 00000000 		.4byte	.LFB36
- 1056 01a8 54000000 		.4byte	.LFE36
- 1057 01ac B4000000 		.4byte	.LLST3
- 1058 01b0 01       		.byte	0x1
- 1059 01b1 DE010000 		.4byte	0x1de
- 1060 01b5 0B       		.uleb128 0xb
- 1061 01b6 636D6400 		.ascii	"cmd\000"
-ARM GAS  C:\Users\ALEXAN~1\AppData\Local\Temp\cc4DwPDE.s 			page 24
-
-
- 1062 01ba 01       		.byte	0x1
- 1063 01bb 98       		.byte	0x98
- 1064 01bc A1000000 		.4byte	0xa1
- 1065 01c0 02       		.byte	0x2
- 1066 01c1 91       		.byte	0x91
- 1067 01c2 6C       		.sleb128 -20
- 1068 01c3 0C       		.uleb128 0xc
- 1069 01c4 6900     		.ascii	"i\000"
- 1070 01c6 01       		.byte	0x1
- 1071 01c7 99       		.byte	0x99
- 1072 01c8 61000000 		.4byte	0x61
- 1073 01cc 02       		.byte	0x2
- 1074 01cd 91       		.byte	0x91
- 1075 01ce 74       		.sleb128 -12
- 1076 01cf 07       		.uleb128 0x7
- 1077 01d0 19000000 		.4byte	.LASF24
- 1078 01d4 01       		.byte	0x1
- 1079 01d5 9A       		.byte	0x9a
- 1080 01d6 61000000 		.4byte	0x61
- 1081 01da 02       		.byte	0x2
- 1082 01db 91       		.byte	0x91
- 1083 01dc 70       		.sleb128 -16
- 1084 01dd 00       		.byte	0
- 1085 01de 10       		.uleb128 0x10
- 1086 01df 01       		.byte	0x1
- 1087 01e0 5E010000 		.4byte	.LASF26
- 1088 01e4 01       		.byte	0x1
- 1089 01e5 A1       		.byte	0xa1
- 1090 01e6 00000000 		.4byte	.LFB37
- 1091 01ea 34000000 		.4byte	.LFE37
- 1092 01ee EC000000 		.4byte	.LLST4
- 1093 01f2 01       		.byte	0x1
- 1094 01f3 04020000 		.4byte	0x204
- 1095 01f7 0C       		.uleb128 0xc
- 1096 01f8 6900     		.ascii	"i\000"
- 1097 01fa 01       		.byte	0x1
- 1098 01fb A2       		.byte	0xa2
- 1099 01fc 61000000 		.4byte	0x61
- 1100 0200 02       		.byte	0x2
- 1101 0201 91       		.byte	0x91
- 1102 0202 74       		.sleb128 -12
- 1103 0203 00       		.byte	0
- 1104 0204 0F       		.uleb128 0xf
- 1105 0205 01       		.byte	0x1
- 1106 0206 C7000000 		.4byte	.LASF28
- 1107 020a 01       		.byte	0x1
- 1108 020b A8       		.byte	0xa8
- 1109 020c 01       		.byte	0x1
- 1110 020d 6F000000 		.4byte	0x6f
- 1111 0211 00000000 		.4byte	.LFB38
- 1112 0215 22000000 		.4byte	.LFE38
- 1113 0219 24010000 		.4byte	.LLST5
- 1114 021d 01       		.byte	0x1
- 1115 021e 31020000 		.4byte	0x231
- 1116 0222 11       		.uleb128 0x11
- 1117 0223 50000000 		.4byte	.LASF29
- 1118 0227 01       		.byte	0x1
-ARM GAS  C:\Users\ALEXAN~1\AppData\Local\Temp\cc4DwPDE.s 			page 25
-
-
- 1119 0228 A8       		.byte	0xa8
- 1120 0229 6F000000 		.4byte	0x6f
- 1121 022d 02       		.byte	0x2
- 1122 022e 91       		.byte	0x91
- 1123 022f 77       		.sleb128 -9
- 1124 0230 00       		.byte	0
- 1125 0231 08       		.uleb128 0x8
- 1126 0232 01       		.byte	0x1
- 1127 0233 8E000000 		.4byte	.LASF30
- 1128 0237 01       		.byte	0x1
- 1129 0238 AB       		.byte	0xab
- 1130 0239 00000000 		.4byte	.LFB39
- 1131 023d D8000000 		.4byte	.LFE39
- 1132 0241 5C010000 		.4byte	.LLST6
- 1133 0245 01       		.byte	0x1
- 1134 0246 8F020000 		.4byte	0x28f
- 1135 024a 0C       		.uleb128 0xc
- 1136 024b 6900     		.ascii	"i\000"
- 1137 024d 01       		.byte	0x1
- 1138 024e AD       		.byte	0xad
- 1139 024f 61000000 		.4byte	0x61
- 1140 0253 02       		.byte	0x2
- 1141 0254 91       		.byte	0x91
- 1142 0255 74       		.sleb128 -12
- 1143 0256 07       		.uleb128 0x7
- 1144 0257 16010000 		.4byte	.LASF31
- 1145 025b 01       		.byte	0x1
- 1146 025c B5       		.byte	0xb5
- 1147 025d 61000000 		.4byte	0x61
- 1148 0261 02       		.byte	0x2
- 1149 0262 91       		.byte	0x91
- 1150 0263 70       		.sleb128 -16
- 1151 0264 07       		.uleb128 0x7
- 1152 0265 1E010000 		.4byte	.LASF32
- 1153 0269 01       		.byte	0x1
- 1154 026a B6       		.byte	0xb6
- 1155 026b 61000000 		.4byte	0x61
- 1156 026f 02       		.byte	0x2
- 1157 0270 91       		.byte	0x91
- 1158 0271 6C       		.sleb128 -20
- 1159 0272 07       		.uleb128 0x7
- 1160 0273 BC000000 		.4byte	.LASF33
- 1161 0277 01       		.byte	0x1
- 1162 0278 C2       		.byte	0xc2
- 1163 0279 61000000 		.4byte	0x61
- 1164 027d 02       		.byte	0x2
- 1165 027e 91       		.byte	0x91
- 1166 027f 68       		.sleb128 -24
- 1167 0280 07       		.uleb128 0x7
- 1168 0281 B1000000 		.4byte	.LASF34
- 1169 0285 01       		.byte	0x1
- 1170 0286 C3       		.byte	0xc3
- 1171 0287 61000000 		.4byte	0x61
- 1172 028b 02       		.byte	0x2
- 1173 028c 91       		.byte	0x91
- 1174 028d 64       		.sleb128 -28
- 1175 028e 00       		.byte	0
-ARM GAS  C:\Users\ALEXAN~1\AppData\Local\Temp\cc4DwPDE.s 			page 26
-
-
- 1176 028f 12       		.uleb128 0x12
- 1177 0290 01       		.byte	0x1
- 1178 0291 10000000 		.4byte	.LASF35
- 1179 0295 01       		.byte	0x1
- 1180 0296 CC       		.byte	0xcc
- 1181 0297 00000000 		.4byte	.LFB40
- 1182 029b 1A000000 		.4byte	.LFE40
- 1183 029f 94010000 		.4byte	.LLST7
- 1184 02a3 01       		.byte	0x1
- 1185 02a4 12       		.uleb128 0x12
- 1186 02a5 01       		.byte	0x1
- 1187 02a6 7E010000 		.4byte	.LASF36
- 1188 02aa 01       		.byte	0x1
- 1189 02ab D3       		.byte	0xd3
- 1190 02ac 00000000 		.4byte	.LFB41
- 1191 02b0 38000000 		.4byte	.LFE41
- 1192 02b4 C0010000 		.4byte	.LLST8
- 1193 02b8 01       		.byte	0x1
- 1194 02b9 0D       		.uleb128 0xd
- 1195 02ba 93000000 		.4byte	0x93
- 1196 02be CA020000 		.4byte	0x2ca
- 1197 02c2 13       		.uleb128 0x13
- 1198 02c3 9A000000 		.4byte	0x9a
- 1199 02c7 2B01     		.2byte	0x12b
- 1200 02c9 00       		.byte	0
- 1201 02ca 14       		.uleb128 0x14
- 1202 02cb 21000000 		.4byte	.LASF37
- 1203 02cf 01       		.byte	0x1
- 1204 02d0 22       		.byte	0x22
- 1205 02d1 B9020000 		.4byte	0x2b9
- 1206 02d5 01       		.byte	0x1
- 1207 02d6 05       		.byte	0x5
- 1208 02d7 03       		.byte	0x3
- 1209 02d8 00000000 		.4byte	gpsBuffer
- 1210 02dc 14       		.uleb128 0x14
- 1211 02dd 31000000 		.4byte	.LASF38
- 1212 02e1 01       		.byte	0x1
- 1213 02e2 23       		.byte	0x23
- 1214 02e3 61000000 		.4byte	0x61
- 1215 02e7 01       		.byte	0x1
- 1216 02e8 05       		.byte	0x5
- 1217 02e9 03       		.byte	0x3
- 1218 02ea 00000000 		.4byte	gpsBufferPointer
- 1219 02ee 14       		.uleb128 0x14
- 1220 02ef 4A010000 		.4byte	.LASF39
- 1221 02f3 01       		.byte	0x1
- 1222 02f4 24       		.byte	0x24
- 1223 02f5 A1000000 		.4byte	0xa1
- 1224 02f9 01       		.byte	0x1
- 1225 02fa 05       		.byte	0x5
- 1226 02fb 03       		.byte	0x3
- 1227 02fc 00000000 		.4byte	gpvtg
- 1228 0300 14       		.uleb128 0x14
- 1229 0301 10010000 		.4byte	.LASF40
- 1230 0305 01       		.byte	0x1
- 1231 0306 25       		.byte	0x25
- 1232 0307 A1000000 		.4byte	0xa1
-ARM GAS  C:\Users\ALEXAN~1\AppData\Local\Temp\cc4DwPDE.s 			page 27
-
-
- 1233 030b 01       		.byte	0x1
- 1234 030c 05       		.byte	0x5
- 1235 030d 03       		.byte	0x3
- 1236 030e 00000000 		.4byte	gpgga
- 1237 0312 14       		.uleb128 0x14
- 1238 0313 00000000 		.4byte	.LASF41
- 1239 0317 01       		.byte	0x1
- 1240 0318 29       		.byte	0x29
- 1241 0319 61000000 		.4byte	0x61
- 1242 031d 01       		.byte	0x1
- 1243 031e 05       		.byte	0x5
- 1244 031f 03       		.byte	0x3
- 1245 0320 00000000 		.4byte	last_joystick_x
- 1246 0324 0D       		.uleb128 0xd
- 1247 0325 6F000000 		.4byte	0x6f
- 1248 0329 34030000 		.4byte	0x334
- 1249 032d 15       		.uleb128 0x15
- 1250 032e 9A000000 		.4byte	0x9a
- 1251 0332 05       		.byte	0x5
- 1252 0333 00       		.byte	0
- 1253 0334 14       		.uleb128 0x14
- 1254 0335 A9000000 		.4byte	.LASF42
- 1255 0339 01       		.byte	0x1
- 1256 033a 2A       		.byte	0x2a
- 1257 033b 24030000 		.4byte	0x324
- 1258 033f 01       		.byte	0x1
- 1259 0340 05       		.byte	0x5
- 1260 0341 03       		.byte	0x3
- 1261 0342 00000000 		.4byte	readBuf
- 1262 0346 00       		.byte	0
- 1263              		.section	.debug_abbrev,"",%progbits
- 1264              	.Ldebug_abbrev0:
- 1265 0000 01       		.uleb128 0x1
- 1266 0001 11       		.uleb128 0x11
- 1267 0002 01       		.byte	0x1
- 1268 0003 25       		.uleb128 0x25
- 1269 0004 0E       		.uleb128 0xe
- 1270 0005 13       		.uleb128 0x13
- 1271 0006 0B       		.uleb128 0xb
- 1272 0007 03       		.uleb128 0x3
- 1273 0008 0E       		.uleb128 0xe
- 1274 0009 1B       		.uleb128 0x1b
- 1275 000a 0E       		.uleb128 0xe
- 1276 000b 55       		.uleb128 0x55
- 1277 000c 06       		.uleb128 0x6
- 1278 000d 11       		.uleb128 0x11
- 1279 000e 01       		.uleb128 0x1
- 1280 000f 52       		.uleb128 0x52
- 1281 0010 01       		.uleb128 0x1
- 1282 0011 10       		.uleb128 0x10
- 1283 0012 06       		.uleb128 0x6
- 1284 0013 00       		.byte	0
- 1285 0014 00       		.byte	0
- 1286 0015 02       		.uleb128 0x2
- 1287 0016 24       		.uleb128 0x24
- 1288 0017 00       		.byte	0
- 1289 0018 0B       		.uleb128 0xb
-ARM GAS  C:\Users\ALEXAN~1\AppData\Local\Temp\cc4DwPDE.s 			page 28
-
-
- 1290 0019 0B       		.uleb128 0xb
- 1291 001a 3E       		.uleb128 0x3e
- 1292 001b 0B       		.uleb128 0xb
- 1293 001c 03       		.uleb128 0x3
- 1294 001d 0E       		.uleb128 0xe
- 1295 001e 00       		.byte	0
- 1296 001f 00       		.byte	0
- 1297 0020 03       		.uleb128 0x3
- 1298 0021 24       		.uleb128 0x24
- 1299 0022 00       		.byte	0
- 1300 0023 0B       		.uleb128 0xb
- 1301 0024 0B       		.uleb128 0xb
- 1302 0025 3E       		.uleb128 0x3e
- 1303 0026 0B       		.uleb128 0xb
- 1304 0027 03       		.uleb128 0x3
- 1305 0028 08       		.uleb128 0x8
- 1306 0029 00       		.byte	0
- 1307 002a 00       		.byte	0
- 1308 002b 04       		.uleb128 0x4
- 1309 002c 16       		.uleb128 0x16
- 1310 002d 00       		.byte	0
- 1311 002e 03       		.uleb128 0x3
- 1312 002f 0E       		.uleb128 0xe
- 1313 0030 3A       		.uleb128 0x3a
- 1314 0031 0B       		.uleb128 0xb
- 1315 0032 3B       		.uleb128 0x3b
- 1316 0033 0B       		.uleb128 0xb
- 1317 0034 49       		.uleb128 0x49
- 1318 0035 13       		.uleb128 0x13
- 1319 0036 00       		.byte	0
- 1320 0037 00       		.byte	0
- 1321 0038 05       		.uleb128 0x5
- 1322 0039 0F       		.uleb128 0xf
- 1323 003a 00       		.byte	0
- 1324 003b 0B       		.uleb128 0xb
- 1325 003c 0B       		.uleb128 0xb
- 1326 003d 49       		.uleb128 0x49
- 1327 003e 13       		.uleb128 0x13
- 1328 003f 00       		.byte	0
- 1329 0040 00       		.byte	0
- 1330 0041 06       		.uleb128 0x6
- 1331 0042 2E       		.uleb128 0x2e
- 1332 0043 01       		.byte	0x1
- 1333 0044 3F       		.uleb128 0x3f
- 1334 0045 0C       		.uleb128 0xc
- 1335 0046 03       		.uleb128 0x3
- 1336 0047 0E       		.uleb128 0xe
- 1337 0048 3A       		.uleb128 0x3a
- 1338 0049 0B       		.uleb128 0xb
- 1339 004a 3B       		.uleb128 0x3b
- 1340 004b 0B       		.uleb128 0xb
- 1341 004c 49       		.uleb128 0x49
- 1342 004d 13       		.uleb128 0x13
- 1343 004e 11       		.uleb128 0x11
- 1344 004f 01       		.uleb128 0x1
- 1345 0050 12       		.uleb128 0x12
- 1346 0051 01       		.uleb128 0x1
-ARM GAS  C:\Users\ALEXAN~1\AppData\Local\Temp\cc4DwPDE.s 			page 29
-
-
- 1347 0052 40       		.uleb128 0x40
- 1348 0053 06       		.uleb128 0x6
- 1349 0054 9642     		.uleb128 0x2116
- 1350 0056 0C       		.uleb128 0xc
- 1351 0057 01       		.uleb128 0x1
- 1352 0058 13       		.uleb128 0x13
- 1353 0059 00       		.byte	0
- 1354 005a 00       		.byte	0
- 1355 005b 07       		.uleb128 0x7
- 1356 005c 34       		.uleb128 0x34
- 1357 005d 00       		.byte	0
- 1358 005e 03       		.uleb128 0x3
- 1359 005f 0E       		.uleb128 0xe
- 1360 0060 3A       		.uleb128 0x3a
- 1361 0061 0B       		.uleb128 0xb
- 1362 0062 3B       		.uleb128 0x3b
- 1363 0063 0B       		.uleb128 0xb
- 1364 0064 49       		.uleb128 0x49
- 1365 0065 13       		.uleb128 0x13
- 1366 0066 02       		.uleb128 0x2
- 1367 0067 0A       		.uleb128 0xa
- 1368 0068 00       		.byte	0
- 1369 0069 00       		.byte	0
- 1370 006a 08       		.uleb128 0x8
- 1371 006b 2E       		.uleb128 0x2e
- 1372 006c 01       		.byte	0x1
- 1373 006d 3F       		.uleb128 0x3f
- 1374 006e 0C       		.uleb128 0xc
- 1375 006f 03       		.uleb128 0x3
- 1376 0070 0E       		.uleb128 0xe
- 1377 0071 3A       		.uleb128 0x3a
- 1378 0072 0B       		.uleb128 0xb
- 1379 0073 3B       		.uleb128 0x3b
- 1380 0074 0B       		.uleb128 0xb
- 1381 0075 11       		.uleb128 0x11
- 1382 0076 01       		.uleb128 0x1
- 1383 0077 12       		.uleb128 0x12
- 1384 0078 01       		.uleb128 0x1
- 1385 0079 40       		.uleb128 0x40
- 1386 007a 06       		.uleb128 0x6
- 1387 007b 9642     		.uleb128 0x2116
- 1388 007d 0C       		.uleb128 0xc
- 1389 007e 01       		.uleb128 0x1
- 1390 007f 13       		.uleb128 0x13
- 1391 0080 00       		.byte	0
- 1392 0081 00       		.byte	0
- 1393 0082 09       		.uleb128 0x9
- 1394 0083 0B       		.uleb128 0xb
- 1395 0084 01       		.byte	0x1
- 1396 0085 11       		.uleb128 0x11
- 1397 0086 01       		.uleb128 0x1
- 1398 0087 12       		.uleb128 0x12
- 1399 0088 01       		.uleb128 0x1
- 1400 0089 00       		.byte	0
- 1401 008a 00       		.byte	0
- 1402 008b 0A       		.uleb128 0xa
- 1403 008c 2E       		.uleb128 0x2e
-ARM GAS  C:\Users\ALEXAN~1\AppData\Local\Temp\cc4DwPDE.s 			page 30
-
-
- 1404 008d 01       		.byte	0x1
- 1405 008e 3F       		.uleb128 0x3f
- 1406 008f 0C       		.uleb128 0xc
- 1407 0090 03       		.uleb128 0x3
- 1408 0091 0E       		.uleb128 0xe
- 1409 0092 3A       		.uleb128 0x3a
- 1410 0093 0B       		.uleb128 0xb
- 1411 0094 3B       		.uleb128 0x3b
- 1412 0095 0B       		.uleb128 0xb
- 1413 0096 27       		.uleb128 0x27
- 1414 0097 0C       		.uleb128 0xc
- 1415 0098 11       		.uleb128 0x11
- 1416 0099 01       		.uleb128 0x1
- 1417 009a 12       		.uleb128 0x12
- 1418 009b 01       		.uleb128 0x1
- 1419 009c 40       		.uleb128 0x40
- 1420 009d 06       		.uleb128 0x6
- 1421 009e 9642     		.uleb128 0x2116
- 1422 00a0 0C       		.uleb128 0xc
- 1423 00a1 01       		.uleb128 0x1
- 1424 00a2 13       		.uleb128 0x13
- 1425 00a3 00       		.byte	0
- 1426 00a4 00       		.byte	0
- 1427 00a5 0B       		.uleb128 0xb
- 1428 00a6 05       		.uleb128 0x5
- 1429 00a7 00       		.byte	0
- 1430 00a8 03       		.uleb128 0x3
- 1431 00a9 08       		.uleb128 0x8
- 1432 00aa 3A       		.uleb128 0x3a
- 1433 00ab 0B       		.uleb128 0xb
- 1434 00ac 3B       		.uleb128 0x3b
- 1435 00ad 0B       		.uleb128 0xb
- 1436 00ae 49       		.uleb128 0x49
- 1437 00af 13       		.uleb128 0x13
- 1438 00b0 02       		.uleb128 0x2
- 1439 00b1 0A       		.uleb128 0xa
- 1440 00b2 00       		.byte	0
- 1441 00b3 00       		.byte	0
- 1442 00b4 0C       		.uleb128 0xc
- 1443 00b5 34       		.uleb128 0x34
- 1444 00b6 00       		.byte	0
- 1445 00b7 03       		.uleb128 0x3
- 1446 00b8 08       		.uleb128 0x8
- 1447 00b9 3A       		.uleb128 0x3a
- 1448 00ba 0B       		.uleb128 0xb
- 1449 00bb 3B       		.uleb128 0x3b
- 1450 00bc 0B       		.uleb128 0xb
- 1451 00bd 49       		.uleb128 0x49
- 1452 00be 13       		.uleb128 0x13
- 1453 00bf 02       		.uleb128 0x2
- 1454 00c0 0A       		.uleb128 0xa
- 1455 00c1 00       		.byte	0
- 1456 00c2 00       		.byte	0
- 1457 00c3 0D       		.uleb128 0xd
- 1458 00c4 01       		.uleb128 0x1
- 1459 00c5 01       		.byte	0x1
- 1460 00c6 49       		.uleb128 0x49
-ARM GAS  C:\Users\ALEXAN~1\AppData\Local\Temp\cc4DwPDE.s 			page 31
-
-
- 1461 00c7 13       		.uleb128 0x13
- 1462 00c8 01       		.uleb128 0x1
- 1463 00c9 13       		.uleb128 0x13
- 1464 00ca 00       		.byte	0
- 1465 00cb 00       		.byte	0
- 1466 00cc 0E       		.uleb128 0xe
- 1467 00cd 21       		.uleb128 0x21
- 1468 00ce 00       		.byte	0
- 1469 00cf 49       		.uleb128 0x49
- 1470 00d0 13       		.uleb128 0x13
- 1471 00d1 2F       		.uleb128 0x2f
- 1472 00d2 0A       		.uleb128 0xa
- 1473 00d3 00       		.byte	0
- 1474 00d4 00       		.byte	0
- 1475 00d5 0F       		.uleb128 0xf
- 1476 00d6 2E       		.uleb128 0x2e
- 1477 00d7 01       		.byte	0x1
- 1478 00d8 3F       		.uleb128 0x3f
- 1479 00d9 0C       		.uleb128 0xc
- 1480 00da 03       		.uleb128 0x3
- 1481 00db 0E       		.uleb128 0xe
- 1482 00dc 3A       		.uleb128 0x3a
- 1483 00dd 0B       		.uleb128 0xb
- 1484 00de 3B       		.uleb128 0x3b
- 1485 00df 0B       		.uleb128 0xb
- 1486 00e0 27       		.uleb128 0x27
- 1487 00e1 0C       		.uleb128 0xc
- 1488 00e2 49       		.uleb128 0x49
- 1489 00e3 13       		.uleb128 0x13
- 1490 00e4 11       		.uleb128 0x11
- 1491 00e5 01       		.uleb128 0x1
- 1492 00e6 12       		.uleb128 0x12
- 1493 00e7 01       		.uleb128 0x1
- 1494 00e8 40       		.uleb128 0x40
- 1495 00e9 06       		.uleb128 0x6
- 1496 00ea 9742     		.uleb128 0x2117
- 1497 00ec 0C       		.uleb128 0xc
- 1498 00ed 01       		.uleb128 0x1
- 1499 00ee 13       		.uleb128 0x13
- 1500 00ef 00       		.byte	0
- 1501 00f0 00       		.byte	0
- 1502 00f1 10       		.uleb128 0x10
- 1503 00f2 2E       		.uleb128 0x2e
- 1504 00f3 01       		.byte	0x1
- 1505 00f4 3F       		.uleb128 0x3f
- 1506 00f5 0C       		.uleb128 0xc
- 1507 00f6 03       		.uleb128 0x3
- 1508 00f7 0E       		.uleb128 0xe
- 1509 00f8 3A       		.uleb128 0x3a
- 1510 00f9 0B       		.uleb128 0xb
- 1511 00fa 3B       		.uleb128 0x3b
- 1512 00fb 0B       		.uleb128 0xb
- 1513 00fc 11       		.uleb128 0x11
- 1514 00fd 01       		.uleb128 0x1
- 1515 00fe 12       		.uleb128 0x12
- 1516 00ff 01       		.uleb128 0x1
- 1517 0100 40       		.uleb128 0x40
-ARM GAS  C:\Users\ALEXAN~1\AppData\Local\Temp\cc4DwPDE.s 			page 32
-
-
- 1518 0101 06       		.uleb128 0x6
- 1519 0102 9742     		.uleb128 0x2117
- 1520 0104 0C       		.uleb128 0xc
- 1521 0105 01       		.uleb128 0x1
- 1522 0106 13       		.uleb128 0x13
- 1523 0107 00       		.byte	0
- 1524 0108 00       		.byte	0
- 1525 0109 11       		.uleb128 0x11
- 1526 010a 05       		.uleb128 0x5
- 1527 010b 00       		.byte	0
- 1528 010c 03       		.uleb128 0x3
- 1529 010d 0E       		.uleb128 0xe
- 1530 010e 3A       		.uleb128 0x3a
- 1531 010f 0B       		.uleb128 0xb
- 1532 0110 3B       		.uleb128 0x3b
- 1533 0111 0B       		.uleb128 0xb
- 1534 0112 49       		.uleb128 0x49
- 1535 0113 13       		.uleb128 0x13
- 1536 0114 02       		.uleb128 0x2
- 1537 0115 0A       		.uleb128 0xa
- 1538 0116 00       		.byte	0
- 1539 0117 00       		.byte	0
- 1540 0118 12       		.uleb128 0x12
- 1541 0119 2E       		.uleb128 0x2e
- 1542 011a 00       		.byte	0
- 1543 011b 3F       		.uleb128 0x3f
- 1544 011c 0C       		.uleb128 0xc
- 1545 011d 03       		.uleb128 0x3
- 1546 011e 0E       		.uleb128 0xe
- 1547 011f 3A       		.uleb128 0x3a
- 1548 0120 0B       		.uleb128 0xb
- 1549 0121 3B       		.uleb128 0x3b
- 1550 0122 0B       		.uleb128 0xb
- 1551 0123 11       		.uleb128 0x11
- 1552 0124 01       		.uleb128 0x1
- 1553 0125 12       		.uleb128 0x12
- 1554 0126 01       		.uleb128 0x1
- 1555 0127 40       		.uleb128 0x40
- 1556 0128 06       		.uleb128 0x6
- 1557 0129 9642     		.uleb128 0x2116
- 1558 012b 0C       		.uleb128 0xc
- 1559 012c 00       		.byte	0
- 1560 012d 00       		.byte	0
- 1561 012e 13       		.uleb128 0x13
- 1562 012f 21       		.uleb128 0x21
- 1563 0130 00       		.byte	0
- 1564 0131 49       		.uleb128 0x49
- 1565 0132 13       		.uleb128 0x13
- 1566 0133 2F       		.uleb128 0x2f
- 1567 0134 05       		.uleb128 0x5
- 1568 0135 00       		.byte	0
- 1569 0136 00       		.byte	0
- 1570 0137 14       		.uleb128 0x14
- 1571 0138 34       		.uleb128 0x34
- 1572 0139 00       		.byte	0
- 1573 013a 03       		.uleb128 0x3
- 1574 013b 0E       		.uleb128 0xe
-ARM GAS  C:\Users\ALEXAN~1\AppData\Local\Temp\cc4DwPDE.s 			page 33
-
-
- 1575 013c 3A       		.uleb128 0x3a
- 1576 013d 0B       		.uleb128 0xb
- 1577 013e 3B       		.uleb128 0x3b
- 1578 013f 0B       		.uleb128 0xb
- 1579 0140 49       		.uleb128 0x49
- 1580 0141 13       		.uleb128 0x13
- 1581 0142 3F       		.uleb128 0x3f
- 1582 0143 0C       		.uleb128 0xc
- 1583 0144 02       		.uleb128 0x2
- 1584 0145 0A       		.uleb128 0xa
- 1585 0146 00       		.byte	0
- 1586 0147 00       		.byte	0
- 1587 0148 15       		.uleb128 0x15
- 1588 0149 21       		.uleb128 0x21
- 1589 014a 00       		.byte	0
- 1590 014b 49       		.uleb128 0x49
- 1591 014c 13       		.uleb128 0x13
- 1592 014d 2F       		.uleb128 0x2f
- 1593 014e 0B       		.uleb128 0xb
- 1594 014f 00       		.byte	0
- 1595 0150 00       		.byte	0
- 1596 0151 00       		.byte	0
- 1597              		.section	.debug_loc,"",%progbits
- 1598              	.Ldebug_loc0:
- 1599              	.LLST0:
- 1600 0000 00000000 		.4byte	.LFB33
- 1601 0004 02000000 		.4byte	.LCFI0
- 1602 0008 0200     		.2byte	0x2
- 1603 000a 7D       		.byte	0x7d
- 1604 000b 00       		.sleb128 0
- 1605 000c 02000000 		.4byte	.LCFI0
- 1606 0010 04000000 		.4byte	.LCFI1
- 1607 0014 0200     		.2byte	0x2
- 1608 0016 7D       		.byte	0x7d
- 1609 0017 08       		.sleb128 8
- 1610 0018 04000000 		.4byte	.LCFI1
- 1611 001c 06000000 		.4byte	.LCFI2
- 1612 0020 0200     		.2byte	0x2
- 1613 0022 7D       		.byte	0x7d
- 1614 0023 10       		.sleb128 16
- 1615 0024 06000000 		.4byte	.LCFI2
- 1616 0028 74000000 		.4byte	.LFE33
- 1617 002c 0200     		.2byte	0x2
- 1618 002e 77       		.byte	0x77
- 1619 002f 10       		.sleb128 16
- 1620 0030 00000000 		.4byte	0
- 1621 0034 00000000 		.4byte	0
- 1622              	.LLST1:
- 1623 0038 00000000 		.4byte	.LFB34
- 1624 003c 02000000 		.4byte	.LCFI3
- 1625 0040 0200     		.2byte	0x2
- 1626 0042 7D       		.byte	0x7d
- 1627 0043 00       		.sleb128 0
- 1628 0044 02000000 		.4byte	.LCFI3
- 1629 0048 04000000 		.4byte	.LCFI4
- 1630 004c 0200     		.2byte	0x2
- 1631 004e 7D       		.byte	0x7d
-ARM GAS  C:\Users\ALEXAN~1\AppData\Local\Temp\cc4DwPDE.s 			page 34
-
-
- 1632 004f 0C       		.sleb128 12
- 1633 0050 04000000 		.4byte	.LCFI4
- 1634 0054 06000000 		.4byte	.LCFI5
- 1635 0058 0200     		.2byte	0x2
- 1636 005a 7D       		.byte	0x7d
- 1637 005b 20       		.sleb128 32
- 1638 005c 06000000 		.4byte	.LCFI5
- 1639 0060 C4000000 		.4byte	.LFE34
- 1640 0064 0200     		.2byte	0x2
- 1641 0066 77       		.byte	0x77
- 1642 0067 20       		.sleb128 32
- 1643 0068 00000000 		.4byte	0
- 1644 006c 00000000 		.4byte	0
- 1645              	.LLST2:
- 1646 0070 00000000 		.4byte	.LFB35
- 1647 0074 02000000 		.4byte	.LCFI6
- 1648 0078 0200     		.2byte	0x2
- 1649 007a 7D       		.byte	0x7d
- 1650 007b 00       		.sleb128 0
- 1651 007c 02000000 		.4byte	.LCFI6
- 1652 0080 06000000 		.4byte	.LCFI7
- 1653 0084 0200     		.2byte	0x2
- 1654 0086 7D       		.byte	0x7d
- 1655 0087 14       		.sleb128 20
- 1656 0088 06000000 		.4byte	.LCFI7
- 1657 008c 08000000 		.4byte	.LCFI8
- 1658 0090 0200     		.2byte	0x2
- 1659 0092 7D       		.byte	0x7d
- 1660 0093 18       		.sleb128 24
- 1661 0094 08000000 		.4byte	.LCFI8
- 1662 0098 0A000000 		.4byte	.LCFI9
- 1663 009c 0200     		.2byte	0x2
- 1664 009e 7D       		.byte	0x7d
- 1665 009f 38       		.sleb128 56
- 1666 00a0 0A000000 		.4byte	.LCFI9
- 1667 00a4 AC000000 		.4byte	.LFE35
- 1668 00a8 0200     		.2byte	0x2
- 1669 00aa 77       		.byte	0x77
- 1670 00ab 38       		.sleb128 56
- 1671 00ac 00000000 		.4byte	0
- 1672 00b0 00000000 		.4byte	0
- 1673              	.LLST3:
- 1674 00b4 00000000 		.4byte	.LFB36
- 1675 00b8 02000000 		.4byte	.LCFI10
- 1676 00bc 0200     		.2byte	0x2
- 1677 00be 7D       		.byte	0x7d
- 1678 00bf 00       		.sleb128 0
- 1679 00c0 02000000 		.4byte	.LCFI10
- 1680 00c4 04000000 		.4byte	.LCFI11
- 1681 00c8 0200     		.2byte	0x2
- 1682 00ca 7D       		.byte	0x7d
- 1683 00cb 08       		.sleb128 8
- 1684 00cc 04000000 		.4byte	.LCFI11
- 1685 00d0 06000000 		.4byte	.LCFI12
- 1686 00d4 0200     		.2byte	0x2
- 1687 00d6 7D       		.byte	0x7d
- 1688 00d7 18       		.sleb128 24
-ARM GAS  C:\Users\ALEXAN~1\AppData\Local\Temp\cc4DwPDE.s 			page 35
-
-
- 1689 00d8 06000000 		.4byte	.LCFI12
- 1690 00dc 54000000 		.4byte	.LFE36
- 1691 00e0 0200     		.2byte	0x2
- 1692 00e2 77       		.byte	0x77
- 1693 00e3 18       		.sleb128 24
- 1694 00e4 00000000 		.4byte	0
- 1695 00e8 00000000 		.4byte	0
- 1696              	.LLST4:
- 1697 00ec 00000000 		.4byte	.LFB37
- 1698 00f0 02000000 		.4byte	.LCFI13
- 1699 00f4 0200     		.2byte	0x2
- 1700 00f6 7D       		.byte	0x7d
- 1701 00f7 00       		.sleb128 0
- 1702 00f8 02000000 		.4byte	.LCFI13
- 1703 00fc 04000000 		.4byte	.LCFI14
- 1704 0100 0200     		.2byte	0x2
- 1705 0102 7D       		.byte	0x7d
- 1706 0103 08       		.sleb128 8
- 1707 0104 04000000 		.4byte	.LCFI14
- 1708 0108 06000000 		.4byte	.LCFI15
- 1709 010c 0200     		.2byte	0x2
- 1710 010e 7D       		.byte	0x7d
- 1711 010f 10       		.sleb128 16
- 1712 0110 06000000 		.4byte	.LCFI15
- 1713 0114 34000000 		.4byte	.LFE37
- 1714 0118 0200     		.2byte	0x2
- 1715 011a 77       		.byte	0x77
- 1716 011b 10       		.sleb128 16
- 1717 011c 00000000 		.4byte	0
- 1718 0120 00000000 		.4byte	0
- 1719              	.LLST5:
- 1720 0124 00000000 		.4byte	.LFB38
- 1721 0128 02000000 		.4byte	.LCFI16
- 1722 012c 0200     		.2byte	0x2
- 1723 012e 7D       		.byte	0x7d
- 1724 012f 00       		.sleb128 0
- 1725 0130 02000000 		.4byte	.LCFI16
- 1726 0134 04000000 		.4byte	.LCFI17
- 1727 0138 0200     		.2byte	0x2
- 1728 013a 7D       		.byte	0x7d
- 1729 013b 08       		.sleb128 8
- 1730 013c 04000000 		.4byte	.LCFI17
- 1731 0140 06000000 		.4byte	.LCFI18
- 1732 0144 0200     		.2byte	0x2
- 1733 0146 7D       		.byte	0x7d
- 1734 0147 10       		.sleb128 16
- 1735 0148 06000000 		.4byte	.LCFI18
- 1736 014c 22000000 		.4byte	.LFE38
- 1737 0150 0200     		.2byte	0x2
- 1738 0152 77       		.byte	0x77
- 1739 0153 10       		.sleb128 16
- 1740 0154 00000000 		.4byte	0
- 1741 0158 00000000 		.4byte	0
- 1742              	.LLST6:
- 1743 015c 00000000 		.4byte	.LFB39
- 1744 0160 02000000 		.4byte	.LCFI19
- 1745 0164 0200     		.2byte	0x2
-ARM GAS  C:\Users\ALEXAN~1\AppData\Local\Temp\cc4DwPDE.s 			page 36
-
-
- 1746 0166 7D       		.byte	0x7d
- 1747 0167 00       		.sleb128 0
- 1748 0168 02000000 		.4byte	.LCFI19
- 1749 016c 04000000 		.4byte	.LCFI20
- 1750 0170 0200     		.2byte	0x2
- 1751 0172 7D       		.byte	0x7d
- 1752 0173 08       		.sleb128 8
- 1753 0174 04000000 		.4byte	.LCFI20
- 1754 0178 06000000 		.4byte	.LCFI21
- 1755 017c 0200     		.2byte	0x2
- 1756 017e 7D       		.byte	0x7d
- 1757 017f 20       		.sleb128 32
- 1758 0180 06000000 		.4byte	.LCFI21
- 1759 0184 D8000000 		.4byte	.LFE39
- 1760 0188 0200     		.2byte	0x2
- 1761 018a 77       		.byte	0x77
- 1762 018b 20       		.sleb128 32
- 1763 018c 00000000 		.4byte	0
- 1764 0190 00000000 		.4byte	0
- 1765              	.LLST7:
- 1766 0194 00000000 		.4byte	.LFB40
- 1767 0198 02000000 		.4byte	.LCFI22
- 1768 019c 0200     		.2byte	0x2
- 1769 019e 7D       		.byte	0x7d
- 1770 019f 00       		.sleb128 0
- 1771 01a0 02000000 		.4byte	.LCFI22
- 1772 01a4 04000000 		.4byte	.LCFI23
- 1773 01a8 0200     		.2byte	0x2
- 1774 01aa 7D       		.byte	0x7d
- 1775 01ab 08       		.sleb128 8
- 1776 01ac 04000000 		.4byte	.LCFI23
- 1777 01b0 1A000000 		.4byte	.LFE40
- 1778 01b4 0200     		.2byte	0x2
- 1779 01b6 77       		.byte	0x77
- 1780 01b7 08       		.sleb128 8
- 1781 01b8 00000000 		.4byte	0
- 1782 01bc 00000000 		.4byte	0
- 1783              	.LLST8:
- 1784 01c0 00000000 		.4byte	.LFB41
- 1785 01c4 02000000 		.4byte	.LCFI24
- 1786 01c8 0200     		.2byte	0x2
- 1787 01ca 7D       		.byte	0x7d
- 1788 01cb 00       		.sleb128 0
- 1789 01cc 02000000 		.4byte	.LCFI24
- 1790 01d0 04000000 		.4byte	.LCFI25
- 1791 01d4 0200     		.2byte	0x2
- 1792 01d6 7D       		.byte	0x7d
- 1793 01d7 08       		.sleb128 8
- 1794 01d8 04000000 		.4byte	.LCFI25
- 1795 01dc 38000000 		.4byte	.LFE41
- 1796 01e0 0200     		.2byte	0x2
- 1797 01e2 77       		.byte	0x77
- 1798 01e3 08       		.sleb128 8
- 1799 01e4 00000000 		.4byte	0
- 1800 01e8 00000000 		.4byte	0
- 1801              		.section	.debug_aranges,"",%progbits
- 1802 0000 5C000000 		.4byte	0x5c
-ARM GAS  C:\Users\ALEXAN~1\AppData\Local\Temp\cc4DwPDE.s 			page 37
-
-
- 1803 0004 0200     		.2byte	0x2
- 1804 0006 00000000 		.4byte	.Ldebug_info0
- 1805 000a 04       		.byte	0x4
- 1806 000b 00       		.byte	0
- 1807 000c 0000     		.2byte	0
- 1808 000e 0000     		.2byte	0
- 1809 0010 00000000 		.4byte	.LFB33
- 1810 0014 74000000 		.4byte	.LFE33-.LFB33
- 1811 0018 00000000 		.4byte	.LFB34
- 1812 001c C4000000 		.4byte	.LFE34-.LFB34
- 1813 0020 00000000 		.4byte	.LFB35
- 1814 0024 AC000000 		.4byte	.LFE35-.LFB35
- 1815 0028 00000000 		.4byte	.LFB36
- 1816 002c 54000000 		.4byte	.LFE36-.LFB36
- 1817 0030 00000000 		.4byte	.LFB37
- 1818 0034 34000000 		.4byte	.LFE37-.LFB37
- 1819 0038 00000000 		.4byte	.LFB38
- 1820 003c 22000000 		.4byte	.LFE38-.LFB38
- 1821 0040 00000000 		.4byte	.LFB39
- 1822 0044 D8000000 		.4byte	.LFE39-.LFB39
- 1823 0048 00000000 		.4byte	.LFB40
- 1824 004c 1A000000 		.4byte	.LFE40-.LFB40
- 1825 0050 00000000 		.4byte	.LFB41
- 1826 0054 38000000 		.4byte	.LFE41-.LFB41
- 1827 0058 00000000 		.4byte	0
- 1828 005c 00000000 		.4byte	0
- 1829              		.section	.debug_ranges,"",%progbits
- 1830              	.Ldebug_ranges0:
- 1831 0000 00000000 		.4byte	.LFB33
- 1832 0004 74000000 		.4byte	.LFE33
- 1833 0008 00000000 		.4byte	.LFB34
- 1834 000c C4000000 		.4byte	.LFE34
- 1835 0010 00000000 		.4byte	.LFB35
- 1836 0014 AC000000 		.4byte	.LFE35
- 1837 0018 00000000 		.4byte	.LFB36
- 1838 001c 54000000 		.4byte	.LFE36
- 1839 0020 00000000 		.4byte	.LFB37
- 1840 0024 34000000 		.4byte	.LFE37
- 1841 0028 00000000 		.4byte	.LFB38
- 1842 002c 22000000 		.4byte	.LFE38
- 1843 0030 00000000 		.4byte	.LFB39
- 1844 0034 D8000000 		.4byte	.LFE39
- 1845 0038 00000000 		.4byte	.LFB40
- 1846 003c 1A000000 		.4byte	.LFE40
- 1847 0040 00000000 		.4byte	.LFB41
- 1848 0044 38000000 		.4byte	.LFE41
- 1849 0048 00000000 		.4byte	0
- 1850 004c 00000000 		.4byte	0
- 1851              		.section	.debug_line,"",%progbits
- 1852              	.Ldebug_line0:
- 1853 0000 79010000 		.section	.debug_str,"MS",%progbits,1
- 1853      02004500 
- 1853      00000201 
- 1853      FB0E0D00 
- 1853      01010101 
- 1854              	.LASF41:
- 1855 0000 6C617374 		.ascii	"last_joystick_x\000"
-ARM GAS  C:\Users\ALEXAN~1\AppData\Local\Temp\cc4DwPDE.s 			page 38
-
-
- 1855      5F6A6F79 
- 1855      73746963 
- 1855      6B5F7800 
- 1856              	.LASF35:
- 1857 0010 53656E64 		.ascii	"SendZero\000"
- 1857      5A65726F 
- 1857      00
- 1858              	.LASF24:
- 1859 0019 636F7272 		.ascii	"correct\000"
- 1859      65637400 
- 1860              	.LASF37:
- 1861 0021 67707342 		.ascii	"gpsBuffer\000"
- 1861      75666665 
- 1861      7200
- 1862              	.LASF11:
- 1863 002b 666C6F61 		.ascii	"float\000"
- 1863      7400
- 1864              	.LASF38:
- 1865 0031 67707342 		.ascii	"gpsBufferPointer\000"
- 1865      75666665 
- 1865      72506F69 
- 1865      6E746572 
- 1865      00
- 1866              	.LASF1:
- 1867 0042 756E7369 		.ascii	"unsigned char\000"
- 1867      676E6564 
- 1867      20636861 
- 1867      7200
- 1868              	.LASF29:
- 1869 0050 696E7075 		.ascii	"input\000"
- 1869      7400
- 1870              	.LASF44:
- 1871 0056 2E5C6D61 		.ascii	".\\main.c\000"
- 1871      696E2E63 
- 1871      00
- 1872              	.LASF19:
- 1873 005f 72784861 		.ascii	"rxHasData\000"
- 1873      73446174 
- 1873      6100
- 1874              	.LASF5:
- 1875 0069 6C6F6E67 		.ascii	"long unsigned int\000"
- 1875      20756E73 
- 1875      69676E65 
- 1875      6420696E 
- 1875      7400
- 1876              	.LASF3:
- 1877 007b 73686F72 		.ascii	"short unsigned int\000"
- 1877      7420756E 
- 1877      7369676E 
- 1877      65642069 
- 1877      6E7400
- 1878              	.LASF30:
- 1879 008e 47657444 		.ascii	"GetDataFromNunChuck\000"
- 1879      61746146 
- 1879      726F6D4E 
- 1879      756E4368 
- 1879      75636B00 
-ARM GAS  C:\Users\ALEXAN~1\AppData\Local\Temp\cc4DwPDE.s 			page 39
-
-
- 1880              	.LASF20:
- 1881 00a2 72784461 		.ascii	"rxData\000"
- 1881      746100
- 1882              	.LASF42:
- 1883 00a9 72656164 		.ascii	"readBuf\000"
- 1883      42756600 
- 1884              	.LASF34:
- 1885 00b1 6A6F7973 		.ascii	"joystick_y\000"
- 1885      7469636B 
- 1885      5F7900
- 1886              	.LASF33:
- 1887 00bc 6A6F7973 		.ascii	"joystick_x\000"
- 1887      7469636B 
- 1887      5F7800
- 1888              	.LASF28:
- 1889 00c7 4465636F 		.ascii	"DecodeByte\000"
- 1889      64654279 
- 1889      746500
- 1890              	.LASF12:
- 1891 00d2 646F7562 		.ascii	"double\000"
- 1891      6C6500
- 1892              	.LASF21:
- 1893 00d9 6D61696E 		.ascii	"main\000"
- 1893      00
- 1894              	.LASF23:
- 1895 00de 7061636B 		.ascii	"packet\000"
- 1895      657400
- 1896              	.LASF10:
- 1897 00e5 75696E74 		.ascii	"uint32\000"
- 1897      333200
- 1898              	.LASF8:
- 1899 00ec 756E7369 		.ascii	"unsigned int\000"
- 1899      676E6564 
- 1899      20696E74 
- 1899      00
- 1900              	.LASF7:
- 1901 00f9 6C6F6E67 		.ascii	"long long unsigned int\000"
- 1901      206C6F6E 
- 1901      6720756E 
- 1901      7369676E 
- 1901      65642069 
- 1902              	.LASF40:
- 1903 0110 67706767 		.ascii	"gpgga\000"
- 1903      6100
- 1904              	.LASF31:
- 1905 0116 63427574 		.ascii	"cButton\000"
- 1905      746F6E00 
- 1906              	.LASF32:
- 1907 011e 7A427574 		.ascii	"zButton\000"
- 1907      746F6E00 
- 1908              	.LASF17:
- 1909 0126 636F6D70 		.ascii	"completedGGA\000"
- 1909      6C657465 
- 1909      64474741 
- 1909      00
- 1910              	.LASF27:
- 1911 0133 636F6D70 		.ascii	"compareGPSCMD\000"
-ARM GAS  C:\Users\ALEXAN~1\AppData\Local\Temp\cc4DwPDE.s 			page 40
-
-
- 1911      61726547 
- 1911      5053434D 
- 1911      4400
- 1912              	.LASF14:
- 1913 0141 73697A65 		.ascii	"sizetype\000"
- 1913      74797065 
- 1913      00
- 1914              	.LASF39:
- 1915 014a 67707674 		.ascii	"gpvtg\000"
- 1915      6700
- 1916              	.LASF6:
- 1917 0150 6C6F6E67 		.ascii	"long long int\000"
- 1917      206C6F6E 
- 1917      6720696E 
- 1917      7400
- 1918              	.LASF26:
- 1919 015e 72657365 		.ascii	"resetGPSBuffer\000"
- 1919      74475053 
- 1919      42756666 
- 1919      657200
- 1920              	.LASF25:
- 1921 016d 72656164 		.ascii	"readGPSData\000"
- 1921      47505344 
- 1921      61746100 
- 1922              	.LASF13:
- 1923 0179 63686172 		.ascii	"char\000"
- 1923      00
- 1924              	.LASF36:
- 1925 017e 53656E64 		.ascii	"SendHandshake\000"
- 1925      48616E64 
- 1925      7368616B 
- 1925      6500
- 1926              	.LASF2:
- 1927 018c 73686F72 		.ascii	"short int\000"
- 1927      7420696E 
- 1927      7400
- 1928              	.LASF45:
- 1929 0196 433A5C70 		.ascii	"C:\\psoc\\i2c_test\\i2ctest.cydsn\000"
- 1929      736F635C 
- 1929      6932635F 
- 1929      74657374 
- 1929      5C693263 
- 1930              	.LASF9:
- 1931 01b5 75696E74 		.ascii	"uint8\000"
- 1931      3800
- 1932              	.LASF43:
- 1933 01bb 474E5520 		.ascii	"GNU C 4.7.3 20130312 (release) [ARM/embedded-4_7-br"
- 1933      4320342E 
- 1933      372E3320 
- 1933      32303133 
- 1933      30333132 
- 1934 01ee 616E6368 		.ascii	"anch revision 196615]\000"
- 1934      20726576 
- 1934      6973696F 
- 1934      6E203139 
- 1934      36363135 
- 1935              	.LASF16:
-ARM GAS  C:\Users\ALEXAN~1\AppData\Local\Temp\cc4DwPDE.s 			page 41
-
-
- 1936 0204 73686966 		.ascii	"shiftMode\000"
- 1936      744D6F64 
- 1936      6500
- 1937              	.LASF4:
- 1938 020e 6C6F6E67 		.ascii	"long int\000"
- 1938      20696E74 
- 1938      00
- 1939              	.LASF15:
- 1940 0217 6C6F6E67 		.ascii	"long double\000"
- 1940      20646F75 
- 1940      626C6500 
- 1941              	.LASF0:
- 1942 0223 7369676E 		.ascii	"signed char\000"
- 1942      65642063 
- 1942      68617200 
- 1943              	.LASF22:
- 1944 022f 68616E64 		.ascii	"handleGPSData\000"
- 1944      6C654750 
- 1944      53446174 
- 1944      6100
- 1945              	.LASF18:
- 1946 023d 636F6D70 		.ascii	"completedVTG\000"
- 1946      6C657465 
- 1946      64565447 
- 1946      00
- 1947              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.7.3 20130312 (release) [ARM/embedded-4_7-br
+ 152              	.LFE34:
+ 153              		.size	isr_spi_rx, .-isr_spi_rx
+ 154              		.text
+ 155              	.Letext0:
+ 156              		.file 2 "./Generated_Source/PSoC4/cytypes.h"
+ 157              		.section	.debug_info,"",%progbits
+ 158              	.Ldebug_info0:
+ 159 0000 33010000 		.4byte	0x133
+ 160 0004 0200     		.2byte	0x2
+ 161 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 162 000a 04       		.byte	0x4
+ARM GAS  C:\Users\ALEXAN~1\AppData\Local\Temp\ccpswxDW.s 			page 5
+
+
+ 163 000b 01       		.uleb128 0x1
+ 164 000c 27000000 		.4byte	.LASF22
+ 165 0010 01       		.byte	0x1
+ 166 0011 47010000 		.4byte	.LASF23
+ 167 0015 AA000000 		.4byte	.LASF24
+ 168 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 169 001d 00000000 		.4byte	0
+ 170 0021 00000000 		.4byte	0
+ 171 0025 00000000 		.4byte	.Ldebug_line0
+ 172 0029 02       		.uleb128 0x2
+ 173 002a 01       		.byte	0x1
+ 174 002b 06       		.byte	0x6
+ 175 002c 22010000 		.4byte	.LASF0
+ 176 0030 02       		.uleb128 0x2
+ 177 0031 01       		.byte	0x1
+ 178 0032 08       		.byte	0x8
+ 179 0033 C9000000 		.4byte	.LASF1
+ 180 0037 02       		.uleb128 0x2
+ 181 0038 02       		.byte	0x2
+ 182 0039 05       		.byte	0x5
+ 183 003a ED000000 		.4byte	.LASF2
+ 184 003e 02       		.uleb128 0x2
+ 185 003f 02       		.byte	0x2
+ 186 0040 07       		.byte	0x7
+ 187 0041 0F010000 		.4byte	.LASF3
+ 188 0045 02       		.uleb128 0x2
+ 189 0046 04       		.byte	0x4
+ 190 0047 05       		.byte	0x5
+ 191 0048 E4000000 		.4byte	.LASF4
+ 192 004c 02       		.uleb128 0x2
+ 193 004d 04       		.byte	0x4
+ 194 004e 07       		.byte	0x7
+ 195 004f 76000000 		.4byte	.LASF5
+ 196 0053 02       		.uleb128 0x2
+ 197 0054 08       		.byte	0x8
+ 198 0055 05       		.byte	0x5
+ 199 0056 00000000 		.4byte	.LASF6
+ 200 005a 02       		.uleb128 0x2
+ 201 005b 08       		.byte	0x8
+ 202 005c 07       		.byte	0x7
+ 203 005d 88000000 		.4byte	.LASF7
+ 204 0061 03       		.uleb128 0x3
+ 205 0062 04       		.byte	0x4
+ 206 0063 05       		.byte	0x5
+ 207 0064 696E7400 		.ascii	"int\000"
+ 208 0068 02       		.uleb128 0x2
+ 209 0069 04       		.byte	0x4
+ 210 006a 07       		.byte	0x7
+ 211 006b 15000000 		.4byte	.LASF8
+ 212 006f 04       		.uleb128 0x4
+ 213 0070 70000000 		.4byte	.LASF9
+ 214 0074 02       		.byte	0x2
+ 215 0075 5B       		.byte	0x5b
+ 216 0076 30000000 		.4byte	0x30
+ 217 007a 04       		.uleb128 0x4
+ 218 007b 50010000 		.4byte	.LASF10
+ 219 007f 02       		.byte	0x2
+ARM GAS  C:\Users\ALEXAN~1\AppData\Local\Temp\ccpswxDW.s 			page 6
+
+
+ 220 0080 5C       		.byte	0x5c
+ 221 0081 3E000000 		.4byte	0x3e
+ 222 0085 04       		.uleb128 0x4
+ 223 0086 0E000000 		.4byte	.LASF11
+ 224 008a 02       		.byte	0x2
+ 225 008b 5D       		.byte	0x5d
+ 226 008c 4C000000 		.4byte	0x4c
+ 227 0090 04       		.uleb128 0x4
+ 228 0091 41010000 		.4byte	.LASF12
+ 229 0095 02       		.byte	0x2
+ 230 0096 5F       		.byte	0x5f
+ 231 0097 37000000 		.4byte	0x37
+ 232 009b 02       		.uleb128 0x2
+ 233 009c 04       		.byte	0x4
+ 234 009d 04       		.byte	0x4
+ 235 009e A4000000 		.4byte	.LASF13
+ 236 00a2 02       		.uleb128 0x2
+ 237 00a3 08       		.byte	0x8
+ 238 00a4 04       		.byte	0x4
+ 239 00a5 F7000000 		.4byte	.LASF14
+ 240 00a9 02       		.uleb128 0x2
+ 241 00aa 01       		.byte	0x1
+ 242 00ab 08       		.byte	0x8
+ 243 00ac D7000000 		.4byte	.LASF15
+ 244 00b0 04       		.uleb128 0x4
+ 245 00b1 09010000 		.4byte	.LASF16
+ 246 00b5 02       		.byte	0x2
+ 247 00b6 F2       		.byte	0xf2
+ 248 00b7 BB000000 		.4byte	0xbb
+ 249 00bb 05       		.uleb128 0x5
+ 250 00bc 85000000 		.4byte	0x85
+ 251 00c0 02       		.uleb128 0x2
+ 252 00c1 04       		.byte	0x4
+ 253 00c2 07       		.byte	0x7
+ 254 00c3 57010000 		.4byte	.LASF17
+ 255 00c7 02       		.uleb128 0x2
+ 256 00c8 08       		.byte	0x8
+ 257 00c9 04       		.byte	0x4
+ 258 00ca 2E010000 		.4byte	.LASF18
+ 259 00ce 06       		.uleb128 0x6
+ 260 00cf 01       		.byte	0x1
+ 261 00d0 22000000 		.4byte	.LASF25
+ 262 00d4 01       		.byte	0x1
+ 263 00d5 16       		.byte	0x16
+ 264 00d6 61000000 		.4byte	0x61
+ 265 00da 00000000 		.4byte	.LFB33
+ 266 00de 28000000 		.4byte	.LFE33
+ 267 00e2 00000000 		.4byte	.LLST0
+ 268 00e6 01       		.byte	0x1
+ 269 00e7 07       		.uleb128 0x7
+ 270 00e8 01       		.byte	0x1
+ 271 00e9 FE000000 		.4byte	.LASF26
+ 272 00ed 01       		.byte	0x1
+ 273 00ee 2F       		.byte	0x2f
+ 274 00ef 01       		.byte	0x1
+ 275 00f0 00000000 		.4byte	.LFB34
+ 276 00f4 70000000 		.4byte	.LFE34
+ARM GAS  C:\Users\ALEXAN~1\AppData\Local\Temp\ccpswxDW.s 			page 7
+
+
+ 277 00f8 2C000000 		.4byte	.LLST1
+ 278 00fc 01       		.byte	0x1
+ 279 00fd 08       		.uleb128 0x8
+ 280 00fe DC000000 		.4byte	.LASF19
+ 281 0102 01       		.byte	0x1
+ 282 0103 31       		.byte	0x31
+ 283 0104 7A000000 		.4byte	0x7a
+ 284 0108 02       		.byte	0x2
+ 285 0109 91       		.byte	0x91
+ 286 010a 76       		.sleb128 -10
+ 287 010b 09       		.uleb128 0x9
+ 288 010c 636D6400 		.ascii	"cmd\000"
+ 289 0110 01       		.byte	0x1
+ 290 0111 32       		.byte	0x32
+ 291 0112 6F000000 		.4byte	0x6f
+ 292 0116 02       		.byte	0x2
+ 293 0117 91       		.byte	0x91
+ 294 0118 75       		.sleb128 -11
+ 295 0119 08       		.uleb128 0x8
+ 296 011a 3A010000 		.4byte	.LASF20
+ 297 011e 01       		.byte	0x1
+ 298 011f 32       		.byte	0x32
+ 299 0120 6F000000 		.4byte	0x6f
+ 300 0124 02       		.byte	0x2
+ 301 0125 91       		.byte	0x91
+ 302 0126 73       		.sleb128 -13
+ 303 0127 08       		.uleb128 0x8
+ 304 0128 9F000000 		.4byte	.LASF21
+ 305 012c 01       		.byte	0x1
+ 306 012d 32       		.byte	0x32
+ 307 012e 6F000000 		.4byte	0x6f
+ 308 0132 02       		.byte	0x2
+ 309 0133 91       		.byte	0x91
+ 310 0134 74       		.sleb128 -12
+ 311 0135 00       		.byte	0
+ 312 0136 00       		.byte	0
+ 313              		.section	.debug_abbrev,"",%progbits
+ 314              	.Ldebug_abbrev0:
+ 315 0000 01       		.uleb128 0x1
+ 316 0001 11       		.uleb128 0x11
+ 317 0002 01       		.byte	0x1
+ 318 0003 25       		.uleb128 0x25
+ 319 0004 0E       		.uleb128 0xe
+ 320 0005 13       		.uleb128 0x13
+ 321 0006 0B       		.uleb128 0xb
+ 322 0007 03       		.uleb128 0x3
+ 323 0008 0E       		.uleb128 0xe
+ 324 0009 1B       		.uleb128 0x1b
+ 325 000a 0E       		.uleb128 0xe
+ 326 000b 55       		.uleb128 0x55
+ 327 000c 06       		.uleb128 0x6
+ 328 000d 11       		.uleb128 0x11
+ 329 000e 01       		.uleb128 0x1
+ 330 000f 52       		.uleb128 0x52
+ 331 0010 01       		.uleb128 0x1
+ 332 0011 10       		.uleb128 0x10
+ 333 0012 06       		.uleb128 0x6
+ARM GAS  C:\Users\ALEXAN~1\AppData\Local\Temp\ccpswxDW.s 			page 8
+
+
+ 334 0013 00       		.byte	0
+ 335 0014 00       		.byte	0
+ 336 0015 02       		.uleb128 0x2
+ 337 0016 24       		.uleb128 0x24
+ 338 0017 00       		.byte	0
+ 339 0018 0B       		.uleb128 0xb
+ 340 0019 0B       		.uleb128 0xb
+ 341 001a 3E       		.uleb128 0x3e
+ 342 001b 0B       		.uleb128 0xb
+ 343 001c 03       		.uleb128 0x3
+ 344 001d 0E       		.uleb128 0xe
+ 345 001e 00       		.byte	0
+ 346 001f 00       		.byte	0
+ 347 0020 03       		.uleb128 0x3
+ 348 0021 24       		.uleb128 0x24
+ 349 0022 00       		.byte	0
+ 350 0023 0B       		.uleb128 0xb
+ 351 0024 0B       		.uleb128 0xb
+ 352 0025 3E       		.uleb128 0x3e
+ 353 0026 0B       		.uleb128 0xb
+ 354 0027 03       		.uleb128 0x3
+ 355 0028 08       		.uleb128 0x8
+ 356 0029 00       		.byte	0
+ 357 002a 00       		.byte	0
+ 358 002b 04       		.uleb128 0x4
+ 359 002c 16       		.uleb128 0x16
+ 360 002d 00       		.byte	0
+ 361 002e 03       		.uleb128 0x3
+ 362 002f 0E       		.uleb128 0xe
+ 363 0030 3A       		.uleb128 0x3a
+ 364 0031 0B       		.uleb128 0xb
+ 365 0032 3B       		.uleb128 0x3b
+ 366 0033 0B       		.uleb128 0xb
+ 367 0034 49       		.uleb128 0x49
+ 368 0035 13       		.uleb128 0x13
+ 369 0036 00       		.byte	0
+ 370 0037 00       		.byte	0
+ 371 0038 05       		.uleb128 0x5
+ 372 0039 35       		.uleb128 0x35
+ 373 003a 00       		.byte	0
+ 374 003b 49       		.uleb128 0x49
+ 375 003c 13       		.uleb128 0x13
+ 376 003d 00       		.byte	0
+ 377 003e 00       		.byte	0
+ 378 003f 06       		.uleb128 0x6
+ 379 0040 2E       		.uleb128 0x2e
+ 380 0041 00       		.byte	0
+ 381 0042 3F       		.uleb128 0x3f
+ 382 0043 0C       		.uleb128 0xc
+ 383 0044 03       		.uleb128 0x3
+ 384 0045 0E       		.uleb128 0xe
+ 385 0046 3A       		.uleb128 0x3a
+ 386 0047 0B       		.uleb128 0xb
+ 387 0048 3B       		.uleb128 0x3b
+ 388 0049 0B       		.uleb128 0xb
+ 389 004a 49       		.uleb128 0x49
+ 390 004b 13       		.uleb128 0x13
+ARM GAS  C:\Users\ALEXAN~1\AppData\Local\Temp\ccpswxDW.s 			page 9
+
+
+ 391 004c 11       		.uleb128 0x11
+ 392 004d 01       		.uleb128 0x1
+ 393 004e 12       		.uleb128 0x12
+ 394 004f 01       		.uleb128 0x1
+ 395 0050 40       		.uleb128 0x40
+ 396 0051 06       		.uleb128 0x6
+ 397 0052 9642     		.uleb128 0x2116
+ 398 0054 0C       		.uleb128 0xc
+ 399 0055 00       		.byte	0
+ 400 0056 00       		.byte	0
+ 401 0057 07       		.uleb128 0x7
+ 402 0058 2E       		.uleb128 0x2e
+ 403 0059 01       		.byte	0x1
+ 404 005a 3F       		.uleb128 0x3f
+ 405 005b 0C       		.uleb128 0xc
+ 406 005c 03       		.uleb128 0x3
+ 407 005d 0E       		.uleb128 0xe
+ 408 005e 3A       		.uleb128 0x3a
+ 409 005f 0B       		.uleb128 0xb
+ 410 0060 3B       		.uleb128 0x3b
+ 411 0061 0B       		.uleb128 0xb
+ 412 0062 27       		.uleb128 0x27
+ 413 0063 0C       		.uleb128 0xc
+ 414 0064 11       		.uleb128 0x11
+ 415 0065 01       		.uleb128 0x1
+ 416 0066 12       		.uleb128 0x12
+ 417 0067 01       		.uleb128 0x1
+ 418 0068 40       		.uleb128 0x40
+ 419 0069 06       		.uleb128 0x6
+ 420 006a 9642     		.uleb128 0x2116
+ 421 006c 0C       		.uleb128 0xc
+ 422 006d 00       		.byte	0
+ 423 006e 00       		.byte	0
+ 424 006f 08       		.uleb128 0x8
+ 425 0070 34       		.uleb128 0x34
+ 426 0071 00       		.byte	0
+ 427 0072 03       		.uleb128 0x3
+ 428 0073 0E       		.uleb128 0xe
+ 429 0074 3A       		.uleb128 0x3a
+ 430 0075 0B       		.uleb128 0xb
+ 431 0076 3B       		.uleb128 0x3b
+ 432 0077 0B       		.uleb128 0xb
+ 433 0078 49       		.uleb128 0x49
+ 434 0079 13       		.uleb128 0x13
+ 435 007a 02       		.uleb128 0x2
+ 436 007b 0A       		.uleb128 0xa
+ 437 007c 00       		.byte	0
+ 438 007d 00       		.byte	0
+ 439 007e 09       		.uleb128 0x9
+ 440 007f 34       		.uleb128 0x34
+ 441 0080 00       		.byte	0
+ 442 0081 03       		.uleb128 0x3
+ 443 0082 08       		.uleb128 0x8
+ 444 0083 3A       		.uleb128 0x3a
+ 445 0084 0B       		.uleb128 0xb
+ 446 0085 3B       		.uleb128 0x3b
+ 447 0086 0B       		.uleb128 0xb
+ARM GAS  C:\Users\ALEXAN~1\AppData\Local\Temp\ccpswxDW.s 			page 10
+
+
+ 448 0087 49       		.uleb128 0x49
+ 449 0088 13       		.uleb128 0x13
+ 450 0089 02       		.uleb128 0x2
+ 451 008a 0A       		.uleb128 0xa
+ 452 008b 00       		.byte	0
+ 453 008c 00       		.byte	0
+ 454 008d 00       		.byte	0
+ 455              		.section	.debug_loc,"",%progbits
+ 456              	.Ldebug_loc0:
+ 457              	.LLST0:
+ 458 0000 00000000 		.4byte	.LFB33
+ 459 0004 02000000 		.4byte	.LCFI0
+ 460 0008 0200     		.2byte	0x2
+ 461 000a 7D       		.byte	0x7d
+ 462 000b 00       		.sleb128 0
+ 463 000c 02000000 		.4byte	.LCFI0
+ 464 0010 04000000 		.4byte	.LCFI1
+ 465 0014 0200     		.2byte	0x2
+ 466 0016 7D       		.byte	0x7d
+ 467 0017 08       		.sleb128 8
+ 468 0018 04000000 		.4byte	.LCFI1
+ 469 001c 28000000 		.4byte	.LFE33
+ 470 0020 0200     		.2byte	0x2
+ 471 0022 77       		.byte	0x77
+ 472 0023 08       		.sleb128 8
+ 473 0024 00000000 		.4byte	0
+ 474 0028 00000000 		.4byte	0
+ 475              	.LLST1:
+ 476 002c 00000000 		.4byte	.LFB34
+ 477 0030 02000000 		.4byte	.LCFI2
+ 478 0034 0200     		.2byte	0x2
+ 479 0036 7D       		.byte	0x7d
+ 480 0037 00       		.sleb128 0
+ 481 0038 02000000 		.4byte	.LCFI2
+ 482 003c 04000000 		.4byte	.LCFI3
+ 483 0040 0200     		.2byte	0x2
+ 484 0042 7D       		.byte	0x7d
+ 485 0043 08       		.sleb128 8
+ 486 0044 04000000 		.4byte	.LCFI3
+ 487 0048 06000000 		.4byte	.LCFI4
+ 488 004c 0200     		.2byte	0x2
+ 489 004e 7D       		.byte	0x7d
+ 490 004f 10       		.sleb128 16
+ 491 0050 06000000 		.4byte	.LCFI4
+ 492 0054 70000000 		.4byte	.LFE34
+ 493 0058 0200     		.2byte	0x2
+ 494 005a 77       		.byte	0x77
+ 495 005b 10       		.sleb128 16
+ 496 005c 00000000 		.4byte	0
+ 497 0060 00000000 		.4byte	0
+ 498              		.section	.debug_aranges,"",%progbits
+ 499 0000 24000000 		.4byte	0x24
+ 500 0004 0200     		.2byte	0x2
+ 501 0006 00000000 		.4byte	.Ldebug_info0
+ 502 000a 04       		.byte	0x4
+ 503 000b 00       		.byte	0
+ 504 000c 0000     		.2byte	0
+ARM GAS  C:\Users\ALEXAN~1\AppData\Local\Temp\ccpswxDW.s 			page 11
+
+
+ 505 000e 0000     		.2byte	0
+ 506 0010 00000000 		.4byte	.LFB33
+ 507 0014 28000000 		.4byte	.LFE33-.LFB33
+ 508 0018 00000000 		.4byte	.LFB34
+ 509 001c 70000000 		.4byte	.LFE34-.LFB34
+ 510 0020 00000000 		.4byte	0
+ 511 0024 00000000 		.4byte	0
+ 512              		.section	.debug_ranges,"",%progbits
+ 513              	.Ldebug_ranges0:
+ 514 0000 00000000 		.4byte	.LFB33
+ 515 0004 28000000 		.4byte	.LFE33
+ 516 0008 00000000 		.4byte	.LFB34
+ 517 000c 70000000 		.4byte	.LFE34
+ 518 0010 00000000 		.4byte	0
+ 519 0014 00000000 		.4byte	0
+ 520              		.section	.debug_line,"",%progbits
+ 521              	.Ldebug_line0:
+ 522 0000 84000000 		.section	.debug_str,"MS",%progbits,1
+ 522      02004500 
+ 522      00000201 
+ 522      FB0E0D00 
+ 522      01010101 
+ 523              	.LASF6:
+ 524 0000 6C6F6E67 		.ascii	"long long int\000"
+ 524      206C6F6E 
+ 524      6720696E 
+ 524      7400
+ 525              	.LASF11:
+ 526 000e 75696E74 		.ascii	"uint32\000"
+ 526      333200
+ 527              	.LASF8:
+ 528 0015 756E7369 		.ascii	"unsigned int\000"
+ 528      676E6564 
+ 528      20696E74 
+ 528      00
+ 529              	.LASF25:
+ 530 0022 6D61696E 		.ascii	"main\000"
+ 530      00
+ 531              	.LASF22:
+ 532 0027 474E5520 		.ascii	"GNU C 4.7.3 20130312 (release) [ARM/embedded-4_7-br"
+ 532      4320342E 
+ 532      372E3320 
+ 532      32303133 
+ 532      30333132 
+ 533 005a 616E6368 		.ascii	"anch revision 196615]\000"
+ 533      20726576 
+ 533      6973696F 
+ 533      6E203139 
+ 533      36363135 
+ 534              	.LASF9:
+ 535 0070 75696E74 		.ascii	"uint8\000"
+ 535      3800
+ 536              	.LASF5:
+ 537 0076 6C6F6E67 		.ascii	"long unsigned int\000"
+ 537      20756E73 
+ 537      69676E65 
+ 537      6420696E 
+ARM GAS  C:\Users\ALEXAN~1\AppData\Local\Temp\ccpswxDW.s 			page 12
+
+
+ 537      7400
+ 538              	.LASF7:
+ 539 0088 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 539      206C6F6E 
+ 539      6720756E 
+ 539      7369676E 
+ 539      65642069 
+ 540              	.LASF21:
+ 541 009f 61646472 		.ascii	"addr\000"
+ 541      00
+ 542              	.LASF13:
+ 543 00a4 666C6F61 		.ascii	"float\000"
+ 543      7400
+ 544              	.LASF24:
+ 545 00aa 433A5C70 		.ascii	"C:\\psoc\\i2c_test\\i2ctest.cydsn\000"
+ 545      736F635C 
+ 545      6932635F 
+ 545      74657374 
+ 545      5C693263 
+ 546              	.LASF1:
+ 547 00c9 756E7369 		.ascii	"unsigned char\000"
+ 547      676E6564 
+ 547      20636861 
+ 547      7200
+ 548              	.LASF15:
+ 549 00d7 63686172 		.ascii	"char\000"
+ 549      00
+ 550              	.LASF19:
+ 551 00dc 72787661 		.ascii	"rxvalue\000"
+ 551      6C756500 
+ 552              	.LASF4:
+ 553 00e4 6C6F6E67 		.ascii	"long int\000"
+ 553      20696E74 
+ 553      00
+ 554              	.LASF2:
+ 555 00ed 73686F72 		.ascii	"short int\000"
+ 555      7420696E 
+ 555      7400
+ 556              	.LASF14:
+ 557 00f7 646F7562 		.ascii	"double\000"
+ 557      6C6500
+ 558              	.LASF26:
+ 559 00fe 6973725F 		.ascii	"isr_spi_rx\000"
+ 559      7370695F 
+ 559      727800
+ 560              	.LASF16:
+ 561 0109 72656733 		.ascii	"reg32\000"
+ 561      3200
+ 562              	.LASF3:
+ 563 010f 73686F72 		.ascii	"short unsigned int\000"
+ 563      7420756E 
+ 563      7369676E 
+ 563      65642069 
+ 563      6E7400
+ 564              	.LASF0:
+ 565 0122 7369676E 		.ascii	"signed char\000"
+ 565      65642063 
+ARM GAS  C:\Users\ALEXAN~1\AppData\Local\Temp\ccpswxDW.s 			page 13
+
+
+ 565      68617200 
+ 566              	.LASF18:
+ 567 012e 6C6F6E67 		.ascii	"long double\000"
+ 567      20646F75 
+ 567      626C6500 
+ 568              	.LASF20:
+ 569 013a 72646461 		.ascii	"rddata\000"
+ 569      746100
+ 570              	.LASF12:
+ 571 0141 696E7431 		.ascii	"int16\000"
+ 571      3600
+ 572              	.LASF23:
+ 573 0147 2E5C6D61 		.ascii	".\\main.c\000"
+ 573      696E2E63 
+ 573      00
+ 574              	.LASF10:
+ 575 0150 75696E74 		.ascii	"uint16\000"
+ 575      313600
+ 576              	.LASF17:
+ 577 0157 73697A65 		.ascii	"sizetype\000"
+ 577      74797065 
+ 577      00
+ 578              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.7.3 20130312 (release) [ARM/embedded-4_7-br
