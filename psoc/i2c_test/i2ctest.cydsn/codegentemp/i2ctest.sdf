@@ -1,6 +1,6 @@
 (DELAYFILE
  (SDFVERSION "IEEE 1497 4.0")
- (DATE "2014-11-24T14:43:09Z")
+ (DATE "2014-11-25T12:31:07Z")
  (DESIGN "i2ctest")
  (VENDOR "Cypress Semiconductor")
  (PROGRAM "cydsfit")

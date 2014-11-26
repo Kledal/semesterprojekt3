@@ -1,3 +1,5 @@
+.DS_Store
+*.rt_log
 *.ld
 *.lcf
 *.scat
@@ -16,3 +18,4 @@
 *.lst
 *.o
 *.log
+*.hex

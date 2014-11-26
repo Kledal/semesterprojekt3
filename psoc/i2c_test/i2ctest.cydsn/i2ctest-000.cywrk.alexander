@@ -134,31 +134,6 @@
 <v>i2ctest-000\i2ctest\Generated_Source\PSoC4\SPIS_1\SPIS_1.c</v>
 <v>i2ctest-000\i2ctest\Generated_Source\PSoC4\SPIS_1\SPIS_1.h</v>
 <v>i2ctest-000\i2ctest\Generated_Source\PSoC4\SPIS_1\SPIS_1_BOOT.c</v>
-<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\SPIS_1\SPIS_1_PINS.h</v>
-<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\SPIS_1\SPIS_1_PM.c</v>
-<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\SPIS_1\SPIS_1_PVT.h</v>
-<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\SPIS_1\SPIS_1_SPI.c</v>
-<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\SPIS_1\SPIS_1_SPI_BOOT.c</v>
-<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\SPIS_1\SPIS_1_SPI_UART.c</v>
-<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\SPIS_1\SPIS_1_SPI_UART.h</v>
-<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\SPIS_1\SPIS_1_SPI_UART_INT.c</v>
-<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\SPIS_1\SPIS_1_SPI_UART_PVT.h</v>
-<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\SPIS_1_miso_s</v>
-<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\SPIS_1_mosi_s</v>
-<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\SPIS_1_SCB_IRQ</v>
-<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\SPIS_1_SCBCLK</v>
-<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\SPIS_1_sclk_s</v>
-<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\SPIS_1_ss_s</v>
-<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\SPIS_1_ss_s\SPIS_1_ss_s.c</v>
-<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\SPIS_1_ss_s\SPIS_1_ss_s.h</v>
-<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\SPIS_1_ss_s\SPIS_1_ss_s_aliases.h</v>
-<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\UART_GPS</v>
-<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\UART_GPS_IntClock</v>
-<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\UART_PC</v>
-<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\UART_PC\UART_PC.c</v>
-<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\UART_PC\UART_PC.h</v>
-<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\UART_PC\UART_PC_BOOT.c</v>
-<v>i2ctest-000\i2ctest\Generated_Source\PSoC4\UART_PC\UART_PC_PINS.h</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 <CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
@@ -231,6 +206,17 @@
 <VisibleNodeIds>
 <v>i2ctest-000</v>
 <v>i2ctest-000\i2ctest</v>
+<v>i2ctest-000\i2ctest\CortexM0</v>
+<v>i2ctest-000\i2ctest\CortexM0\ARM_GCC_473</v>
+<v>i2ctest-000\i2ctest\CortexM0\ARM_GCC_473\Debug</v>
+<v>i2ctest-000\i2ctest\CortexM0\ARM_GCC_473\Debug\Listing Files</v>
+<v>i2ctest-000\i2ctest\CortexM0\ARM_GCC_473\Debug\Listing Files\Cm0Start.lst</v>
+<v>i2ctest-000\i2ctest\CortexM0\ARM_GCC_473\Debug\Listing Files\CyBootAsmGnu.lst</v>
+<v>i2ctest-000\i2ctest\CortexM0\ARM_GCC_473\Debug\Listing Files\cyfitter_cfg.lst</v>
+<v>i2ctest-000\i2ctest\CortexM0\ARM_GCC_473\Debug\Listing Files\CyFlash.lst</v>
+<v>i2ctest-000\i2ctest\CortexM0\ARM_GCC_473\Debug\Listing Files\CyLib.lst</v>
+<v>i2ctest-000\i2ctest\CortexM0\ARM_GCC_473\Debug\Listing Files\cymetadata.lst</v>
+<v>i2ctest-000\i2ctest\CortexM0\ARM_GCC_473\Debug\Listing Files\cyPm.lst</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 </TreeStates>
@@ -277,7 +263,12 @@
 <name v=".\main.c" />
 <name v=".\i2ctest.cydwr" />
 <name v=".\TopDesign\TopDesign.cysch" />
-<name v=".\Generated_Source\PSoC4\UART_GPS.c" />
+<name v=".\nunchuck.c" />
+<name v=".\gps.c" />
+<name v=".\gps.h" />
+<name v=".\util.c" />
+<name v=".\util.h" />
+<name v=".\Generated_Source\PSoC4\SPIS_1.c" />
 </OpenDocs>
 <config v="" />
 <AutoUpdate v="true" />

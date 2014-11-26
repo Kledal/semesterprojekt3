@@ -38,9 +38,26 @@ int main()
 //        UART_PC_UartPutString(getGPSUartSpeed());
 //        UART_PC_UartPutChar(0xd);
 //        
-//        UART_PC_UartPutString("Number of satelites: ");
-//        UART_PC_UartPutString(GetGPSTime());
-//        UART_PC_UartPutChar(0xd);
+        //UART_PC_UartPutString("Sats: ");
+        UART_PC_UartPutString(getGPSUartNumberOfSate());
+        if (getNumberOfSate()) {
+            char returnStr[22];
+            UART_PC_UartPutString(",");
+            
+            GetGPSLatitude(returnStr);
+            UART_PC_UartPutString( returnStr );
+            
+            UART_PC_UartPutString(",");
+            UART_PC_UartPutChar(GetGPSLatitudePos());
+            
+            GetGPSLongitude(returnStr);
+            UART_PC_UartPutString(",");
+            UART_PC_UartPutString( returnStr  );
+            
+            UART_PC_UartPutString(",");
+            UART_PC_UartPutChar(GetGPSLongitudePos());
+        }
+        UART_PC_UartPutChar(0xd);
     }
 }
 

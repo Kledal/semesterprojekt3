@@ -8,3 +8,8 @@ int GetGPSTime();
 int getNumberOfSate();
 char* getGPSUartNumberOfSate();
 
+char GetGPSLatitudePos();
+char GetGPSLongitudePos();
+
+void GetGPSLatitude(char * returnStr);
+void GetGPSLongitude(char * returnStr);
