@@ -1,4 +1,5 @@
 .DS_Store
+*.html
 *.rt_log
 *.ld
 *.lcf
