@@ -1,4 +1,8 @@
 .DS_Store
+*.elf
+*.a
+*.deps
+*.map
 *.html
 *.rt_log
 *.ld
