@@ -206,17 +206,6 @@
 <VisibleNodeIds>
 <v>i2ctest-000</v>
 <v>i2ctest-000\i2ctest</v>
-<v>i2ctest-000\i2ctest\CortexM0</v>
-<v>i2ctest-000\i2ctest\CortexM0\ARM_GCC_473</v>
-<v>i2ctest-000\i2ctest\CortexM0\ARM_GCC_473\Debug</v>
-<v>i2ctest-000\i2ctest\CortexM0\ARM_GCC_473\Debug\Listing Files</v>
-<v>i2ctest-000\i2ctest\CortexM0\ARM_GCC_473\Debug\Listing Files\Cm0Start.lst</v>
-<v>i2ctest-000\i2ctest\CortexM0\ARM_GCC_473\Debug\Listing Files\CyBootAsmGnu.lst</v>
-<v>i2ctest-000\i2ctest\CortexM0\ARM_GCC_473\Debug\Listing Files\cyfitter_cfg.lst</v>
-<v>i2ctest-000\i2ctest\CortexM0\ARM_GCC_473\Debug\Listing Files\CyFlash.lst</v>
-<v>i2ctest-000\i2ctest\CortexM0\ARM_GCC_473\Debug\Listing Files\CyLib.lst</v>
-<v>i2ctest-000\i2ctest\CortexM0\ARM_GCC_473\Debug\Listing Files\cymetadata.lst</v>
-<v>i2ctest-000\i2ctest\CortexM0\ARM_GCC_473\Debug\Listing Files\cyPm.lst</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 </TreeStates>

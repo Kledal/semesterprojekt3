@@ -199,8 +199,8 @@ Allocating common symbols
 Common symbol       size              file
 
 errno               0x4               c:/program files (x86)/cypress/psoc creator/3.0/psoc creator/import/gnu_cs/arm/4.7.3/bin/../lib/gcc/arm-none-eabi/4.7.3/../../../../arm-none-eabi/lib/armv6-m\libc_s.a(lib_a-reent.o)
-longitude_pos       0x1               .\CortexM0\ARM_GCC_473\Debug\gps.o
-latitude_pos        0x1               .\CortexM0\ARM_GCC_473\Debug\gps.o
+longitude_pos       0x1               .\CortexM0\ARM_GCC_473\Debug\main.o
+latitude_pos        0x1               .\CortexM0\ARM_GCC_473\Debug\main.o
 __hexdig            0x100             c:/program files (x86)/cypress/psoc creator/3.0/psoc creator/import/gnu_cs/arm/4.7.3/bin/../lib/gcc/arm-none-eabi/4.7.3/../../../../arm-none-eabi/lib/armv6-m\libc_s.a(lib_a-gdtoa-gethex.o)
 
 Discarded input sections
@@ -1496,7 +1496,7 @@ END GROUP
  .bss.heap_end.4231
                 0x20000338        0x4 c:/program files (x86)/cypress/psoc creator/3.0/psoc creator/import/gnu_cs/arm/4.7.3/bin/../lib/gcc/arm-none-eabi/4.7.3/../../../../arm-none-eabi/lib/armv6-m\libnosys.a(sbrk.o)
  *(COMMON)
- COMMON         0x2000033c        0x2 .\CortexM0\ARM_GCC_473\Debug\gps.o
+ COMMON         0x2000033c        0x2 .\CortexM0\ARM_GCC_473\Debug\main.o
                 0x2000033c                longitude_pos
                 0x2000033d                latitude_pos
  COMMON         0x2000033e      0x100 c:/program files (x86)/cypress/psoc creator/3.0/psoc creator/import/gnu_cs/arm/4.7.3/bin/../lib/gcc/arm-none-eabi/4.7.3/../../../../arm-none-eabi/lib/armv6-m\libc_s.a(lib_a-gdtoa-gethex.o)
@@ -1622,69 +1622,69 @@ END GROUP
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x308d
+.debug_info     0x00000000     0x3180
  *(.debug_info .gnu.linkonce.wi.*)
- .debug_info    0x00000000      0x164 .\CortexM0\ARM_GCC_473\Debug\main.o
- .debug_info    0x00000164      0x417 .\CortexM0\ARM_GCC_473\Debug\gps.o
- .debug_info    0x0000057b      0x1ae .\CortexM0\ARM_GCC_473\Debug\util.o
- .debug_info    0x00000729      0x100 .\CortexM0\ARM_GCC_473\Debug\cymetadata.o
- .debug_info    0x00000829      0x2c0 .\CortexM0\ARM_GCC_473\Debug\Cm0Start.o
- .debug_info    0x00000ae9      0x56a .\CortexM0\ARM_GCC_473\Debug\i2ctest.a(cyfitter_cfg.o)
- .debug_info    0x00001053       0x6f .\CortexM0\ARM_GCC_473\Debug\i2ctest.a(CyBootAsmGnu.o)
- .debug_info    0x000010c2      0xac5 .\CortexM0\ARM_GCC_473\Debug\i2ctest.a(CyLib.o)
- .debug_info    0x00001b87      0x197 .\CortexM0\ARM_GCC_473\Debug\i2ctest.a(UART_PC.o)
- .debug_info    0x00001d1e      0x23d .\CortexM0\ARM_GCC_473\Debug\i2ctest.a(UART_PC_SPI_UART.o)
- .debug_info    0x00001f5b      0x224 .\CortexM0\ARM_GCC_473\Debug\i2ctest.a(UART_PC_UART.o)
- .debug_info    0x0000217f      0x58b .\CortexM0\ARM_GCC_473\Debug\i2ctest.a(UART_GPS.o)
- .debug_info    0x0000270a      0x169 .\CortexM0\ARM_GCC_473\Debug\i2ctest.a(UART_GPS_IntClock.o)
- .debug_info    0x00002873      0x197 .\CortexM0\ARM_GCC_473\Debug\i2ctest.a(SPIS_1.o)
- .debug_info    0x00002a0a      0x23d .\CortexM0\ARM_GCC_473\Debug\i2ctest.a(SPIS_1_SPI_UART.o)
- .debug_info    0x00002c47       0xfb .\CortexM0\ARM_GCC_473\Debug\i2ctest.a(SPIS_1_SPI.o)
- .debug_info    0x00002d42      0x288 .\CortexM0\ARM_GCC_473\Debug\i2ctest.a(SPIS_1_SCB_IRQ.o)
- .debug_info    0x00002fca       0xc3 .\CortexM0\ARM_GCC_473\Debug\i2ctest.a(SPIS_1_SPI_UART_INT.o)
+ .debug_info    0x00000000      0x257 .\CortexM0\ARM_GCC_473\Debug\main.o
+ .debug_info    0x00000257      0x417 .\CortexM0\ARM_GCC_473\Debug\gps.o
+ .debug_info    0x0000066e      0x1ae .\CortexM0\ARM_GCC_473\Debug\util.o
+ .debug_info    0x0000081c      0x100 .\CortexM0\ARM_GCC_473\Debug\cymetadata.o
+ .debug_info    0x0000091c      0x2c0 .\CortexM0\ARM_GCC_473\Debug\Cm0Start.o
+ .debug_info    0x00000bdc      0x56a .\CortexM0\ARM_GCC_473\Debug\i2ctest.a(cyfitter_cfg.o)
+ .debug_info    0x00001146       0x6f .\CortexM0\ARM_GCC_473\Debug\i2ctest.a(CyBootAsmGnu.o)
+ .debug_info    0x000011b5      0xac5 .\CortexM0\ARM_GCC_473\Debug\i2ctest.a(CyLib.o)
+ .debug_info    0x00001c7a      0x197 .\CortexM0\ARM_GCC_473\Debug\i2ctest.a(UART_PC.o)
+ .debug_info    0x00001e11      0x23d .\CortexM0\ARM_GCC_473\Debug\i2ctest.a(UART_PC_SPI_UART.o)
+ .debug_info    0x0000204e      0x224 .\CortexM0\ARM_GCC_473\Debug\i2ctest.a(UART_PC_UART.o)
+ .debug_info    0x00002272      0x58b .\CortexM0\ARM_GCC_473\Debug\i2ctest.a(UART_GPS.o)
+ .debug_info    0x000027fd      0x169 .\CortexM0\ARM_GCC_473\Debug\i2ctest.a(UART_GPS_IntClock.o)
+ .debug_info    0x00002966      0x197 .\CortexM0\ARM_GCC_473\Debug\i2ctest.a(SPIS_1.o)
+ .debug_info    0x00002afd      0x23d .\CortexM0\ARM_GCC_473\Debug\i2ctest.a(SPIS_1_SPI_UART.o)
+ .debug_info    0x00002d3a       0xfb .\CortexM0\ARM_GCC_473\Debug\i2ctest.a(SPIS_1_SPI.o)
+ .debug_info    0x00002e35      0x288 .\CortexM0\ARM_GCC_473\Debug\i2ctest.a(SPIS_1_SCB_IRQ.o)
+ .debug_info    0x000030bd       0xc3 .\CortexM0\ARM_GCC_473\Debug\i2ctest.a(SPIS_1_SPI_UART_INT.o)
 
-.debug_abbrev   0x00000000     0x1184
+.debug_abbrev   0x00000000     0x11a9
  *(.debug_abbrev)
- .debug_abbrev  0x00000000       0xab .\CortexM0\ARM_GCC_473\Debug\main.o
- .debug_abbrev  0x000000ab      0x154 .\CortexM0\ARM_GCC_473\Debug\gps.o
- .debug_abbrev  0x000001ff       0xbf .\CortexM0\ARM_GCC_473\Debug\util.o
- .debug_abbrev  0x000002be       0x5d .\CortexM0\ARM_GCC_473\Debug\cymetadata.o
- .debug_abbrev  0x0000031b      0x164 .\CortexM0\ARM_GCC_473\Debug\Cm0Start.o
- .debug_abbrev  0x0000047f      0x1a6 .\CortexM0\ARM_GCC_473\Debug\i2ctest.a(cyfitter_cfg.o)
- .debug_abbrev  0x00000625       0x14 .\CortexM0\ARM_GCC_473\Debug\i2ctest.a(CyBootAsmGnu.o)
- .debug_abbrev  0x00000639      0x1a2 .\CortexM0\ARM_GCC_473\Debug\i2ctest.a(CyLib.o)
- .debug_abbrev  0x000007db       0xc5 .\CortexM0\ARM_GCC_473\Debug\i2ctest.a(UART_PC.o)
- .debug_abbrev  0x000008a0      0x151 .\CortexM0\ARM_GCC_473\Debug\i2ctest.a(UART_PC_SPI_UART.o)
- .debug_abbrev  0x000009f1       0xee .\CortexM0\ARM_GCC_473\Debug\i2ctest.a(UART_PC_UART.o)
- .debug_abbrev  0x00000adf      0x165 .\CortexM0\ARM_GCC_473\Debug\i2ctest.a(UART_GPS.o)
- .debug_abbrev  0x00000c44       0xaa .\CortexM0\ARM_GCC_473\Debug\i2ctest.a(UART_GPS_IntClock.o)
- .debug_abbrev  0x00000cee       0xdb .\CortexM0\ARM_GCC_473\Debug\i2ctest.a(SPIS_1.o)
- .debug_abbrev  0x00000dc9      0x151 .\CortexM0\ARM_GCC_473\Debug\i2ctest.a(SPIS_1_SPI_UART.o)
- .debug_abbrev  0x00000f1a       0x8e .\CortexM0\ARM_GCC_473\Debug\i2ctest.a(SPIS_1_SPI.o)
- .debug_abbrev  0x00000fa8      0x16a .\CortexM0\ARM_GCC_473\Debug\i2ctest.a(SPIS_1_SCB_IRQ.o)
- .debug_abbrev  0x00001112       0x72 .\CortexM0\ARM_GCC_473\Debug\i2ctest.a(SPIS_1_SPI_UART_INT.o)
+ .debug_abbrev  0x00000000       0xd0 .\CortexM0\ARM_GCC_473\Debug\main.o
+ .debug_abbrev  0x000000d0      0x154 .\CortexM0\ARM_GCC_473\Debug\gps.o
+ .debug_abbrev  0x00000224       0xbf .\CortexM0\ARM_GCC_473\Debug\util.o
+ .debug_abbrev  0x000002e3       0x5d .\CortexM0\ARM_GCC_473\Debug\cymetadata.o
+ .debug_abbrev  0x00000340      0x164 .\CortexM0\ARM_GCC_473\Debug\Cm0Start.o
+ .debug_abbrev  0x000004a4      0x1a6 .\CortexM0\ARM_GCC_473\Debug\i2ctest.a(cyfitter_cfg.o)
+ .debug_abbrev  0x0000064a       0x14 .\CortexM0\ARM_GCC_473\Debug\i2ctest.a(CyBootAsmGnu.o)
+ .debug_abbrev  0x0000065e      0x1a2 .\CortexM0\ARM_GCC_473\Debug\i2ctest.a(CyLib.o)
+ .debug_abbrev  0x00000800       0xc5 .\CortexM0\ARM_GCC_473\Debug\i2ctest.a(UART_PC.o)
+ .debug_abbrev  0x000008c5      0x151 .\CortexM0\ARM_GCC_473\Debug\i2ctest.a(UART_PC_SPI_UART.o)
+ .debug_abbrev  0x00000a16       0xee .\CortexM0\ARM_GCC_473\Debug\i2ctest.a(UART_PC_UART.o)
+ .debug_abbrev  0x00000b04      0x165 .\CortexM0\ARM_GCC_473\Debug\i2ctest.a(UART_GPS.o)
+ .debug_abbrev  0x00000c69       0xaa .\CortexM0\ARM_GCC_473\Debug\i2ctest.a(UART_GPS_IntClock.o)
+ .debug_abbrev  0x00000d13       0xdb .\CortexM0\ARM_GCC_473\Debug\i2ctest.a(SPIS_1.o)
+ .debug_abbrev  0x00000dee      0x151 .\CortexM0\ARM_GCC_473\Debug\i2ctest.a(SPIS_1_SPI_UART.o)
+ .debug_abbrev  0x00000f3f       0x8e .\CortexM0\ARM_GCC_473\Debug\i2ctest.a(SPIS_1_SPI.o)
+ .debug_abbrev  0x00000fcd      0x16a .\CortexM0\ARM_GCC_473\Debug\i2ctest.a(SPIS_1_SCB_IRQ.o)
+ .debug_abbrev  0x00001137       0x72 .\CortexM0\ARM_GCC_473\Debug\i2ctest.a(SPIS_1_SPI_UART_INT.o)
 
-.debug_line     0x00000000     0x177d
+.debug_line     0x00000000     0x1788
  *(.debug_line)
- .debug_line    0x00000000       0x8d .\CortexM0\ARM_GCC_473\Debug\main.o
- .debug_line    0x0000008d        0x0 .\CortexM0\ARM_GCC_473\Debug\nunchuck.o
- .debug_line    0x0000008d      0x1cf .\CortexM0\ARM_GCC_473\Debug\gps.o
- .debug_line    0x0000025c       0x82 .\CortexM0\ARM_GCC_473\Debug\util.o
- .debug_line    0x000002de       0x53 .\CortexM0\ARM_GCC_473\Debug\cymetadata.o
- .debug_line    0x00000331      0x19b .\CortexM0\ARM_GCC_473\Debug\Cm0Start.o
- .debug_line    0x000004cc      0x1e8 .\CortexM0\ARM_GCC_473\Debug\i2ctest.a(cyfitter_cfg.o)
- .debug_line    0x000006b4       0x68 .\CortexM0\ARM_GCC_473\Debug\i2ctest.a(CyBootAsmGnu.o)
- .debug_line    0x0000071c      0x541 .\CortexM0\ARM_GCC_473\Debug\i2ctest.a(CyLib.o)
- .debug_line    0x00000c5d       0xd9 .\CortexM0\ARM_GCC_473\Debug\i2ctest.a(UART_PC.o)
- .debug_line    0x00000d36      0x128 .\CortexM0\ARM_GCC_473\Debug\i2ctest.a(UART_PC_SPI_UART.o)
- .debug_line    0x00000e5e      0x104 .\CortexM0\ARM_GCC_473\Debug\i2ctest.a(UART_PC_UART.o)
- .debug_line    0x00000f62      0x2f3 .\CortexM0\ARM_GCC_473\Debug\i2ctest.a(UART_GPS.o)
- .debug_line    0x00001255       0xba .\CortexM0\ARM_GCC_473\Debug\i2ctest.a(UART_GPS_IntClock.o)
- .debug_line    0x0000130f       0xdd .\CortexM0\ARM_GCC_473\Debug\i2ctest.a(SPIS_1.o)
- .debug_line    0x000013ec      0x127 .\CortexM0\ARM_GCC_473\Debug\i2ctest.a(SPIS_1_SPI_UART.o)
- .debug_line    0x00001513       0x8a .\CortexM0\ARM_GCC_473\Debug\i2ctest.a(SPIS_1_SPI.o)
- .debug_line    0x0000159d      0x15d .\CortexM0\ARM_GCC_473\Debug\i2ctest.a(SPIS_1_SCB_IRQ.o)
- .debug_line    0x000016fa       0x83 .\CortexM0\ARM_GCC_473\Debug\i2ctest.a(SPIS_1_SPI_UART_INT.o)
+ .debug_line    0x00000000       0x98 .\CortexM0\ARM_GCC_473\Debug\main.o
+ .debug_line    0x00000098        0x0 .\CortexM0\ARM_GCC_473\Debug\nunchuck.o
+ .debug_line    0x00000098      0x1cf .\CortexM0\ARM_GCC_473\Debug\gps.o
+ .debug_line    0x00000267       0x82 .\CortexM0\ARM_GCC_473\Debug\util.o
+ .debug_line    0x000002e9       0x53 .\CortexM0\ARM_GCC_473\Debug\cymetadata.o
+ .debug_line    0x0000033c      0x19b .\CortexM0\ARM_GCC_473\Debug\Cm0Start.o
+ .debug_line    0x000004d7      0x1e8 .\CortexM0\ARM_GCC_473\Debug\i2ctest.a(cyfitter_cfg.o)
+ .debug_line    0x000006bf       0x68 .\CortexM0\ARM_GCC_473\Debug\i2ctest.a(CyBootAsmGnu.o)
+ .debug_line    0x00000727      0x541 .\CortexM0\ARM_GCC_473\Debug\i2ctest.a(CyLib.o)
+ .debug_line    0x00000c68       0xd9 .\CortexM0\ARM_GCC_473\Debug\i2ctest.a(UART_PC.o)
+ .debug_line    0x00000d41      0x128 .\CortexM0\ARM_GCC_473\Debug\i2ctest.a(UART_PC_SPI_UART.o)
+ .debug_line    0x00000e69      0x104 .\CortexM0\ARM_GCC_473\Debug\i2ctest.a(UART_PC_UART.o)
+ .debug_line    0x00000f6d      0x2f3 .\CortexM0\ARM_GCC_473\Debug\i2ctest.a(UART_GPS.o)
+ .debug_line    0x00001260       0xba .\CortexM0\ARM_GCC_473\Debug\i2ctest.a(UART_GPS_IntClock.o)
+ .debug_line    0x0000131a       0xdd .\CortexM0\ARM_GCC_473\Debug\i2ctest.a(SPIS_1.o)
+ .debug_line    0x000013f7      0x127 .\CortexM0\ARM_GCC_473\Debug\i2ctest.a(SPIS_1_SPI_UART.o)
+ .debug_line    0x0000151e       0x8a .\CortexM0\ARM_GCC_473\Debug\i2ctest.a(SPIS_1_SPI.o)
+ .debug_line    0x000015a8      0x15d .\CortexM0\ARM_GCC_473\Debug\i2ctest.a(SPIS_1_SCB_IRQ.o)
+ .debug_line    0x00001705       0x83 .\CortexM0\ARM_GCC_473\Debug\i2ctest.a(SPIS_1_SPI_UART_INT.o)
 
 .debug_frame    0x00000000     0x2920
  *(.debug_frame)
@@ -1784,9 +1784,9 @@ END GROUP
 
 .debug_str      0x00000000     0x1640
  *(.debug_str)
- .debug_str     0x00000000      0x124 .\CortexM0\ARM_GCC_473\Debug\main.o
-                                0x16a (size before relaxing)
- .debug_str     0x00000124      0x195 .\CortexM0\ARM_GCC_473\Debug\gps.o
+ .debug_str     0x00000000      0x19c .\CortexM0\ARM_GCC_473\Debug\main.o
+                                0x1e2 (size before relaxing)
+ .debug_str     0x0000019c      0x11d .\CortexM0\ARM_GCC_473\Debug\gps.o
                                 0x2bf (size before relaxing)
  .debug_str     0x000002b9       0x3b .\CortexM0\ARM_GCC_473\Debug\util.o
                                 0x14e (size before relaxing)
