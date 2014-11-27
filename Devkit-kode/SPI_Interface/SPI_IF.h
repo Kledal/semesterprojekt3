@@ -6,8 +6,8 @@ int getSpeedIF( );
 int getBatIF( ) {
 	int fd_bat;
 	long temp_bat;
-	int len_bat = 2; // ??
-	char buffer_bat[6]; // ??
+	int len_bat = 3; 
+	char buffer_bat[4]; // ??
 	fd_bat = open("/sys/class/fake_psoc/fake_psoc1/battery", O_WRONLY);
 	read(fd_bat, buffer_bat, len_bat);
 
@@ -20,8 +20,8 @@ int getBatIF( ) {
 int getSpeedIF( ) {
 	int fd_speed;
 	long temp_speed;
-	int len_speed = 2; // ??
-	char buffer_speed[6]; // ??
+	int len_speed = 3;
+	char buffer_speed[4]; // ??
 	fd_speed = open("/sys/class/fake_psoc/fake_psoc1/speed", O_RDONLY);
 	read(fd_speed, buffer_speed, len_speed);
 
