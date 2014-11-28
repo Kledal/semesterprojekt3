@@ -27,7 +27,7 @@ void MyThread::run()
     QString string(buffer);
     emit textChanged(string);
     
-    this->msleep(1000);
+    this->msleep(100);
   }
   
   /*

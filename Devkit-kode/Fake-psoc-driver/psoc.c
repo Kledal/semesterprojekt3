@@ -87,7 +87,7 @@ static int __init psoc_cdrv_init(void)
   cdev_init(psocDev, psocDev->ops); // Cdev Init
   err = cdev_add(psocDev, 1, 1);  // Add Cdev
   if (err)
-      ERRGOTO(err_register, "Error %d adding Fake PSOC device\n", err);
+    ERRGOTO(err_register, "Error %d adding Fake PSOC device\n", err);
   
   
   //sysfs
@@ -96,6 +96,8 @@ static int __init psoc_cdrv_init(void)
   sysfs_class->dev_attrs = led_class_attrs;
   sysfs_device = device_create(sysfs_class, NULL, devno, NULL, "fake_psoc1");
   
+  printk("Finish initialize\n");
+
   return 0;
 
   err_register:
@@ -114,7 +116,7 @@ static void __exit psoc_cdrv_exit(void)
   device_destroy(sysfs_class, devno);
   class_destroy(sysfs_class);
   
-  printk(KERN_INFO "Success fully unloaded.");
+  printk(KERN_INFO "Success fully unloaded.\n");
 }
 
 int psoc_cdrv_open(struct inode *inode, struct file *filep)

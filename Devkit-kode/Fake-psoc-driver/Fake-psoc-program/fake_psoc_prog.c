@@ -18,6 +18,8 @@ int main()
   	len_speed = sprintf(buffer_speed, "%d", count);
   	len_bat = sprintf(buffer_bat, "%d", count);
 
+    printf("speed: %d\n", len_speed);
+    printf("battery: %d\n", len_bat);
     if(!write(fd_speed, buffer_speed, len_speed))
       printf("ERROR write to speed");
 
