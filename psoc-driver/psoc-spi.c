@@ -17,7 +17,7 @@ struct spi_device* psoc_get_device(void){
 
 int psoc_spi_read_reg16(struct spi_device *spi, u8 addr, u16* value)
 {
-	struct spi_transfer t[2];
+	struct spi_transfer t[1];
 	struct spi_message m;
 	u16 cmd;
 	u16 data = 0;
@@ -30,9 +30,8 @@ int psoc_spi_read_reg16(struct spi_device *spi, u8 addr, u16* value)
 	 *
 	 * | Cmd   |         ADDR         |       EMTY         |
 	 *   15  14  13  12  11  10  9  8  7  6  5  4  3  2  1
-     */	 
-	cmd = (1<<6) | (addr & 0x3f); 
-	cmd = cmd<<8;
+     */
+	cmd = addr;
 	/* Init Message */
 	memset(t, 0, sizeof(t));
 	spi_message_init(&m);
@@ -40,20 +39,20 @@ int psoc_spi_read_reg16(struct spi_device *spi, u8 addr, u16* value)
 
 	/* Configure tx/rx buffers */
 	t[0].tx_buf = &cmd;
-	t[0].rx_buf = NULL;
+	t[0].rx_buf = &data;
 	t[0].len = 2;
 	t[0].delay_usecs = 250;
-	
-	printk(KERN_ALERT "Requesting data from addr 0x%x\n", cmd);
-	
-	spi_message_add_tail(&t[0], &m);
 
+	printk(KERN_ALERT "Requesting data from addr 0x%x\n", cmd);
+
+	spi_message_add_tail(&t[0], &m);
+	/*
 	t[1].tx_buf = NULL;
 	t[1].rx_buf = &data;
 	t[1].len = 2;
 	t[1].delay_usecs = 250;
 	spi_message_add_tail(&t[1], &m);
-
+	*/
 	/* Transmit SPI Data (blocking) */
 	spi_sync(m.spi, &m);
 
@@ -67,7 +66,7 @@ int psoc_spi_read_reg16(struct spi_device *spi, u8 addr, u16* value)
 
 /*
  * PSOC SPI Write 8-bit Register
- * Writes 8-bit content to register at 
+ * Writes 8-bit content to register at
  * the provided PSOC address
  */
 int psoc_spi_write_reg8(struct spi_device *spi, u8 addr, u8 data)
@@ -80,12 +79,12 @@ int psoc_spi_write_reg8(struct spi_device *spi, u8 addr, u8 data)
     if(!spi)
       return -ENODEV;
 
-  
+
   /* Create Cmd byte:
    *
    * | Cmd   |         ADDR        |           DATA         |
    *  15  14  13  12  11  10  9  8   7  6  5  4  3  2  1  0
-   */ 
+   */
   cmd =  (1<<6) | (addr & 0x3f);
   cmd = cmd << 8;
   cmd = cmd | data;
@@ -96,7 +95,7 @@ int psoc_spi_write_reg8(struct spi_device *spi, u8 addr, u8 data)
   m.spi = spi;
 
   //if(MODULE_DEBUG)
-    printk(KERN_ALERT "PSOC: Write Reg8 Addr 0x%x Data 0x%02x Cmd 0x%x\n", addr, data, cmd); 
+    printk(KERN_ALERT "PSOC: Write Reg8 Addr 0x%x Data 0x%02x Cmd 0x%x\n", addr, data, cmd);
   /* Configure tx/rx buffers */
   t[0].tx_buf = &cmd;
   t[0].rx_buf = NULL;
@@ -118,14 +117,14 @@ int psoc_spi_write_reg8(struct spi_device *spi, u8 addr, u8 data)
 static int __devinit psoc_spi_probe(struct spi_device *spi)
 {
   int err;
-  
+
   spi->bits_per_word = 16;
   spi_setup(spi);
-  
+
   printk(KERN_DEBUG "Probing done");
-  
+
   psoc_spi_device = spi;	//Saving the spi device pointer in our own static variable
-  
+
   return err;
 }
 
@@ -164,10 +163,10 @@ int psoc_spi_init(void)
   int err;
 
   err = spi_register_driver(&psoc_spi_driver);
-  
+
   if(err<0)
     printk (KERN_ALERT "Error %d registering the PSoC SPI driver\n", err);
-  
+
   return err;
 }
 
@@ -179,7 +178,7 @@ int psoc_spi_init(void)
  */
 void psoc_spi_exit(void)
 {
-  spi_unregister_driver(&psoc_spi_driver); 
+  spi_unregister_driver(&psoc_spi_driver);
 }
 
 

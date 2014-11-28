@@ -1,2 +1,2 @@
-kernel//home/stud/i3hal_e2014_a/src/Exercise_7/PSoC_SPI_Driver/psocmod.ko
-kernel//home/stud/i3hal_e2014_a/src/Exercise_7/PSoC_SPI_Driver/hotplug_psoc_spi_device.ko
+kernel//home/stud/Desktop/semesterprojekt3/Devkit-kode/psoc-driver/psocmod.ko
+kernel//home/stud/Desktop/semesterprojekt3/Devkit-kode/psoc-driver/hotplug_psoc_spi_device.ko
