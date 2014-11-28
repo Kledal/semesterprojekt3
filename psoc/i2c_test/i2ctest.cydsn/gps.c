@@ -4,7 +4,6 @@
 #include <stdlib.h>
 #include <math.h>
 #include "gps.h"
-#include "util.h"
 
 /********** GPS  ***************/
 
@@ -12,32 +11,17 @@ char gpsBuffer[300] = "";
 int gpsBufferPointer = 0;
 char* gpvtg = "$GPVTG";
 char* gpgga = "$GPGGA";
-char* gpgsv = "$GPGSV";
 
 int speed_ = 0;
 int numberOfSate_ = 0;
-int time_ = 0;
 
 /********** /GPS  ***************/
 
-int GetGPSTime() {
-    return time_;
-}
 int getNumberOfSate() {
     return numberOfSate_;
 }
 int getGPSSpeed() {
     return speed_;
-}
-char* getGPSUartNumberOfSate() {
-    char returnSpeed[22];
-    intToStr(getNumberOfSate(), *returnSpeed, 2);
-    return *returnSpeed;
-}
-char* getGPSUartSpeed() {
-    char returnSpeed[4];
-    intToStr(getGPSSpeed(), *returnSpeed, 4);
-    return *returnSpeed;
 }
 
 void readGPSData() {
@@ -69,10 +53,6 @@ void readGPSData() {
                     handleGPSData("GPVTG");
                     completedVTG = 1;
                 }
-                //GPS Satellites in view
-                if (compareGPSCMD(gpgsv)) { 
-                    handleGPSData("GPVSG");
-                }
                 gpsBufferPointer = 0;
                 resetGPSBuffer();
             }
@@ -86,16 +66,10 @@ void handleGPSData(char* cmd) {
         packet[i-1] = gpsBuffer[i];
     }
     
-    UART_PC_UartPutString(packet);
-    UART_PC_UartPutChar(0xd);
-    
     char* token = strtok(packet, ",");
     i = 0;
     while( token != NULL ) 
     {
-        if (i == 1 && strcmp(cmd, "GPGGA") == 0) {
-            time_ = atof(token);
-        }
         if (i == 6 && strcmp(cmd, "GPVTG") == 0) {
             speed_ = atof(token);
         }

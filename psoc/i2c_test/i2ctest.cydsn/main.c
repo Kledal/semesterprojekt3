@@ -5,7 +5,6 @@
 #include <math.h>
 
 #include "gps.h"
-#include "util.h"
 
 /* I2C slave address to communicate with */
 #define I2C_SLAVE_ADDR  (0x52u)
