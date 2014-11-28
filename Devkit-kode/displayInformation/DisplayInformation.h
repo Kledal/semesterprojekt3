@@ -1,17 +1,19 @@
 #include "TripController"
-#include "SPI_IF.h"
+#include "../SPI_Interface/SPI_IF.h"
 
 class DisplayInformation 
 {
 public:
 	bool readData(int & speed, int & avgSpeed, int & batteryLevel, int & batteryLeft)
 	{
+		storeData();	//Call for new data
+
 		speed 			= tripPtr_->getSpeed();
 		avgSpeed 		= tripPtr_->getAvgSpeed();
 		batteryLevel 	= tripPtr_->getBatLevel();
 		batteryLeft 	= tripPtr_->getBatLeft();
 
-		return true;
+		return storeData();
 	}
 
 	bool storeData( )
