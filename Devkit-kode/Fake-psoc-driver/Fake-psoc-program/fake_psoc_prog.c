@@ -9,7 +9,7 @@ int main()
   int fd_speed, fd_bat;
   char buffer_speed[6], buffer_bat[6];
   fd_speed = open("/sys/class/fake_psoc/fake_psoc1/speed", O_WRONLY);
-  fd_bat = open("/sys/class/fake_psoc/fake_psoc1/speed", O_WRONLY);
+  fd_bat = open("/sys/class/fake_psoc/fake_psoc1/battery", O_WRONLY);
   int count = 0;
   int len_speed, len_bat;
   while(1)
@@ -19,10 +19,10 @@ int main()
   	len_bat = sprintf(buffer_bat, "%d", count);
 
     if(!write(fd_speed, buffer_speed, len_speed))
-    printf("ERROR write to speed");
+      printf("ERROR write to speed");
 
     if(!write(fd_bat, buffer_bat, len_bat))
-    printf("ERROR write to battery");
+      printf("ERROR write to battery");
 
   	usleep(500000); 	//Sleep 0.5 sec
     
