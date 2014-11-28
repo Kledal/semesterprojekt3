@@ -1,18 +1,10 @@
-#include <project.h>
+ #include <project.h>
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
 #include "gps.h"
 #include "util.h"
-
-// Set GPS to 10 Hz
-//    UART_GPS_PutString("$PMTK220,200*2C");
-//    UART_GPS_PutChar(13);
-//    UART_GPS_PutChar(10);
-//    UART_GPS_PutString("$PMTK300,200,0,0,0,0*2F");
-//    UART_GPS_PutChar(13);
-//    UART_GPS_PutChar(10);
 
 /********** GPS  ***************/
 
@@ -26,22 +18,8 @@ int speed_ = 0;
 int numberOfSate_ = 0;
 int time_ = 0;
 
-float longitude_ = 0;
-float latitude_ = 0;
-char latitude_pos;
-char longitude_pos;
-
 /********** /GPS  ***************/
 
-char GetGPSLatitudePos() { return latitude_pos; }
-char GetGPSLongitudePos() { return longitude_pos; }
-
-void GetGPSLatitude(char * returnStr) {
-    ftoa(latitude_, returnStr, 4);
-}
-void GetGPSLongitude(char * returnStr) {
-    ftoa(longitude_, returnStr, 4);
-}
 int GetGPSTime() {
     return time_;
 }
@@ -80,19 +58,21 @@ void readGPSData() {
             }
             //UART_PC_UartPutChar(rxData);
             // Data completed. Received a full gps packet.
-            if (rxData == 13) {            
+            if (rxData == 13) { 
+                //Global Positioning System Fix Data           
                 if (compareGPSCMD(gpgga)){
                     handleGPSData("GPGGA");
                     completedGGA = 1;
                 }
+                //Track Made Good and Ground Speed (km/h)
                 if (compareGPSCMD(gpvtg)){
                     handleGPSData("GPVTG");
                     completedVTG = 1;
                 }
-                if (compareGPSCMD(gpgsv)) {
+                //GPS Satellites in view
+                if (compareGPSCMD(gpgsv)) { 
                     handleGPSData("GPVSG");
                 }
-                
                 gpsBufferPointer = 0;
                 resetGPSBuffer();
             }
@@ -119,24 +99,12 @@ void handleGPSData(char* cmd) {
         if (i == 6 && strcmp(cmd, "GPVTG") == 0) {
             speed_ = atof(token);
         }
-        if (i == 2 && strcmp(cmd, "GPGGA") == 0) {
-            latitude_ = atof(token);
-        }
-        if (i == 3 && strcmp(cmd, "GPGGA") == 0) {
-            sscanf(token, "%c", &latitude_pos);
-        }
-        if (i == 4 && strcmp(cmd, "GPGGA") == 0) {
-            longitude_ = atof(token);;
-        }
-        if (i == 5 && strcmp(cmd, "GPGGA") == 0) {
-            sscanf(token, "%c", &longitude_pos);
-        }
         if (i == 7 && strcmp(cmd, "GPGGA") == 0) {
             sscanf(token, "%d", &numberOfSate_);
         }
-//        if (i == 9 && strcmp(cmd, "GPGGA") == 0) {
-//            altitude = atof(token);
-//        }
+//      if (i == 9 && strcmp(cmd, "GPGGA") == 0) {
+//          altitude = atof(token);
+//      }
         token = strtok(NULL, ",");
         i++;
     }
@@ -156,4 +124,14 @@ void resetGPSBuffer() {
     for (i=0;i<300;i++){
      gpsBuffer[i]=' ';             
    } 
+}
+
+void initGPSandSPI()
+{
+    UART_PC_Start();
+    UART_GPS_Start();
+    
+    SPIS_1_SetCustomInterruptHandler(isr_spi_rx);
+    SPIS_1_SpiUartClearTxBuffer();
+    SPIS_1_Start();
 }

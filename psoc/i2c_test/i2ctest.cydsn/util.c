@@ -1,4 +1,4 @@
-#include <project.h>
+ #include <project.h>
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -17,7 +17,6 @@ void reverse(char *str, int len)
         i++; j--;
     }
 }
- 
  // Converts a given integer x to string str[].  d is the number
  // of digits required in output. If d is more than the number
  // of digits in x, then 0s are added at the beginning.

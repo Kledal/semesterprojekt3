@@ -1,68 +1,34 @@
-#include <project.h>
+ #include <project.h>
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
 
 #include "gps.h"
+#include "util.h"
 
 /* I2C slave address to communicate with */
 #define I2C_SLAVE_ADDR  (0x52u)
 
+/* Initiate Uart */
 void processUSBUart();
 
-/******** SPI ***************/
+/* SPI (Kan den flyttes til initGPSandSPI) */
 CY_ISR_PROTO(isr_spi_rx);
-/********* /SPI *************/
-
-void reverse(char *str, int len);
-int intToStr(int x, char str[], int d);
-void ftoa(float n, char *res, int afterpoint);
 
 int main()
-{
-   
+{   
     CyGlobalIntEnable; /* Uncomment this line to enable global interrupts. */
-    //I2C_1_Start();
-    UART_PC_Start();
-    UART_GPS_Start();
-    
-    SPIS_1_SetCustomInterruptHandler(isr_spi_rx);
-	SPIS_1_SpiUartClearTxBuffer();
-    SPIS_1_Start();
- 
+    initGPSandSPI();
     for(;;)
     {
         readGPSData();
-//        UART_PC_UartPutString("GPS Speed: ");
-//        UART_PC_UartPutString(getGPSUartSpeed());
-//        UART_PC_UartPutChar(0xd);
-//        
         //UART_PC_UartPutString("Sats: ");
-        UART_PC_UartPutString(getGPSUartNumberOfSate());
-        if (getNumberOfSate()) {
-            char returnStr[22];
-            UART_PC_UartPutString(",");
-            
-            GetGPSLatitude(returnStr);
-            UART_PC_UartPutString( returnStr );
-            
-            UART_PC_UartPutString(",");
-            UART_PC_UartPutChar(GetGPSLatitudePos());
-            
-            GetGPSLongitude(returnStr);
-            UART_PC_UartPutString(",");
-            UART_PC_UartPutString( returnStr  );
-            
-            UART_PC_UartPutString(",");
-            UART_PC_UartPutChar(GetGPSLongitudePos());
-        }
-        UART_PC_UartPutChar(0xd);
+        //UART_PC_UartPutString(getGPSUartNumberOfSate());
     }
 }
 
 CY_ISR(isr_spi_rx) {
-
 	uint16 rxvalue;
 	uint8 cmd, rddata, addr;
 	rxvalue = SPIS_1_SpiUartReadRxData();
@@ -73,8 +39,16 @@ CY_ISR(isr_spi_rx) {
 	switch (addr) {
         case 0x1:
             SPIS_1_SpiUartClearTxBuffer();
-			SPIS_1_SpiUartWriteTxData( (int16)GetGPSTime() );
+            SPIS_1_SpiUartWriteTxData( (int16)GetGPSSpeed() );
             break;
+        case 0x2:
+            SPIS_1_SpiUartClearTxBuffer();
+            SPIS_1_SpiUartWriteTxData( (int16)getNumberOfSate() );
+            break;
+/*        case 0x3:
+            SPIS_1_SpiUartClearTxBuffer();
+            SPIS_1_SpiUartWriteTxData( (int16)GetBatteryVoltage() );
+            break;*/
 		default:
 			break;
 	}

@@ -1,4 +1,4 @@
-void readGPSData();
+ void readGPSData();
 int compareGPSCMD(char* cmd);
 void resetGPSBuffer();
 void handleGPSData(char* cmd);
@@ -8,11 +8,8 @@ int GetGPSTime();
 int getNumberOfSate();
 char* getGPSUartNumberOfSate();
 
-char GetGPSLatitudePos();
-char GetGPSLongitudePos();
+void initGPSandSPI();
 
-void GetGPSLatitude(char * returnStr);
-void GetGPSLongitude(char * returnStr);
 
 /********** GPS  ***************/
 
@@ -26,9 +23,5 @@ int speed_;
 int numberOfSate_;
 int time_;
 
-float longitude_;
-float latitude_;
-char latitude_pos;
-char longitude_pos;
 
 /********** /GPS  ***************/
