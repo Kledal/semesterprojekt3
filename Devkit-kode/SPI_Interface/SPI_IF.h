@@ -14,7 +14,7 @@ int getBatIF( ) {
 	int temp_bat;
 	int len_bat = 3; 
 	char buffer_bat[6] = {0};
-	fd_bat = open("/sys/class/fake_psoc/fake_psoc1/battery", O_RDONLY);
+	fd_bat = open("/sys/class/psoc/psoc1/battery", O_RDONLY);
 	if (read(fd_bat, buffer_bat, len_bat) > 3)
 		std::cout << "Error read in getBatIF";
 
@@ -31,7 +31,7 @@ int getSpeedIF( ) {
 	int temp_speed;
 	int len_speed = 3;
 	char buffer_speed[6] = {0};
-	fd_speed = open("/sys/class/fake_psoc/fake_psoc1/speed", O_RDONLY);
+	fd_speed = open("/sys/class/psoc/psoc1/speed", O_RDONLY);
 	if (read(fd_speed, buffer_speed, len_speed) > 3)
 		std::cout << "Error read in getBatIF";
 
