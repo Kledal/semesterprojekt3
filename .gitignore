@@ -1,4 +1,9 @@
 .DS_Store
+*.mod.c
+*.order
+*.o.cmd
+*.ko.cmd
+*.ko
 *.cyfit
 *.elf
 *.a
