@@ -1,1 +1,0 @@
-cmd_/home/stud/Desktop/semesterprojekt3/Devkit-kode/psoc-driver/psocmod.o := arm-angstrom-linux-gnueabi-ld -EL    -r -o /home/stud/Desktop/semesterprojekt3/Devkit-kode/psoc-driver/psocmod.o /home/stud/Desktop/semesterprojekt3/Devkit-kode/psoc-driver/psoc.o /home/stud/Desktop/semesterprojekt3/Devkit-kode/psoc-driver/psoc-spi.o 

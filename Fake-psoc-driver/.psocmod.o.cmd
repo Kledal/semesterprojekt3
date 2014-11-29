@@ -1,1 +1,0 @@
-cmd_/home/stud/semesterprojekt3/Devkit-kode/Fake-psoc-driver/psocmod.o := arm-angstrom-linux-gnueabi-ld -EL    -r -o /home/stud/semesterprojekt3/Devkit-kode/Fake-psoc-driver/psocmod.o /home/stud/semesterprojekt3/Devkit-kode/Fake-psoc-driver/psoc.o 
