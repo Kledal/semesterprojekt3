@@ -18,7 +18,6 @@ int PSOC_MAJOR = 65;
 
 /* Char Driver Globals */
 static struct cdev *psocDev;
-struct file_operations psoc_fops;
 static int devno;
 
 /* Sysfs class and device */
@@ -119,48 +118,9 @@ static void __exit psoc_cdrv_exit(void)
   printk(KERN_INFO "Success fully unloaded.\n");
 }
 
-int psoc_cdrv_open(struct inode *inode, struct file *filep)
-{  
-  int PSOC_MAJOR, minor;
-  PSOC_MAJOR = MAJOR(inode->i_rdev);
-  minor = MINOR(inode->i_rdev);
-  printk("Opening MyGpio Device [major], [minor]: %i, %i\n", PSOC_MAJOR, minor);
-  return 0;
-}
-
-int psoc_cdrv_release(struct inode *inode, struct file *filep)
-{
-  int minor, PSOC_MAJOR;
-
-  PSOC_MAJOR = MAJOR(inode->i_rdev);
-  minor = MINOR(inode->i_rdev);
-  printk("Closing/Releasing MyGpio Device [major], [minor]: %i, %i\n", PSOC_MAJOR, minor);
-
-  return 0;
-}
-
-ssize_t psoc_cdrv_write(struct file *filep, const char __user *ubuf, 
-                           size_t count, loff_t *f_pos)
-{
-return 0;
-}
-
-ssize_t psoc_cdrv_read(struct file *filep, char __user *ubuf, 
-                          size_t count, loff_t *f_pos)
-{
-return 0;
-}
 
 
 
-struct file_operations psoc_fops = 
-{
-  .owner   = THIS_MODULE,
-  .open    = psoc_cdrv_open,
-  .release = psoc_cdrv_release,
-  .write   = psoc_cdrv_write,
-  .read    = psoc_cdrv_read,
-};
 
 module_init(psoc_cdrv_init);
 module_exit(psoc_cdrv_exit);
