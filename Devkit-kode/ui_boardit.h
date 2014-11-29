@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'boardit.ui'
 **
-** Created: Fri Nov 28 20:25:03 2014
+** Created: Sat Nov 29 12:23:05 2014
 **      by: Qt User Interface Compiler version 4.8.0
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!

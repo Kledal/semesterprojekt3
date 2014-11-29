@@ -1,13 +1,13 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'mythread.h'
 **
-** Created: Fri Nov 28 20:25:07 2014
+** Created: Sat Nov 29 12:23:09 2014
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.0)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
-#include "mythread.h"
+#include "BoardIT_GUI/mythread.h"
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'mythread.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 63
@@ -31,13 +31,14 @@ static const uint qt_meta_data_MyThread[] = {
        1,       // signalCount
 
  // signals: signature, parameters, type, tag, flags
-      10,    9,    9,    9, 0x05,
+      42,   10,    9,    9, 0x05,
 
        0        // eod
 };
 
 static const char qt_meta_stringdata_MyThread[] = {
-    "MyThread\0\0textChanged(QString)\0"
+    "MyThread\0\0speed,avgSpeed,batLevel,batLeft\0"
+    "textChanged(QString,QString,QString,QString)\0"
 };
 
 void MyThread::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
@@ -46,7 +47,7 @@ void MyThread::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, vo
         Q_ASSERT(staticMetaObject.cast(_o));
         MyThread *_t = static_cast<MyThread *>(_o);
         switch (_id) {
-        case 0: _t->textChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 0: _t->textChanged((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< QString(*)>(_a[2])),(*reinterpret_cast< QString(*)>(_a[3])),(*reinterpret_cast< QString(*)>(_a[4]))); break;
         default: ;
         }
     }
@@ -92,9 +93,9 @@ int MyThread::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 }
 
 // SIGNAL 0
-void MyThread::textChanged(QString _t1)
+void MyThread::textChanged(QString _t1, QString _t2, QString _t3, QString _t4)
 {
-    void *_a[] = { 0, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
+    void *_a[] = { 0, const_cast<void*>(reinterpret_cast<const void*>(&_t1)), const_cast<void*>(reinterpret_cast<const void*>(&_t2)), const_cast<void*>(reinterpret_cast<const void*>(&_t3)), const_cast<void*>(reinterpret_cast<const void*>(&_t4)) };
     QMetaObject::activate(this, &staticMetaObject, 0, _a);
 }
 QT_END_MOC_NAMESPACE

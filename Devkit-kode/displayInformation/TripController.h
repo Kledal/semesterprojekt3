@@ -1,4 +1,6 @@
-#pragma once
+#ifndef TRIPCONTROLLER_H
+#define TRIPCONTROLLER_H
+
 #include <ctime>
 #include <vector>
 #include <iostream>
@@ -16,7 +18,6 @@ public:
 	/* returns 1 for success, 0 for error */
 	bool addSample( int speed, int batteryLevel ) {
 		if(speed >= 0 && batteryLevel <= 100 && batteryLevel >= 0) {
-			std::cout << "addSample: battery " << batteryLevel << " speed " << speed << std::endl;
 			tripVector_.push_back(new TripInfo(speed, batteryLevel));
 			numOfSamples_++;
 			calcAvgSpeed( );
@@ -69,7 +70,7 @@ public:
 	}
 
 	int getAvgSpeed( ) const {
-		return avgSpeed_;
+		return (int)avgSpeed_;
 	}
 
 	int getBatLevel( ) const {
@@ -86,7 +87,9 @@ public:
 private:
 	std::vector <TripInfo*> tripVector_;
 
-	int avgSpeed_; //in kph
+	float avgSpeed_; //in kph
 	int numOfSamples_;
 	int batLeft_; //battery time remaining in minutes
 };
+
+#endif // TRIPCONTROLLER_H

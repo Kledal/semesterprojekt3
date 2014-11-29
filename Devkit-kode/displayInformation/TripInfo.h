@@ -1,4 +1,5 @@
-#pragma once
+#ifndef TRIPINFO_H
+#define TRIPINFO_H
 #include <ctime>
 
 class TripInfo
@@ -29,3 +30,5 @@ private:
 	const int speed_; //kph
 	const int batLevel_; //percent
 };
+
+#endif // TRIPINFO_H

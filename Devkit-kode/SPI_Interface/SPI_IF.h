@@ -1,4 +1,6 @@
-#pragma once
+#ifndef SPI_IF_H
+#define SPI_IF_H
+
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -40,3 +42,5 @@ int getSpeedIF( ) {
 	
 	return temp_speed;
 }
+
+#endif // SPI_IF_H

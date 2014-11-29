@@ -13,7 +13,7 @@ public:
 
 
 signals:
-    void textChanged(QString);
+    void textChanged(QString speed, QString avgSpeed, QString batLevel, QString batLeft);
 public slots:
 
 };

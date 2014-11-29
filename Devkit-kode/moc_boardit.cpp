@@ -1,13 +1,13 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'boardit.h'
 **
-** Created: Fri Nov 28 20:25:06 2014
+** Created: Sat Nov 29 12:23:09 2014
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.0)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
-#include "boardit.h"
+#include "BoardIT_GUI/boardit.h"
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'boardit.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 63
@@ -31,13 +31,14 @@ static const uint qt_meta_data_BoardIT[] = {
        0,       // signalCount
 
  // slots: signature, parameters, type, tag, flags
-       9,    8,    8,    8, 0x0a,
+      41,    9,    8,    8, 0x0a,
 
        0        // eod
 };
 
 static const char qt_meta_stringdata_BoardIT[] = {
-    "BoardIT\0\0onTextChanged(QString)\0"
+    "BoardIT\0\0speed,avgSpeed,batLevel,batLeft\0"
+    "onTextChanged(QString,QString,QString,QString)\0"
 };
 
 void BoardIT::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
@@ -46,7 +47,7 @@ void BoardIT::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, voi
         Q_ASSERT(staticMetaObject.cast(_o));
         BoardIT *_t = static_cast<BoardIT *>(_o);
         switch (_id) {
-        case 0: _t->onTextChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 0: _t->onTextChanged((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< QString(*)>(_a[2])),(*reinterpret_cast< QString(*)>(_a[3])),(*reinterpret_cast< QString(*)>(_a[4]))); break;
         default: ;
         }
     }

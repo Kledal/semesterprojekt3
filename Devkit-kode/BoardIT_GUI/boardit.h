@@ -22,7 +22,7 @@ private:
     Ui::BoardIT *ui;
 
 public slots:
-    void onTextChanged(QString);
+    void onTextChanged(QString speed, QString avgSpeed, QString batLevel, QString batLeft);
 };
 
 #endif // BOARDIT_H

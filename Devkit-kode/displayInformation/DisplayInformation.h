@@ -1,3 +1,6 @@
+#ifndef DISPLAYINFORMATION_H
+#define DISPLAYINFORMATION_H
+
 #include "TripController.h"
 #include "../SPI_Interface/SPI_IF.h"
 #include <iostream>
@@ -35,3 +38,5 @@ private:
 
 	TripController* tripPtr_;
 };
+
+#endif // DISPLAYINFORMATION_H

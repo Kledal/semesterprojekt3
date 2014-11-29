@@ -5,6 +5,7 @@
 #include <fcntl.h>
 #include <stdio.h>
 #include <QString>
+#include "../displayInformation/DisplayInformation.h"
 
 MyThread::MyThread(QObject *parent) :
     QThread(parent)
@@ -13,33 +14,21 @@ MyThread::MyThread(QObject *parent) :
 
 void MyThread::run()
 {
-  QString temp = "";
-  int fd;
-  char buffer[6];
-  fd = open("/dev/psoc1", O_RDONLY);
+  int speed, avgSpeed, batLevel, batLeft;
   
+  DisplayInformation DI;
+
   while(1)
   {
+    DI.readData(&speed, &avgSpeed, &batLevel, &batLeft);
     
-    if(!read(fd, buffer, 6))
-    printf("FAIL");
-    
-    QString string(buffer);
-    emit textChanged(string);
+    QString speedStr = QString::number(speed);
+    QString avgSpeedStr = QString::number(avgSpeed);
+    QString batLevelStr = QString::number(batLevel);
+    QString batLeftStr = QString::number(batLeft);
+    emit textChanged(speedStr, avgSpeedStr, batLevelStr, batLeftStr);
     
     this->msleep(1000);
   }
   
-  /*
-  while (buffer[i] != '\0')
-  {
-    temp.append(buffer[i]);
-    i++;
-  }
-  
-  for (int i = 0; i < 1000; i++)
-  {
-      
-
-  */
 }
