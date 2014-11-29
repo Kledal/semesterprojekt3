@@ -20,14 +20,14 @@ void MyThread::run()
 
   while(1)
   {
-    DI.readData(&speed, &avgSpeed, &batLevel, &batLeft);
-    
-    QString speedStr = QString::number(speed);
-    QString avgSpeedStr = QString::number(avgSpeed);
-    QString batLevelStr = QString::number(batLevel);
-    QString batLeftStr = QString::number(batLeft);
-    emit textChanged(speedStr, avgSpeedStr, batLevelStr, batLeftStr);
-    
+    if (DI.readData(&speed, &avgSpeed, &batLevel, &batLeft))
+    {
+      QString speedStr = QString::number(speed);
+      QString avgSpeedStr = QString::number(avgSpeed);
+      QString batLevelStr = QString::number(batLevel);
+      QString batLeftStr = QString::number(batLeft);
+      emit textChanged(speedStr, avgSpeedStr, batLevelStr, batLeftStr);
+    }
     this->msleep(1000);
   }
   
