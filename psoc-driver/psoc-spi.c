@@ -34,7 +34,7 @@ int psoc_spi_read_reg16(struct spi_device *spi, u8 addr, u16* value)
 	t[0].tx_buf = &addr;
 	t[0].rx_buf = &data;
 	t[0].len = 2;
-	t[0].delay_usecs = 250;
+	t[0].delay_usecs = 300;
   spi_message_add_tail(&t[0], &m);
 	printk(KERN_ALERT "Requesting data from addr 0x%x\n", addr);
 
