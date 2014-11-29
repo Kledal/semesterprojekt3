@@ -35,21 +35,11 @@ int psoc_spi_read_reg16(struct spi_device *spi, u8 addr, u16* value)
 	t[0].rx_buf = &data;
 	t[0].len = 2;
 	t[0].delay_usecs = 250;
+  spi_message_add_tail(&t[0], &m);
+	printk(KERN_ALERT "Requesting data from addr 0x%x\n", addr);
 
-	printk(KERN_ALERT "Requesting data from addr 0x%x\n", cmd);
-
-	spi_message_add_tail(&t[0], &m);
-	/*
-	t[1].tx_buf = NULL;
-	t[1].rx_buf = &data;
-	t[1].len = 2;
-	t[1].delay_usecs = 250;
-	spi_message_add_tail(&t[1], &m);
-	*/
 	/* Transmit SPI Data (blocking) */
 	spi_sync(m.spi, &m);
-
-	printk(KERN_ALERT "PSOC: Read Reg16 Addr 0x%x Data: 0x%x\n", cmd, data);
 
 	*value = data;
 	return 0;
