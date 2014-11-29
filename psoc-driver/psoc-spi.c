@@ -26,11 +26,7 @@ int psoc_spi_read_reg16(struct spi_device *spi, u8 addr, u16* value)
     if(!spi)
       return -ENODEV;
 
-	/* Create Cmd byte:
-	 *
-	 * | Cmd   |         ADDR         |       EMTY         |
-	 *   15  14  13  12  11  10  9  8  7  6  5  4  3  2  1
-     */
+  printk(KERN_INFO "Entered SPI Read");
 	cmd = addr;
 	/* Init Message */
 	memset(t, 0, sizeof(t));
