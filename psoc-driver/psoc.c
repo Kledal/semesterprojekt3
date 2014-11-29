@@ -41,6 +41,9 @@ static struct spi_device *psoc_spi_device = NULL;
 /* Sysfs "read" method */
 static ssize_t speed_show(struct device *dev, struct device_attribute *attr, char *buf)
 {
+  if(!(psoc_spi_device=psoc_get_device()))
+    return -ENODEV;
+
   u16 result;
   printk(KERN_ALERT "Reading speed from psoc\n");
    
@@ -58,6 +61,9 @@ static ssize_t speed_show(struct device *dev, struct device_attribute *attr, cha
 /* Sysfs "read" method */
 static ssize_t battery_show(struct device *dev, struct device_attribute *attr, char *buf)
 {
+  if(!(psoc_spi_device=psoc_get_device()))
+    return -ENODEV;
+  
   u16 result;
 
   printk(KERN_ALERT "Reading battery from psoc\n");
@@ -112,8 +118,6 @@ static int __init psoc_cdrv_init(void)
   sysfs_class->dev_attrs = led_class_attrs;
   sysfs_device = device_create(sysfs_class, NULL, devno, NULL, "psoc1");
 
-  if(!(psoc_spi_device=psoc_get_device()))
-    return -ENODEV;
 
   return 0;
   
