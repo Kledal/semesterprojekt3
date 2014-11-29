@@ -49,7 +49,7 @@ static ssize_t speed_show(struct device *dev, struct device_attribute *attr, cha
   if (err)
     return -EFAULT;
 
-  printk(KERN_ALERT "result: %d", result);
+  printk(KERN_ALERT "result: %d\n", result);
 
   return sprintf(buf, "%d\n", result);
 }
@@ -67,7 +67,7 @@ static ssize_t battery_show(struct device *dev, struct device_attribute *attr, c
   if (err)
     return -EFAULT;
 
-  printk(KERN_ALERT "result: %d", result);
+  printk(KERN_ALERT "result: %d\n", result);
 
   return sprintf(buf, "%d\n", result);
 }
@@ -111,6 +111,9 @@ static int __init psoc_cdrv_init(void)
   
   sysfs_class->dev_attrs = led_class_attrs;
   sysfs_device = device_create(sysfs_class, NULL, devno, NULL, "psoc1");
+
+  if(!(psoc_spi_device=psoc_get_device()))
+    return -ENODEV;
 
   return 0;
   
