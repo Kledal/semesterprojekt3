@@ -38,7 +38,7 @@ int psoc_spi_read_reg16(struct spi_device *spi, u8 addr, u16* value)
 	m.spi = spi;
 
 	/* Configure tx/rx buffers */
-	t[0].tx_buf = 0x01;
+	t[0].tx_buf = &cmd;
 	t[0].rx_buf = &data;
 	t[0].len = 2;
 	t[0].delay_usecs = 250;
