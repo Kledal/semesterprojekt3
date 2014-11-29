@@ -1,21 +1,26 @@
-#include "TripController"
+#include "TripController.h"
 #include "../SPI_Interface/SPI_IF.h"
+#include <iostream>
 
 class DisplayInformation 
 {
 public:
-	bool readData(int & speed, int & avgSpeed, int & batteryLevel, int & batteryLeft)
+	DisplayInformation () {
+		tripPtr_ = new TripController;
+	}
+	bool readData(int * speed, int * avgSpeed, int * batteryLevel, int * batteryLeft)
 	{
-		storeData();	//Call for new data
+		bool err = storeData();	//Call for new data
 
-		speed 			= tripPtr_->getSpeed();
-		avgSpeed 		= tripPtr_->getAvgSpeed();
-		batteryLevel 	= tripPtr_->getBatLevel();
-		batteryLeft 	= tripPtr_->getBatLeft();
+		*speed 			= tripPtr_->getSpeed();
+		*avgSpeed 		= tripPtr_->getAvgSpeed();
+		*batteryLevel 	= tripPtr_->getBatLevel();
+		*batteryLeft 	= tripPtr_->getBatLeft();
 
-		return storeData();
+		return err;
 	}
 
+private:
 	bool storeData( )
 	{
 		//store temporary
@@ -25,11 +30,8 @@ public:
 		if(tripPtr_->addSample(tmpSpeed, tmpBat))
 			return true;
 		else 
-			//sample not added
-			return false;
+			return false;	//sample not added
 	}
 
-
-private:
-	TripController * tripPtr_;
+	TripController* tripPtr_;
 };

@@ -33,7 +33,7 @@ u16 battery = 0;
 /* Sysfs "read" method */
 static ssize_t speed_show(struct device *dev, struct device_attribute *attr, char *buf)
 {
-  return sprintf(buf, "%d\n", speed);
+  return sprintf(buf, "%d\0", speed);
 }
 
 /* Sysfs "write" method */
@@ -50,7 +50,7 @@ static ssize_t speed_store(struct device *dev, struct device_attribute *attr, co
 /* Sysfs "read" method */
 static ssize_t battery_show(struct device *dev, struct device_attribute *attr, char *buf)
 {
-  return sprintf(buf, "%d\n", battery);
+  return sprintf(buf, "%d\0", battery);
 }
 
 /* Sysfs "write" method */

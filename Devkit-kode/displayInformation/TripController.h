@@ -1,6 +1,7 @@
 #pragma once
 #include <ctime>
 #include <vector>
+#include <iostream>
 #include "TripInfo.h"
 
 class TripController
@@ -15,11 +16,11 @@ public:
 	/* returns 1 for success, 0 for error */
 	bool addSample( int speed, int batteryLevel ) {
 		if(speed >= 0 && batteryLevel <= 100 && batteryLevel >= 0) {
-			tripVector_.push_back( new TripInfo(speed, batteryLevel) );
+			std::cout << "addSample: battery " << batteryLevel << " speed " << speed << std::endl;
+			tripVector_.push_back(new TripInfo(speed, batteryLevel));
 			numOfSamples_++;
 			calcAvgSpeed( );
 			calcBatLeft( );
-
 			return true;
 		} else {
 			//sample not added
@@ -83,7 +84,7 @@ public:
 	}
 
 private:
-	std::vector <TripInfo *> tripVector_;
+	std::vector <TripInfo*> tripVector_;
 
 	int avgSpeed_; //in kph
 	int numOfSamples_;
