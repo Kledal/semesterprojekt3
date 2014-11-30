@@ -12,6 +12,110 @@
 <CyGuid_f44455c5-3770-4452-b988-0a7a7ff46256 type_name="CyDesigner.Common.ProjMgmt.Model.CyConfigDependencies" version="1">
 <dependency_info name="c9323d49-d323-40b8-9b59-cc008d68a989@Debug@CortexM0" xml_contents_version="2">
 <CyGuid_1173175f-1b9b-4ad4-a065-754a48a27021 type_name="CyDesigner.Common.Base.CyFileDeps" version="1">
+<file name=".\CortexM0\ARM_GCC_473\Debug\main.o">
+<dep name=".\Generated_Source\PSoC4\CyFlash.h" />
+<dep name=".\Generated_Source\PSoC4\CyLib.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_PINS.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_PVT.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_SCBCLK.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_SCB_IRQ.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_SPI_UART.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_SPI_UART_PVT.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_miso_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_miso_m_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_miso_s.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_miso_s_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_mosi_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_mosi_m_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_mosi_s.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_mosi_s_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_sclk_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_sclk_m_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_sclk_s.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_sclk_s_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_ss0_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_ss0_m_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_ss_s.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_ss_s_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\UART_GPS.h" />
+<dep name=".\Generated_Source\PSoC4\UART_GPS_IntClock.h" />
+<dep name=".\Generated_Source\PSoC4\UART_PC.h" />
+<dep name=".\Generated_Source\PSoC4\UART_PC_PINS.h" />
+<dep name=".\Generated_Source\PSoC4\UART_PC_PVT.h" />
+<dep name=".\Generated_Source\PSoC4\UART_PC_SPI_UART.h" />
+<dep name=".\Generated_Source\PSoC4\UART_PC_SPI_UART_PVT.h" />
+<dep name=".\Generated_Source\PSoC4\UART_PC_rx.h" />
+<dep name=".\Generated_Source\PSoC4\UART_PC_rx_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\UART_PC_tx.h" />
+<dep name=".\Generated_Source\PSoC4\UART_PC_tx_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\core_cm0.h" />
+<dep name=".\Generated_Source\PSoC4\core_cm0_psoc4.h" />
+<dep name=".\Generated_Source\PSoC4\core_cmFunc.h" />
+<dep name=".\Generated_Source\PSoC4\core_cmInstr.h" />
+<dep name=".\Generated_Source\PSoC4\cyPm.h" />
+<dep name=".\Generated_Source\PSoC4\cydevice_trm.h" />
+<dep name=".\Generated_Source\PSoC4\cydisabledsheets.h" />
+<dep name=".\Generated_Source\PSoC4\cyfitter.h" />
+<dep name=".\Generated_Source\PSoC4\cyfitter_cfg.h" />
+<dep name=".\Generated_Source\PSoC4\cypins.h" />
+<dep name=".\Generated_Source\PSoC4\cytypes.h" />
+<dep name=".\Generated_Source\PSoC4\project.h" />
+<dep name=".\gps.h" />
+<dep name=".\main.c" />
+<dep name=".\util.h" />
+</file>
+<file name=".\Generated_Source\PSoC4\CyFlash.h" />
+<file name=".\Generated_Source\PSoC4\CyLib.h" />
+<file name=".\Generated_Source\PSoC4\SPIS_1.h" />
+<file name=".\Generated_Source\PSoC4\SPIS_1_PINS.h" />
+<file name=".\Generated_Source\PSoC4\SPIS_1_PVT.h" />
+<file name=".\Generated_Source\PSoC4\SPIS_1_SCBCLK.h" />
+<file name=".\Generated_Source\PSoC4\SPIS_1_SCB_IRQ.h" />
+<file name=".\Generated_Source\PSoC4\SPIS_1_SPI_UART.h" />
+<file name=".\Generated_Source\PSoC4\SPIS_1_SPI_UART_PVT.h" />
+<file name=".\Generated_Source\PSoC4\SPIS_1_miso_m.h" />
+<file name=".\Generated_Source\PSoC4\SPIS_1_miso_m_aliases.h" />
+<file name=".\Generated_Source\PSoC4\SPIS_1_miso_s.h" />
+<file name=".\Generated_Source\PSoC4\SPIS_1_miso_s_aliases.h" />
+<file name=".\Generated_Source\PSoC4\SPIS_1_mosi_m.h" />
+<file name=".\Generated_Source\PSoC4\SPIS_1_mosi_m_aliases.h" />
+<file name=".\Generated_Source\PSoC4\SPIS_1_mosi_s.h" />
+<file name=".\Generated_Source\PSoC4\SPIS_1_mosi_s_aliases.h" />
+<file name=".\Generated_Source\PSoC4\SPIS_1_sclk_m.h" />
+<file name=".\Generated_Source\PSoC4\SPIS_1_sclk_m_aliases.h" />
+<file name=".\Generated_Source\PSoC4\SPIS_1_sclk_s.h" />
+<file name=".\Generated_Source\PSoC4\SPIS_1_sclk_s_aliases.h" />
+<file name=".\Generated_Source\PSoC4\SPIS_1_ss0_m.h" />
+<file name=".\Generated_Source\PSoC4\SPIS_1_ss0_m_aliases.h" />
+<file name=".\Generated_Source\PSoC4\SPIS_1_ss_s.h" />
+<file name=".\Generated_Source\PSoC4\SPIS_1_ss_s_aliases.h" />
+<file name=".\Generated_Source\PSoC4\UART_GPS.h" />
+<file name=".\Generated_Source\PSoC4\UART_GPS_IntClock.h" />
+<file name=".\Generated_Source\PSoC4\UART_PC.h" />
+<file name=".\Generated_Source\PSoC4\UART_PC_PINS.h" />
+<file name=".\Generated_Source\PSoC4\UART_PC_PVT.h" />
+<file name=".\Generated_Source\PSoC4\UART_PC_SPI_UART.h" />
+<file name=".\Generated_Source\PSoC4\UART_PC_SPI_UART_PVT.h" />
+<file name=".\Generated_Source\PSoC4\UART_PC_rx.h" />
+<file name=".\Generated_Source\PSoC4\UART_PC_rx_aliases.h" />
+<file name=".\Generated_Source\PSoC4\UART_PC_tx.h" />
+<file name=".\Generated_Source\PSoC4\UART_PC_tx_aliases.h" />
+<file name=".\Generated_Source\PSoC4\core_cm0.h" />
+<file name=".\Generated_Source\PSoC4\core_cm0_psoc4.h" />
+<file name=".\Generated_Source\PSoC4\core_cmFunc.h" />
+<file name=".\Generated_Source\PSoC4\core_cmInstr.h" />
+<file name=".\Generated_Source\PSoC4\cyPm.h" />
+<file name=".\Generated_Source\PSoC4\cydevice_trm.h" />
+<file name=".\Generated_Source\PSoC4\cydisabledsheets.h" />
+<file name=".\Generated_Source\PSoC4\cyfitter.h" />
+<file name=".\Generated_Source\PSoC4\cyfitter_cfg.h" />
+<file name=".\Generated_Source\PSoC4\cypins.h" />
+<file name=".\Generated_Source\PSoC4\cytypes.h" />
+<file name=".\Generated_Source\PSoC4\project.h" />
+<file name=".\gps.h" />
+<file name=".\main.c" />
+<file name=".\util.h" />
 <file name=".\CortexM0\ARM_GCC_473\Debug\gps.o">
 <dep name=".\Generated_Source\PSoC4\CyFlash.h" />
 <dep name=".\Generated_Source\PSoC4\CyLib.h" />
@@ -22,12 +126,20 @@
 <dep name=".\Generated_Source\PSoC4\SPIS_1_SCB_IRQ.h" />
 <dep name=".\Generated_Source\PSoC4\SPIS_1_SPI_UART.h" />
 <dep name=".\Generated_Source\PSoC4\SPIS_1_SPI_UART_PVT.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_miso_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_miso_m_aliases.h" />
 <dep name=".\Generated_Source\PSoC4\SPIS_1_miso_s.h" />
 <dep name=".\Generated_Source\PSoC4\SPIS_1_miso_s_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_mosi_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_mosi_m_aliases.h" />
 <dep name=".\Generated_Source\PSoC4\SPIS_1_mosi_s.h" />
 <dep name=".\Generated_Source\PSoC4\SPIS_1_mosi_s_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_sclk_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_sclk_m_aliases.h" />
 <dep name=".\Generated_Source\PSoC4\SPIS_1_sclk_s.h" />
 <dep name=".\Generated_Source\PSoC4\SPIS_1_sclk_s_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_ss0_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_ss0_m_aliases.h" />
 <dep name=".\Generated_Source\PSoC4\SPIS_1_ss_s.h" />
 <dep name=".\Generated_Source\PSoC4\SPIS_1_ss_s_aliases.h" />
 <dep name=".\Generated_Source\PSoC4\UART_GPS.h" />
@@ -57,94 +169,7 @@
 <dep name=".\gps.h" />
 <dep name=".\util.h" />
 </file>
-<file name=".\Generated_Source\PSoC4\CyFlash.h" />
-<file name=".\Generated_Source\PSoC4\CyLib.h" />
-<file name=".\Generated_Source\PSoC4\SPIS_1.h" />
-<file name=".\Generated_Source\PSoC4\SPIS_1_PINS.h" />
-<file name=".\Generated_Source\PSoC4\SPIS_1_PVT.h" />
-<file name=".\Generated_Source\PSoC4\SPIS_1_SCBCLK.h" />
-<file name=".\Generated_Source\PSoC4\SPIS_1_SCB_IRQ.h" />
-<file name=".\Generated_Source\PSoC4\SPIS_1_SPI_UART.h" />
-<file name=".\Generated_Source\PSoC4\SPIS_1_SPI_UART_PVT.h" />
-<file name=".\Generated_Source\PSoC4\SPIS_1_miso_s.h" />
-<file name=".\Generated_Source\PSoC4\SPIS_1_miso_s_aliases.h" />
-<file name=".\Generated_Source\PSoC4\SPIS_1_mosi_s.h" />
-<file name=".\Generated_Source\PSoC4\SPIS_1_mosi_s_aliases.h" />
-<file name=".\Generated_Source\PSoC4\SPIS_1_sclk_s.h" />
-<file name=".\Generated_Source\PSoC4\SPIS_1_sclk_s_aliases.h" />
-<file name=".\Generated_Source\PSoC4\SPIS_1_ss_s.h" />
-<file name=".\Generated_Source\PSoC4\SPIS_1_ss_s_aliases.h" />
-<file name=".\Generated_Source\PSoC4\UART_GPS.h" />
-<file name=".\Generated_Source\PSoC4\UART_GPS_IntClock.h" />
-<file name=".\Generated_Source\PSoC4\UART_PC.h" />
-<file name=".\Generated_Source\PSoC4\UART_PC_PINS.h" />
-<file name=".\Generated_Source\PSoC4\UART_PC_PVT.h" />
-<file name=".\Generated_Source\PSoC4\UART_PC_SPI_UART.h" />
-<file name=".\Generated_Source\PSoC4\UART_PC_SPI_UART_PVT.h" />
-<file name=".\Generated_Source\PSoC4\UART_PC_rx.h" />
-<file name=".\Generated_Source\PSoC4\UART_PC_rx_aliases.h" />
-<file name=".\Generated_Source\PSoC4\UART_PC_tx.h" />
-<file name=".\Generated_Source\PSoC4\UART_PC_tx_aliases.h" />
-<file name=".\Generated_Source\PSoC4\core_cm0.h" />
-<file name=".\Generated_Source\PSoC4\core_cm0_psoc4.h" />
-<file name=".\Generated_Source\PSoC4\core_cmFunc.h" />
-<file name=".\Generated_Source\PSoC4\core_cmInstr.h" />
-<file name=".\Generated_Source\PSoC4\cyPm.h" />
-<file name=".\Generated_Source\PSoC4\cydevice_trm.h" />
-<file name=".\Generated_Source\PSoC4\cydisabledsheets.h" />
-<file name=".\Generated_Source\PSoC4\cyfitter.h" />
-<file name=".\Generated_Source\PSoC4\cyfitter_cfg.h" />
-<file name=".\Generated_Source\PSoC4\cypins.h" />
-<file name=".\Generated_Source\PSoC4\cytypes.h" />
-<file name=".\Generated_Source\PSoC4\project.h" />
 <file name=".\gps.c" />
-<file name=".\gps.h" />
-<file name=".\util.h" />
-<file name=".\CortexM0\ARM_GCC_473\Debug\main.o">
-<dep name=".\Generated_Source\PSoC4\CyFlash.h" />
-<dep name=".\Generated_Source\PSoC4\CyLib.h" />
-<dep name=".\Generated_Source\PSoC4\SPIS_1.h" />
-<dep name=".\Generated_Source\PSoC4\SPIS_1_PINS.h" />
-<dep name=".\Generated_Source\PSoC4\SPIS_1_PVT.h" />
-<dep name=".\Generated_Source\PSoC4\SPIS_1_SCBCLK.h" />
-<dep name=".\Generated_Source\PSoC4\SPIS_1_SCB_IRQ.h" />
-<dep name=".\Generated_Source\PSoC4\SPIS_1_SPI_UART.h" />
-<dep name=".\Generated_Source\PSoC4\SPIS_1_SPI_UART_PVT.h" />
-<dep name=".\Generated_Source\PSoC4\SPIS_1_miso_s.h" />
-<dep name=".\Generated_Source\PSoC4\SPIS_1_miso_s_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPIS_1_mosi_s.h" />
-<dep name=".\Generated_Source\PSoC4\SPIS_1_mosi_s_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPIS_1_sclk_s.h" />
-<dep name=".\Generated_Source\PSoC4\SPIS_1_sclk_s_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPIS_1_ss_s.h" />
-<dep name=".\Generated_Source\PSoC4\SPIS_1_ss_s_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\UART_GPS.h" />
-<dep name=".\Generated_Source\PSoC4\UART_GPS_IntClock.h" />
-<dep name=".\Generated_Source\PSoC4\UART_PC.h" />
-<dep name=".\Generated_Source\PSoC4\UART_PC_PINS.h" />
-<dep name=".\Generated_Source\PSoC4\UART_PC_PVT.h" />
-<dep name=".\Generated_Source\PSoC4\UART_PC_SPI_UART.h" />
-<dep name=".\Generated_Source\PSoC4\UART_PC_SPI_UART_PVT.h" />
-<dep name=".\Generated_Source\PSoC4\UART_PC_rx.h" />
-<dep name=".\Generated_Source\PSoC4\UART_PC_rx_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\UART_PC_tx.h" />
-<dep name=".\Generated_Source\PSoC4\UART_PC_tx_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\core_cm0.h" />
-<dep name=".\Generated_Source\PSoC4\core_cm0_psoc4.h" />
-<dep name=".\Generated_Source\PSoC4\core_cmFunc.h" />
-<dep name=".\Generated_Source\PSoC4\core_cmInstr.h" />
-<dep name=".\Generated_Source\PSoC4\cyPm.h" />
-<dep name=".\Generated_Source\PSoC4\cydevice_trm.h" />
-<dep name=".\Generated_Source\PSoC4\cydisabledsheets.h" />
-<dep name=".\Generated_Source\PSoC4\cyfitter.h" />
-<dep name=".\Generated_Source\PSoC4\cyfitter_cfg.h" />
-<dep name=".\Generated_Source\PSoC4\cypins.h" />
-<dep name=".\Generated_Source\PSoC4\cytypes.h" />
-<dep name=".\Generated_Source\PSoC4\project.h" />
-<dep name=".\gps.h" />
-<dep name=".\main.c" />
-</file>
-<file name=".\main.c" />
 <file name=".\CortexM0\ARM_GCC_473\Debug\cyfitter_cfg.o">
 <dep name=".\Generated_Source\PSoC4\CyLib.h" />
 <dep name=".\Generated_Source\PSoC4\cydevice_trm.h" />
@@ -164,12 +189,20 @@
 <dep name=".\Generated_Source\PSoC4\SPIS_1_SCB_IRQ.h" />
 <dep name=".\Generated_Source\PSoC4\SPIS_1_SPI_UART.h" />
 <dep name=".\Generated_Source\PSoC4\SPIS_1_SPI_UART_PVT.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_miso_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_miso_m_aliases.h" />
 <dep name=".\Generated_Source\PSoC4\SPIS_1_miso_s.h" />
 <dep name=".\Generated_Source\PSoC4\SPIS_1_miso_s_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_mosi_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_mosi_m_aliases.h" />
 <dep name=".\Generated_Source\PSoC4\SPIS_1_mosi_s.h" />
 <dep name=".\Generated_Source\PSoC4\SPIS_1_mosi_s_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_sclk_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_sclk_m_aliases.h" />
 <dep name=".\Generated_Source\PSoC4\SPIS_1_sclk_s.h" />
 <dep name=".\Generated_Source\PSoC4\SPIS_1_sclk_s_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_ss0_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_ss0_m_aliases.h" />
 <dep name=".\Generated_Source\PSoC4\SPIS_1_ss_s.h" />
 <dep name=".\Generated_Source\PSoC4\SPIS_1_ss_s_aliases.h" />
 <dep name=".\Generated_Source\PSoC4\UART_GPS.h" />
@@ -233,12 +266,20 @@
 <dep name=".\Generated_Source\PSoC4\SPIS_1_SCB_IRQ.h" />
 <dep name=".\Generated_Source\PSoC4\SPIS_1_SPI_UART.h" />
 <dep name=".\Generated_Source\PSoC4\SPIS_1_SPI_UART_PVT.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_miso_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_miso_m_aliases.h" />
 <dep name=".\Generated_Source\PSoC4\SPIS_1_miso_s.h" />
 <dep name=".\Generated_Source\PSoC4\SPIS_1_miso_s_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_mosi_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_mosi_m_aliases.h" />
 <dep name=".\Generated_Source\PSoC4\SPIS_1_mosi_s.h" />
 <dep name=".\Generated_Source\PSoC4\SPIS_1_mosi_s_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_sclk_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_sclk_m_aliases.h" />
 <dep name=".\Generated_Source\PSoC4\SPIS_1_sclk_s.h" />
 <dep name=".\Generated_Source\PSoC4\SPIS_1_sclk_s_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_ss0_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_ss0_m_aliases.h" />
 <dep name=".\Generated_Source\PSoC4\SPIS_1_ss_s.h" />
 <dep name=".\Generated_Source\PSoC4\SPIS_1_ss_s_aliases.h" />
 <dep name=".\Generated_Source\PSoC4\cydevice_trm.h" />
@@ -253,12 +294,20 @@
 <dep name=".\Generated_Source\PSoC4\SPIS_1_PINS.h" />
 <dep name=".\Generated_Source\PSoC4\SPIS_1_SCB_IRQ.h" />
 <dep name=".\Generated_Source\PSoC4\SPIS_1_SPI_UART.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_miso_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_miso_m_aliases.h" />
 <dep name=".\Generated_Source\PSoC4\SPIS_1_miso_s.h" />
 <dep name=".\Generated_Source\PSoC4\SPIS_1_miso_s_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_mosi_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_mosi_m_aliases.h" />
 <dep name=".\Generated_Source\PSoC4\SPIS_1_mosi_s.h" />
 <dep name=".\Generated_Source\PSoC4\SPIS_1_mosi_s_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_sclk_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_sclk_m_aliases.h" />
 <dep name=".\Generated_Source\PSoC4\SPIS_1_sclk_s.h" />
 <dep name=".\Generated_Source\PSoC4\SPIS_1_sclk_s_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_ss0_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_ss0_m_aliases.h" />
 <dep name=".\Generated_Source\PSoC4\SPIS_1_ss_s.h" />
 <dep name=".\Generated_Source\PSoC4\SPIS_1_ss_s_aliases.h" />
 <dep name=".\Generated_Source\PSoC4\cydevice_trm.h" />
@@ -275,12 +324,20 @@
 <dep name=".\Generated_Source\PSoC4\SPIS_1_SCB_IRQ.h" />
 <dep name=".\Generated_Source\PSoC4\SPIS_1_SPI_UART.h" />
 <dep name=".\Generated_Source\PSoC4\SPIS_1_SPI_UART_PVT.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_miso_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_miso_m_aliases.h" />
 <dep name=".\Generated_Source\PSoC4\SPIS_1_miso_s.h" />
 <dep name=".\Generated_Source\PSoC4\SPIS_1_miso_s_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_mosi_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_mosi_m_aliases.h" />
 <dep name=".\Generated_Source\PSoC4\SPIS_1_mosi_s.h" />
 <dep name=".\Generated_Source\PSoC4\SPIS_1_mosi_s_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_sclk_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_sclk_m_aliases.h" />
 <dep name=".\Generated_Source\PSoC4\SPIS_1_sclk_s.h" />
 <dep name=".\Generated_Source\PSoC4\SPIS_1_sclk_s_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_ss0_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_ss0_m_aliases.h" />
 <dep name=".\Generated_Source\PSoC4\SPIS_1_ss_s.h" />
 <dep name=".\Generated_Source\PSoC4\SPIS_1_ss_s_aliases.h" />
 <dep name=".\Generated_Source\PSoC4\cydevice_trm.h" />
@@ -314,12 +371,20 @@
 <dep name=".\Generated_Source\PSoC4\SPIS_1_SCB_IRQ.h" />
 <dep name=".\Generated_Source\PSoC4\SPIS_1_SPI_UART.h" />
 <dep name=".\Generated_Source\PSoC4\SPIS_1_SPI_UART_PVT.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_miso_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_miso_m_aliases.h" />
 <dep name=".\Generated_Source\PSoC4\SPIS_1_miso_s.h" />
 <dep name=".\Generated_Source\PSoC4\SPIS_1_miso_s_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_mosi_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_mosi_m_aliases.h" />
 <dep name=".\Generated_Source\PSoC4\SPIS_1_mosi_s.h" />
 <dep name=".\Generated_Source\PSoC4\SPIS_1_mosi_s_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_sclk_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_sclk_m_aliases.h" />
 <dep name=".\Generated_Source\PSoC4\SPIS_1_sclk_s.h" />
 <dep name=".\Generated_Source\PSoC4\SPIS_1_sclk_s_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_ss0_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_ss0_m_aliases.h" />
 <dep name=".\Generated_Source\PSoC4\SPIS_1_ss_s.h" />
 <dep name=".\Generated_Source\PSoC4\SPIS_1_ss_s_aliases.h" />
 <dep name=".\Generated_Source\PSoC4\cydevice_trm.h" />
@@ -334,12 +399,20 @@
 <dep name=".\Generated_Source\PSoC4\SPIS_1_PINS.h" />
 <dep name=".\Generated_Source\PSoC4\SPIS_1_SCB_IRQ.h" />
 <dep name=".\Generated_Source\PSoC4\SPIS_1_SPI_UART.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_miso_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_miso_m_aliases.h" />
 <dep name=".\Generated_Source\PSoC4\SPIS_1_miso_s.h" />
 <dep name=".\Generated_Source\PSoC4\SPIS_1_miso_s_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_mosi_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_mosi_m_aliases.h" />
 <dep name=".\Generated_Source\PSoC4\SPIS_1_mosi_s.h" />
 <dep name=".\Generated_Source\PSoC4\SPIS_1_mosi_s_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_sclk_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_sclk_m_aliases.h" />
 <dep name=".\Generated_Source\PSoC4\SPIS_1_sclk_s.h" />
 <dep name=".\Generated_Source\PSoC4\SPIS_1_sclk_s_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_ss0_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_ss0_m_aliases.h" />
 <dep name=".\Generated_Source\PSoC4\SPIS_1_ss_s.h" />
 <dep name=".\Generated_Source\PSoC4\SPIS_1_ss_s_aliases.h" />
 <dep name=".\Generated_Source\PSoC4\cydevice_trm.h" />
@@ -356,12 +429,20 @@
 <dep name=".\Generated_Source\PSoC4\SPIS_1_SCB_IRQ.h" />
 <dep name=".\Generated_Source\PSoC4\SPIS_1_SPI_UART.h" />
 <dep name=".\Generated_Source\PSoC4\SPIS_1_SPI_UART_PVT.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_miso_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_miso_m_aliases.h" />
 <dep name=".\Generated_Source\PSoC4\SPIS_1_miso_s.h" />
 <dep name=".\Generated_Source\PSoC4\SPIS_1_miso_s_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_mosi_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_mosi_m_aliases.h" />
 <dep name=".\Generated_Source\PSoC4\SPIS_1_mosi_s.h" />
 <dep name=".\Generated_Source\PSoC4\SPIS_1_mosi_s_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_sclk_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_sclk_m_aliases.h" />
 <dep name=".\Generated_Source\PSoC4\SPIS_1_sclk_s.h" />
 <dep name=".\Generated_Source\PSoC4\SPIS_1_sclk_s_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_ss0_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_ss0_m_aliases.h" />
 <dep name=".\Generated_Source\PSoC4\SPIS_1_ss_s.h" />
 <dep name=".\Generated_Source\PSoC4\SPIS_1_ss_s_aliases.h" />
 <dep name=".\Generated_Source\PSoC4\cydevice_trm.h" />
@@ -378,12 +459,20 @@
 <dep name=".\Generated_Source\PSoC4\SPIS_1_SCB_IRQ.h" />
 <dep name=".\Generated_Source\PSoC4\SPIS_1_SPI_UART.h" />
 <dep name=".\Generated_Source\PSoC4\SPIS_1_SPI_UART_PVT.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_miso_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_miso_m_aliases.h" />
 <dep name=".\Generated_Source\PSoC4\SPIS_1_miso_s.h" />
 <dep name=".\Generated_Source\PSoC4\SPIS_1_miso_s_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_mosi_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_mosi_m_aliases.h" />
 <dep name=".\Generated_Source\PSoC4\SPIS_1_mosi_s.h" />
 <dep name=".\Generated_Source\PSoC4\SPIS_1_mosi_s_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_sclk_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_sclk_m_aliases.h" />
 <dep name=".\Generated_Source\PSoC4\SPIS_1_sclk_s.h" />
 <dep name=".\Generated_Source\PSoC4\SPIS_1_sclk_s_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_ss0_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_ss0_m_aliases.h" />
 <dep name=".\Generated_Source\PSoC4\SPIS_1_ss_s.h" />
 <dep name=".\Generated_Source\PSoC4\SPIS_1_ss_s_aliases.h" />
 <dep name=".\Generated_Source\PSoC4\cydevice_trm.h" />
@@ -629,6 +718,42 @@
 <dep name=".\Generated_Source\PSoC4\cyutils.c" />
 </file>
 <file name=".\Generated_Source\PSoC4\cyutils.c" />
+<file name=".\CortexM0\ARM_GCC_473\Debug\SPIS_1_miso_m.o">
+<dep name=".\Generated_Source\PSoC4\SPIS_1_miso_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_miso_m_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\cydevice_trm.h" />
+<dep name=".\Generated_Source\PSoC4\cyfitter.h" />
+<dep name=".\Generated_Source\PSoC4\cytypes.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_miso_m.c" />
+</file>
+<file name=".\Generated_Source\PSoC4\SPIS_1_miso_m.c" />
+<file name=".\CortexM0\ARM_GCC_473\Debug\SPIS_1_mosi_m.o">
+<dep name=".\Generated_Source\PSoC4\SPIS_1_mosi_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_mosi_m_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\cydevice_trm.h" />
+<dep name=".\Generated_Source\PSoC4\cyfitter.h" />
+<dep name=".\Generated_Source\PSoC4\cytypes.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_mosi_m.c" />
+</file>
+<file name=".\Generated_Source\PSoC4\SPIS_1_mosi_m.c" />
+<file name=".\CortexM0\ARM_GCC_473\Debug\SPIS_1_sclk_m.o">
+<dep name=".\Generated_Source\PSoC4\SPIS_1_sclk_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_sclk_m_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\cydevice_trm.h" />
+<dep name=".\Generated_Source\PSoC4\cyfitter.h" />
+<dep name=".\Generated_Source\PSoC4\cytypes.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_sclk_m.c" />
+</file>
+<file name=".\Generated_Source\PSoC4\SPIS_1_sclk_m.c" />
+<file name=".\CortexM0\ARM_GCC_473\Debug\SPIS_1_ss0_m.o">
+<dep name=".\Generated_Source\PSoC4\SPIS_1_ss0_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_ss0_m_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\cydevice_trm.h" />
+<dep name=".\Generated_Source\PSoC4\cyfitter.h" />
+<dep name=".\Generated_Source\PSoC4\cytypes.h" />
+<dep name=".\Generated_Source\PSoC4\SPIS_1_ss0_m.c" />
+</file>
+<file name=".\Generated_Source\PSoC4\SPIS_1_ss0_m.c" />
 <file name=".\CortexM0\ARM_GCC_473\Debug\nunchuck.o">
 <dep name=".\nunchuck.c" />
 </file>
@@ -1169,6 +1294,10 @@
 <name_val_pair name=".\Generated_Source\PSoC4\SPIS_1_ss_s.c" v="&quot;-I. &quot;&quot;-I./Generated_Source/PSoC4 &quot;&quot;-Wno-main &quot;&quot;-mcpu=cortex-m0 &quot;&quot;-mthumb &quot;&quot;-Wall &quot;&quot;-g &quot;&quot;-D &quot;&quot;DEBUG &quot;&quot;-Wa,-alh=${OutputDir}\${CompileFile}.lst &quot;&quot;-ffunction-sections &quot;" />
 <name_val_pair name=".\nunchuck.c" v="&quot;-I. &quot;&quot;-I./Generated_Source/PSoC4 &quot;&quot;-Wno-main &quot;&quot;-mcpu=cortex-m0 &quot;&quot;-mthumb &quot;&quot;-Wall &quot;&quot;-g &quot;&quot;-D &quot;&quot;DEBUG &quot;&quot;-Wa,-alh=${OutputDir}\${CompileFile}.lst &quot;&quot;-ffunction-sections &quot;" />
 <name_val_pair name=".\util.c" v="&quot;-I. &quot;&quot;-I./Generated_Source/PSoC4 &quot;&quot;-Wno-main &quot;&quot;-mcpu=cortex-m0 &quot;&quot;-mthumb &quot;&quot;-Wall &quot;&quot;-g &quot;&quot;-D &quot;&quot;DEBUG &quot;&quot;-Wa,-alh=${OutputDir}\${CompileFile}.lst &quot;&quot;-ffunction-sections &quot;" />
+<name_val_pair name=".\Generated_Source\PSoC4\SPIS_1_ss0_m.c" v="&quot;-I. &quot;&quot;-I./Generated_Source/PSoC4 &quot;&quot;-Wno-main &quot;&quot;-mcpu=cortex-m0 &quot;&quot;-mthumb &quot;&quot;-Wall &quot;&quot;-g &quot;&quot;-D &quot;&quot;DEBUG &quot;&quot;-Wa,-alh=${OutputDir}\${CompileFile}.lst &quot;&quot;-ffunction-sections &quot;" />
+<name_val_pair name=".\Generated_Source\PSoC4\SPIS_1_mosi_m.c" v="&quot;-I. &quot;&quot;-I./Generated_Source/PSoC4 &quot;&quot;-Wno-main &quot;&quot;-mcpu=cortex-m0 &quot;&quot;-mthumb &quot;&quot;-Wall &quot;&quot;-g &quot;&quot;-D &quot;&quot;DEBUG &quot;&quot;-Wa,-alh=${OutputDir}\${CompileFile}.lst &quot;&quot;-ffunction-sections &quot;" />
+<name_val_pair name=".\Generated_Source\PSoC4\SPIS_1_miso_m.c" v="&quot;-I. &quot;&quot;-I./Generated_Source/PSoC4 &quot;&quot;-Wno-main &quot;&quot;-mcpu=cortex-m0 &quot;&quot;-mthumb &quot;&quot;-Wall &quot;&quot;-g &quot;&quot;-D &quot;&quot;DEBUG &quot;&quot;-Wa,-alh=${OutputDir}\${CompileFile}.lst &quot;&quot;-ffunction-sections &quot;" />
+<name_val_pair name=".\Generated_Source\PSoC4\SPIS_1_sclk_m.c" v="&quot;-I. &quot;&quot;-I./Generated_Source/PSoC4 &quot;&quot;-Wno-main &quot;&quot;-mcpu=cortex-m0 &quot;&quot;-mthumb &quot;&quot;-Wall &quot;&quot;-g &quot;&quot;-D &quot;&quot;DEBUG &quot;&quot;-Wa,-alh=${OutputDir}\${CompileFile}.lst &quot;&quot;-ffunction-sections &quot;" />
 </name>
 </genericCmdLineData>
 <codeGenCmdLineTag v="&quot;-.appdatapath&quot; &quot;C:\Users\alexander\AppData\Local\Cypress Semiconductor\PSoC Creator\3.0&quot; &quot;-.fdsnotice&quot; &quot;-.fdswarpdepfile=warp_dependencies.txt&quot; &quot;-.fdselabdepfile=elab_dependencies.txt&quot; &quot;-.fdsbldfile=generated_files.txt&quot; &quot;-p&quot; &quot;C:\psoc\i2c_test\i2ctest.cydsn\i2ctest.cyprj&quot; &quot;-d&quot; &quot;CY8C4245AXI-483&quot; &quot;-s&quot; &quot;C:\psoc\i2c_test\i2ctest.cydsn\Generated_Source\PSoC4&quot; &quot;--&quot; &quot;-yv2&quot; &quot;-v3&quot; &quot;-ygs&quot; &quot;-q10&quot; &quot;-o2&quot; &quot;-.fftcfgtype=LE&quot; " />
@@ -2012,6 +2141,18 @@
 <v>.\Generated_Source\PSoC4\SPIS_1_ss_s.c</v>
 <v>.\Generated_Source\PSoC4\SPIS_1_ss_s.h</v>
 <v>.\Generated_Source\PSoC4\SPIS_1_ss_s_aliases.h</v>
+<v>.\Generated_Source\PSoC4\SPIS_1_ss0_m.c</v>
+<v>.\Generated_Source\PSoC4\SPIS_1_ss0_m.h</v>
+<v>.\Generated_Source\PSoC4\SPIS_1_ss0_m_aliases.h</v>
+<v>.\Generated_Source\PSoC4\SPIS_1_mosi_m.c</v>
+<v>.\Generated_Source\PSoC4\SPIS_1_mosi_m.h</v>
+<v>.\Generated_Source\PSoC4\SPIS_1_mosi_m_aliases.h</v>
+<v>.\Generated_Source\PSoC4\SPIS_1_miso_m.c</v>
+<v>.\Generated_Source\PSoC4\SPIS_1_miso_m.h</v>
+<v>.\Generated_Source\PSoC4\SPIS_1_miso_m_aliases.h</v>
+<v>.\Generated_Source\PSoC4\SPIS_1_sclk_m.c</v>
+<v>.\Generated_Source\PSoC4\SPIS_1_sclk_m.h</v>
+<v>.\Generated_Source\PSoC4\SPIS_1_sclk_m_aliases.h</v>
 </gen_list>
 <warp_dep>
 <v>C:\Program Files (x86)\Cypress\PSoC Creator\3.0\PSoC Creator\warp\lib\ieee\work\stdlogic.vif</v>
@@ -2025,14 +2166,14 @@
 <v>C:\Program Files (x86)\Cypress\PSoC Creator\3.0\PSoC Creator\warp\lib\common\stdlogic\rtlpkg.vif</v>
 <v>C:\Program Files (x86)\Cypress\PSoC Creator\3.0\PSoC Creator\warp\lib\common\stdlogic\cy_psoc3.vif</v>
 </warp_dep>
-<deps_time v="130613922689948000" />
+<deps_time v="130616658979314000" />
 <top_block v="TopDesign" />
 <last_generation v="0" />
 </CyGuid_925cc1e1-309e-4e08-b0a1-09a83c35b157>
 </dataGuid>
 <dataGuid v="769d31ea-68b1-4f0c-b90a-7c10a43ee563">
 <CyGuid_769d31ea-68b1-4f0c-b90a-7c10a43ee563 type_name="CyDesigner.Common.ProjMgmt.Model.CyLinkCustomData" version="1">
-<deps_time v="130614860803120000" />
+<deps_time v="130617449207348000" />
 </CyGuid_769d31ea-68b1-4f0c-b90a-7c10a43ee563>
 </dataGuid>
 <dataGuid v="504337dd-7d07-4bc7-9057-90e60cf6c469">
@@ -2046,7 +2187,7 @@
 </CyGuid_bf610382-39c6-441f-80b8-b04622ea7845>
 </dataGuid>
 <dataGuid v="237c8ed1-e161-4c9d-af97-582eda6d6952">
-<CyGuid_d442b0b8-dd66-4eee-b5be-1cb213792b31 type_name="CyDesigner.PSoC.P3Fit.Common.DesignWideResources.DeviceEditor.CyCustomAnalogDevData" version="1" ZoomToPage="True" ZoomScale="0.801607668" ScrollX="621" ScrollY="200">
+<CyGuid_d442b0b8-dd66-4eee-b5be-1cb213792b31 type_name="CyDesigner.PSoC.P3Fit.Common.DesignWideResources.DeviceEditor.CyCustomAnalogDevData" version="1" ZoomToPage="True" ZoomScale="1.06825817" ScrollX="950" ScrollY="267">
 <ComponentStates />
 </CyGuid_d442b0b8-dd66-4eee-b5be-1cb213792b31>
 </dataGuid>

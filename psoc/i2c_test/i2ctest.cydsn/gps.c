@@ -57,7 +57,7 @@ char* getGPSUartNumberOfSate() {
     return *returnSpeed;
 }
 char* getGPSUartSpeed() {
-    char returnSpeed[4];
+    char returnSpeed[22];
     intToStr(getGPSSpeed(), *returnSpeed, 4);
     return *returnSpeed;
 }
@@ -106,8 +106,8 @@ void handleGPSData(char* cmd) {
         packet[i-1] = gpsBuffer[i];
     }
     
-    UART_PC_UartPutString(packet);
-    UART_PC_UartPutChar(0xd);
+//    UART_PC_UartPutString(packet);
+//    UART_PC_UartPutChar(0xd);
     
     char* token = strtok(packet, ",");
     i = 0;
@@ -119,18 +119,18 @@ void handleGPSData(char* cmd) {
         if (i == 6 && strcmp(cmd, "GPVTG") == 0) {
             speed_ = atof(token);
         }
-        if (i == 2 && strcmp(cmd, "GPGGA") == 0) {
-            latitude_ = atof(token);
-        }
-        if (i == 3 && strcmp(cmd, "GPGGA") == 0) {
-            sscanf(token, "%c", &latitude_pos);
-        }
-        if (i == 4 && strcmp(cmd, "GPGGA") == 0) {
-            longitude_ = atof(token);;
-        }
-        if (i == 5 && strcmp(cmd, "GPGGA") == 0) {
-            sscanf(token, "%c", &longitude_pos);
-        }
+//        if (i == 2 && strcmp(cmd, "GPGGA") == 0) {
+//            latitude_ = atof(token);
+//        }
+//        if (i == 3 && strcmp(cmd, "GPGGA") == 0) {
+//            sscanf(token, "%c", &latitude_pos);
+//        }
+//        if (i == 4 && strcmp(cmd, "GPGGA") == 0) {
+//            longitude_ = atof(token);;
+//        }
+//        if (i == 5 && strcmp(cmd, "GPGGA") == 0) {
+//            sscanf(token, "%c", &longitude_pos);
+//        }
         if (i == 7 && strcmp(cmd, "GPGGA") == 0) {
             sscanf(token, "%d", &numberOfSate_);
         }
