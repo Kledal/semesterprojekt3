@@ -30,3 +30,5 @@
 *.o
 *.log
 *.hex
+*.icf
+*.inc
