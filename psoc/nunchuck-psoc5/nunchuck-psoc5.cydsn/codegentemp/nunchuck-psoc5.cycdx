@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<blockRegMap version="1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://cypress.com/xsd/cyblockregmap cyblockregmap.xsd" xmlns="http://cypress.com/xsd/cyblockregmap">
+  <block name="isr_1" BASE="0x0" SIZE="0x0" desc="" visible="true" />
+  <block name="ZeroTerminal_1" BASE="0x0" SIZE="0x0" desc="" visible="true" />
+  <block name="V_OUTPUT" BASE="0x0" SIZE="0x0" desc="" visible="true" />
+  <block name="VDAC" BASE="0x0" SIZE="0x0" desc="" visible="true">
+    <block name="viDAC8" BASE="0x0" SIZE="0x0" desc="" visible="true" />
+    <block name="ZeroTerminal_1" BASE="0x0" SIZE="0x0" desc="" visible="true" />
+    <block name="ZeroTerminal_2" BASE="0x0" SIZE="0x0" desc="" visible="true" />
+    <block name="cy_analog_noconnect_1" BASE="0x0" SIZE="0x0" desc="" visible="true" />
+    <block name="ZeroTerminal_3" BASE="0x0" SIZE="0x0" desc="" visible="true" />
+    <register name="VDAC8_PM_ACT_CFG" address="0x400043A8" bitWidth="8" desc="Active Power Mode Configuration Register 8">
+      <field name="en_dac" from="4" to="0" access="RW" resetVal="" desc="Enable DAC block(s). Populated subsystems are counted from the LSB" />
+    </register>
+    <register name="VDAC8_PM_STBY_CFG" address="0x400043B8" bitWidth="8" desc="Standby Power Mode Configuration Register 8">
+      <field name="en_dac" from="4" to="0" access="RW" resetVal="" desc="Enable DAC block(s). Populated subsystems are counted from the LSB" />
+    </register>
+    <register name="VDAC8_TR" address="0x4000460B" bitWidth="8" desc="VDAC8_TR">
+      <field name="tr" from="7" to="0" access="RW" resetVal="" desc="8 Calibration bits" />
+    </register>
+    <register name="VDAC8_CR0" address="0x4000582C" bitWidth="8" desc="DAC Block Control Register 0">
+      <field name="mode" from="4" to="4" access="R" resetVal="" desc="Mode Bit">
+        <value name="DAC_MODE_V" value="0" desc="voltage DAC" />
+        <value name="DAC_MODE_I" value="1" desc="current DAC" />
+      </field>
+      <field name="range" from="3" to="2" access="RW" resetVal="" desc="Ranges for mode=0 (VDAC) and mode=1 (IDAC)">
+        <value name="DAC_RANGE_0" value="00" desc="x0=0V to 4*vref (1.024V); 0 to 31.875uA" />
+        <value name="DAC_RANGE_1" value="01" desc="x1=0V to 16*vref (4.096V); 0 to 255uA" />
+        <value name="DAC_RANGE_2" value="10" desc="x0=0V to 4*vref (1.024V); 0 to 2.040mA" />
+        <value name="DAC_RANGE_3" value="11" desc="x1=0V to 16*vref (4.096V); not used" />
+      </field>
+      <field name="hs" from="1" to="1" access="RW" resetVal="" desc="High Speed Bit">
+        <value name="DAC_HS_LOWPOWER" value="0" desc="regular (low power)" />
+        <value name="DAC_HS_HIGHSPEED" value="1" desc="high speed (higher power)" />
+      </field>
+    </register>
+    <register name="VDAC8_CR1" address="0x4000582D" bitWidth="8" desc="DAC Block Control Register 1">
+      <field name="mx_data" from="5" to="5" access="RW" resetVal="" desc="Select DATA source">
+        <value name="MX_DATA_REG" value="0" desc="Select register source (DACxn_D)" />
+        <value name="MX_DATA_UDB" value="1" desc="Select UDB source" />
+      </field>
+      <field name="mx_idir" from="3" to="3" access="RW" resetVal="" desc="Mux selection for DAC current direction control">
+        <value name="MX_IDIR_REG" value="0" desc="Register source idirbit selected" />
+        <value name="MX_IDIR_UDB" value="1" desc="UDB ictrl selected" />
+      </field>
+      <field name="mx_ioff" from="1" to="1" access="RW" resetVal="" desc="Mux selection for DAC current off control">
+        <value name="MX_IOFF_REG" value="0" desc="Register source ioffbit selected" />
+        <value name="MX_IOFF_UDB" value="1" desc="UDB ictrl selected" />
+      </field>
+      <field name="reset_udb_en" from="4" to="4" access="RW" resetVal="" desc="DAC reset enable">
+        <value name="RESET_UDB_EN_DISABLE" value="0" desc="Disable DAC Reset Source from UDB (System reset always resets)" />
+        <value name="RESET_UDB_EN_ENABLE" value="1" desc="Enable DAC Reset Source from UDB" />
+      </field>
+    </register>
+    <register name="VDAC8_SW0" address="0x40005A98" bitWidth="8" desc="DAC Analog Routing Register 0">
+      <field name="v_ag1" from="1" to="1" access="RW" resetVal="" desc="Connect voltage output to analog global of same side">
+        <value name="AG_NC" value="0" desc="not connected" />
+        <value name="AG_CONNECTED" value="1" desc="Connect to Analog Global" />
+      </field>
+      <field name="v_ag0" from="0" to="0" access="RW" resetVal="" desc="Connect voltage output to analog global of same side">
+        <value name="AG_NC" value="0" desc="not connected" />
+        <value name="AG_CONNECTED" value="1" desc="Connect to Analog Global" />
+      </field>
+    </register>
+    <register name="VDAC8_SW2" address="0x40005A9A" bitWidth="8" desc="DAC Analog Routing Register 2">
+      <field name="v_abus3" from="3" to="3" access="RW" resetVal="" desc="Connect voltage output to analog (local) bus of the same side ">
+        <value name="ABUS_NC" value="0" desc="not connected" />
+        <value name="ABUS_CONNECTED" value="1" desc="Connect to Analog (local) Bus" />
+      </field>
+      <field name="v_abus1" from="1" to="1" access="RW" resetVal="" desc="Connect voltage output to analog (local) bus of the same side ">
+        <value name="ABUS_NC" value="0" desc="not connected" />
+        <value name="ABUS_CONNECTED" value="1" desc="Connect to Analog (local) Bus" />
+      </field>
+    </register>
+    <register name="VDAC8_SW3" address="0x40005A9B" bitWidth="8" desc="DAC Analog Routing Register 3">
+      <field name="iout" from="7" to="7" access="RW" resetVal="" desc="Connect current output to pad">
+        <value name="IOUT_NC" value="0" desc="not connected" />
+        <value name="IOUT_CONNECT" value="1" desc="Connect to pad" />
+      </field>
+      <field name="i_amx" from="4" to="4" access="RW" resetVal="" desc="Connect current output to Analog Mux Bus">
+        <value name="AMX_NC" value="0" desc="not connected" />
+        <value name="AMX_CONNECTED" value="1" desc="Connect to AMUXBUS" />
+      </field>
+      <field name="v_amx" from="0" to="0" access="RW" resetVal="" desc="Connect voltage output to Analog Mux Bus">
+        <value name="AMX_NC" value="0" desc="not connected" />
+        <value name="AMX_CONNECTED" value="1" desc="Connect to AMUXBUS" />
+      </field>
+    </register>
+    <register name="VDAC8_SW4" address="0x40005A9C" bitWidth="8" desc="DAC Analog Routing Register 4">
+      <field name="i_ag1" from="1" to="1" access="RW" resetVal="" desc="Connect current output to analog global of same side">
+        <value name="AG_NC" value="0" desc="not connected" />
+        <value name="AG_CONNECTED" value="1" desc="Connect to Analog Global" />
+      </field>
+      <field name="i_ag0" from="0" to="0" access="RW" resetVal="" desc="Connect current output to analog global of same side">
+        <value name="AG_NC" value="0" desc="not connected" />
+        <value name="AG_CONNECTED" value="1" desc="Connect to Analog Global" />
+      </field>
+    </register>
+    <register name="VDAC8_STROBE" address="0x40005A9F" bitWidth="8" desc="DAC Strobe Register">
+      <field name="mx_strobe" from="2" to="0" access="RW" resetVal="" desc="Strobe source selection">
+        <value name="MX_STROBE_BUSWRITE" value="000" desc="Select bus write strobe source (Enable gater regardless of strobe_en setting)" />
+        <value name="MX_STROBE_UDB_SRC" value="001" desc="Select UDB strobe source" />
+        <value name="MX_STROBE_NC_2" value="010" desc="NC" />
+        <value name="MX_STROBE_NC_3" value="011" desc="NC" />
+        <value name="MX_STROBE_CLK_A0_DIG" value="100" desc="Select clk_a0_dig" />
+        <value name="MX_STROBE_CLK_A1_DIG" value="101" desc="Select clk_a1_dig" />
+        <value name="MX_STROBE_CLK_A2_DIG" value="110" desc="Select clk_a2_dig" />
+        <value name="MX_STROBE_CLK_A3_DIG" value="111" desc="Select clk_a3_dig" />
+      </field>
+      <field name="strobe_en" from="3" to="3" access="RW" resetVal="" desc="Strobe gating control (See mx_strobe==3'h0)">
+        <value name="STROBE_EN_0" value="0" desc="disable strobe" />
+        <value name="STROBE_EN_1" value="1" desc="enable strobe" />
+      </field>
+    </register>
+    <register name="VDAC8_DATA" address="0x40005B83" bitWidth="8" desc="DAC Data Register">
+      <field name="data" from="7" to="0" access="RW" resetVal="" desc="8 DAC Data bits" />
+    </register>
+  </block>
+  <block name="timer_clock" BASE="0x0" SIZE="0x0" desc="" visible="true" />
+  <block name="SCL" BASE="0x0" SIZE="0x0" desc="" visible="true" />
+  <block name="SDA" BASE="0x0" SIZE="0x0" desc="" visible="true" />
+  <block name="Timer_1" BASE="0x0" SIZE="0x0" desc="" visible="true">
+    <block name="VirtualMux_2" BASE="0x0" SIZE="0x0" desc="" visible="true" />
+    <block name="ZeroTerminal_1" BASE="0x0" SIZE="0x0" desc="" visible="true" />
+    <block name="TimerHW" BASE="0x0" SIZE="0x0" desc="" visible="true" />
+    <block name="OneTerminal_1" BASE="0x0" SIZE="0x0" desc="" visible="true" />
+    <block name="VirtualMux_1" BASE="0x0" SIZE="0x0" desc="" visible="true" />
+    <block name="VirtualMux_3" BASE="0x0" SIZE="0x0" desc="" visible="true" />
+    <register name="Timer_1_GLOBAL_ENABLE" address="0x400043A3" bitWidth="8" desc="PM.ACT.CFG">
+      <field name="en_timer" from="3" to="0" access="RW" resetVal="" desc="Enable timer/counters." />
+    </register>
+    <register name="Timer_1_CONTROL" address="0x40004F00" bitWidth="8" desc="TMRx.CFG0">
+      <field name="EN" from="0" to="0" access="RW" resetVal="" desc="Enables timer/comparator." />
+      <field name="MODE" from="1" to="1" access="RW" resetVal="" desc="Mode. (0 = Timer; 1 = Comparator)">
+        <value name="Timer" value="0" desc="Timer mode. CNT/CMP register holds timer count value." />
+        <value name="Comparator" value="1" desc="Comparator mode. CNT/CMP register holds comparator threshold value." />
+      </field>
+      <field name="ONESHOT" from="2" to="2" access="RW" resetVal="" desc="Timer stops upon reaching stop condition defined by TMR_CFG bits. Can be restarted by asserting TIMER RESET or disabling and re-enabling block." />
+      <field name="CMP_BUFF" from="3" to="3" access="RW" resetVal="" desc="Buffer compare register. Compare register updates only on timer terminal count." />
+      <field name="INV" from="4" to="4" access="RW" resetVal="" desc="Invert sense of TIMEREN signal" />
+      <field name="DB" from="5" to="5" access="RW" resetVal="" desc="Deadband mode--Deadband phases phi1 and phi2 are outputted on CMP and TC output pins respectively.">
+        <value name="Timer" value="0" desc="CMP and TC are output." />
+        <value name="Deadband" value="1" desc="PHI1 (instead of CMP) and PHI2 (instead of TC) are output." />
+      </field>
+      <field name="DEADBAND_PERIOD" from="7" to="6" access="RW" resetVal="" desc="Deadband Period" />
+    </register>
+    <register name="Timer_1_CONTROL2" address="0x40004F01" bitWidth="8" desc="TMRx.CFG1">
+      <field name="IRQ_SEL" from="0" to="0" access="RW" resetVal="" desc="Irq selection. (0 = raw interrupts; 1 = status register interrupts)" />
+      <field name="FTC" from="1" to="1" access="RW" resetVal="" desc="First Terminal Count (FTC). Setting this bit forces a single pulse on the TC pin when first enabled.">
+        <value name="Disable FTC" value="0" desc="Disable the single cycle pulse, which signifies the timer is starting." />
+        <value name="Enable FTC" value="1" desc="Enable the single cycle pulse, which signifies the timer is starting." />
+      </field>
+      <field name="DCOR" from="2" to="2" access="RW" resetVal="" desc="Disable Clear on Read (DCOR) of Status Register SR0." />
+      <field name="DBMODE" from="3" to="3" access="RW" resetVal="" desc="Deadband mode (asynchronous/synchronous). CMP output pin is also affected when not in deadband mode (CFG0.DEADBAND)." />
+      <field name="CLK_BUS_EN_SEL" from="6" to="4" access="RW" resetVal="" desc="Digital Global Clock selection." />
+      <field name="BUS_CLK_SEL" from="7" to="7" access="RW" resetVal="" desc="Bus Clock selection." />
+    </register>
+    <register name="Timer_1_CONTROL3_" address="0x40004F02" bitWidth="8" desc="TMRx.CFG2">
+      <field name="TMR_CFG" from="1" to="0" access="RW" resetVal="" desc="Timer configuration (MODE = 0): 000 = Continuous; 001 = Pulsewidth; 010 = Period; 011 = Stop on IRQ">
+        <value name="Continuous" value="0" desc="Timer runs while EN bit of CFG0 register is set to '1'." />
+        <value name="Pulsewidth" value="1" desc="Timer runs from positive to negative edge of TIMEREN." />
+        <value name="Period" value="10" desc="Timer runs from positive to positive edge of TIMEREN." />
+        <value name="Irq" value="11" desc="Timer runs until IRQ." />
+      </field>
+      <field name="COD" from="2" to="2" access="RW" resetVal="" desc="Clear On Disable (COD). Clears or gates outputs to zero." />
+      <field name="ROD" from="3" to="3" access="RW" resetVal="" desc="Reset On Disable (ROD). Resets internal state of output logic" />
+      <field name="CMP_CFG" from="6" to="4" access="RW" resetVal="" desc="Comparator configurations">
+        <value name="Equal" value="0" desc="Compare Equal " />
+        <value name="Less than" value="1" desc="Compare Less Than " />
+        <value name="Less than or equal" value="10" desc="Compare Less Than or Equal ." />
+        <value name="Greater" value="11" desc="Compare Greater Than ." />
+        <value name="Greater than or equal" value="100" desc="Compare Greater Than or Equal " />
+      </field>
+      <field name="HW_EN" from="7" to="7" access="RW" resetVal="" desc="When set Timer Enable controls counting." />
+    </register>
+    <register name="Timer_1_PERIOD" address="0x40004F04" bitWidth="16" desc="TMRx.PER0 - Assigned Period" />
+    <register name="Timer_1_COUNTER" address="0x40004F06" bitWidth="16" desc="TMRx.CNT_CMP0 - Current Down Counter Value" />
+  </block>
+  <block name="I2C_1" BASE="0x0" SIZE="0x0" desc="" visible="true">
+    <block name="BusClock" BASE="0x0" SIZE="0x0" desc="" visible="true" />
+    <block name="or_ff" BASE="0x0" SIZE="0x0" desc="" visible="true" />
+    <block name="ZeroTerminal_1" BASE="0x0" SIZE="0x0" desc="" visible="true" />
+    <block name="Vmux_clock" BASE="0x0" SIZE="0x0" desc="" visible="true" />
+    <block name="Vmux_scl_out" BASE="0x0" SIZE="0x0" desc="" visible="true" />
+    <block name="OneTerminal_1" BASE="0x0" SIZE="0x0" desc="" visible="true" />
+    <block name="OneTerminal_2" BASE="0x0" SIZE="0x0" desc="" visible="true" />
+    <block name="or_udb" BASE="0x0" SIZE="0x0" desc="" visible="true" />
+    <block name="Bufoe_sda" BASE="0x0" SIZE="0x0" desc="" visible="true" />
+    <block name="Vmux_timeout_clock" BASE="0x0" SIZE="0x0" desc="" visible="true" />
+    <block name="or_udb_1" BASE="0x0" SIZE="0x0" desc="" visible="true" />
+    <block name="Bufoe_scl" BASE="0x0" SIZE="0x0" desc="" visible="true" />
+    <block name="ZeroTerminal_2" BASE="0x0" SIZE="0x0" desc="" visible="true" />
+    <block name="Vmux_scl_in" BASE="0x0" SIZE="0x0" desc="" visible="true" />
+    <block name="Vmux_sda_in" BASE="0x0" SIZE="0x0" desc="" visible="true" />
+    <block name="ZeroTerminal_3" BASE="0x0" SIZE="0x0" desc="" visible="true" />
+    <block name="Vmux_sda_out" BASE="0x0" SIZE="0x0" desc="" visible="true" />
+    <block name="Vmux_interrupt" BASE="0x0" SIZE="0x0" desc="" visible="true" />
+    <block name="I2C_FF" BASE="0x0" SIZE="0x0" desc="" visible="true" />
+    <block name="I2C_IRQ" BASE="0x0" SIZE="0x0" desc="" visible="true" />
+    <register name="I2C_1_FF_XCFG" address="0x400049C8" bitWidth="8" desc="Extended Configuration Register: I2C_XCFG">
+      <field name="csr_clk_en" from="7" to="7" access="RW" resetVal="" desc="" />
+      <field name="i2c_on" from="6" to="6" access="RW" resetVal="" desc="" />
+      <field name="ready_to_sleep" from="5" to="5" access="R" resetVal="" desc="" />
+      <field name="force_nack" from="4" to="4" access="RW" resetVal="" desc="" />
+      <field name="hw_addr_en" from="0" to="0" access="RW" resetVal="" desc="" />
+    </register>
+    <register name="I2C_1_FF_ADDR" address="0x400049CA" bitWidth="8" desc="Slave Adddress Register: I2C_ADR">
+      <field name="slave_address" from="6" to="0" access="RW" resetVal="" desc="This register holds the slave's 7-bit address." />
+    </register>
+    <register name="I2C_1_FF_CFG" address="0x400049D6" bitWidth="8" desc="Configuration Register: I2C_CFG">
+      <field name="sio_select" from="7" to="7" access="RW" resetVal="" desc="" />
+      <field name="pselect" from="6" to="6" access="RW" resetVal="" desc="" />
+      <field name="bus_error_ie" from="5" to="5" access="RW" resetVal="" desc="" />
+      <field name="stop_ie" from="4" to="4" access="RW" resetVal="" desc="" />
+      <field name="clock_rate" from="2" to="2" access="RW" resetVal="" desc="" />
+      <field name="en_mstr" from="1" to="1" access="RW" resetVal="" desc="" />
+      <field name="en_slave" from="0" to="0" access="RW" resetVal="" desc="" />
+    </register>
+    <register name="I2C_1_FF_CSR" address="0x400049D7" bitWidth="8" desc="Control and Status Register: I2C_CSR">
+      <field name="bus_error" from="7" to="7" access="RW" resetVal="" desc="" />
+      <field name="lost_arb" from="6" to="6" access="RW" resetVal="" desc="" />
+      <field name="stop_status" from="5" to="5" access="RW" resetVal="" desc="" />
+      <field name="ack" from="4" to="4" access="RW" resetVal="" desc="" />
+      <field name="address" from="3" to="3" access="RW" resetVal="" desc="" />
+      <field name="transmit" from="2" to="2" access="RW" resetVal="" desc="" />
+      <field name="lrb" from="1" to="1" access="RW" resetVal="" desc="" />
+      <field name="byte_complete" from="0" to="0" access="RW" resetVal="" desc="" />
+    </register>
+    <register name="I2C_1_FF_DATA" address="0x400049D8" bitWidth="8" desc="Data Register: I2C_D">
+      <field name="data" from="7" to="0" access="RW" resetVal="" desc="This register provides read/write access to the Shift register." />
+    </register>
+    <register name="I2C_1_FF_MCSR" address="0x400049D9" bitWidth="8" desc="Master Control and Status Register: I2C_MCSR">
+      <field name="stop_gen" from="4" to="4" access="RW" resetVal="" desc="" />
+      <field name="bus_busy" from="3" to="3" access="R" resetVal="" desc="" />
+      <field name="master_mode" from="2" to="2" access="R" resetVal="" desc="" />
+      <field name="restart_gen" from="1" to="1" access="RW" resetVal="" desc="" />
+      <field name="start_gen" from="0" to="0" access="RW" resetVal="" desc="" />
+    </register>
+    <register name="I2C_1_FF__CLK_DIV1" address="0x400049DB" bitWidth="8" desc="Divider of BUS_CLK low part: I2C_CLK_DIV1">
+      <field name="Div" from="7" to="0" access="RW" resetVal="" desc="" />
+    </register>
+    <register name="I2C_1_FF__CLK_DIV2" address="0x400049DC" bitWidth="8" desc="Divider high part: I2C_CLK_DIV1">
+      <field name="Div" from="1" to="0" access="RW" resetVal="" desc="" />
+    </register>
+    <register name="I2C_1_FF__TMOUT_CSR" address="0x400049DD" bitWidth="8" desc="Extended Configuration Register: I2C_TMOUT_CSR">
+      <field name="sda_pin_status" from="4" to="4" access="RW" resetVal="" desc="" />
+      <field name="scl_pin_status" from="3" to="3" access="RW" resetVal="" desc="" />
+      <field name="i2c_timeout_int_enable" from="2" to="2" access="R" resetVal="" desc="" />
+      <field name="i2c_sda_timeout_enable" from="1" to="1" access="RW" resetVal="" desc="" />
+      <field name="i2c_scl_timeout_enable" from="0" to="0" access="RW" resetVal="" desc="" />
+    </register>
+    <register name="I2C_1_FF__TMOUT_SR" address="0x400049DE" bitWidth="8" desc="Extended Configuration Register: I2C_TMOUT_SR">
+      <field name="sda_tmout_status" from="1" to="1" access="RW" resetVal="" desc="" />
+      <field name="scl_tmout_status" from="0" to="0" access="RW" resetVal="" desc="" />
+    </register>
+    <register name="I2C_1_FF__TMOUT_CFG0" address="0x400049DF" bitWidth="8" desc="Extended Configuration Register: TMOUT_CFG0">
+      <field name="timeout_period_lowbyte" from="7" to="0" access="RW" resetVal="" desc="" />
+    </register>
+    <register name="I2C_1_FF__TMOUT_CFG1" address="0x400049E0" bitWidth="8" desc="Extended Configuration Register: TMOUT_CFG1">
+      <field name="timeout_period_highnibble" from="3" to="0" access="RW" resetVal="" desc="" />
+    </register>
+  </block>
+</blockRegMap>
