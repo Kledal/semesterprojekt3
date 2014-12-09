@@ -16,54 +16,23 @@ int battery = 100;
 
 int main()
 {
-    CyGlobalIntEnable; /* Uncomment this line to enable global interrupts. */
+    CyGlobalIntEnable;
     
     SPIS_1_SetCustomInterruptHandler(isr_spi_rx);
 	SPIS_1_SpiUartClearTxBuffer();
     SPIS_1_Start();
-    
-    //I2C_1_Start();
+
     UART_PC_Start();
     UART_GPS_Start();
     for(;;)
     {
         readGPSData();
-//        UART_PC_UartPutString( getGPSUartNumberOfSate() );
-//        UART_PC_UartPutChar(0xd);
-//        UART_PC_UartPutString( getGPSUartSpeed() );
-//        UART_PC_UartPutChar(0xd);
-//        UART_PC_UartPutString("GPS Speed: ");
-//        UART_PC_UartPutString(getGPSUartSpeed());
-//        UART_PC_UartPutChar(0xd);
-//        
-//        UART_PC_UartPutString("Sats: ");
-//        UART_PC_UartPutString(getGPSUartNumberOfSate());
-//        if (getNumberOfSate() > 0) {
-//            char returnStr[22];
-//            UART_PC_UartPutString(",");
-//            
-//            GetGPSLatitude(returnStr);
-//            UART_PC_UartPutString( returnStr );
-//            
-//            UART_PC_UartPutString(",");
-//            UART_PC_UartPutChar(GetGPSLatitudePos());
-//            
-//            GetGPSLongitude(returnStr);
-//            UART_PC_UartPutString(",");
-//            UART_PC_UartPutString( returnStr  );
-//            
-//            UART_PC_UartPutString(",");
-//            UART_PC_UartPutChar(GetGPSLongitudePos());
-//        }
-//        UART_PC_UartPutChar(0xd);
     }
 }
 
 CY_ISR(isr_spi_rx) {
 
 	uint32 addr = SPIS_1_SpiUartReadRxData();
-//    UART_PC_UartPutChar(addr );
-//    UART_PC_UartPutChar(0xd);
     SPIS_1_SpiUartClearTxBuffer();
 	switch (addr) {
         case 0x0: // Batteri

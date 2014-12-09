@@ -17,7 +17,7 @@ int GetJoystickX() {
  return joystick_x;
 }
 int GetJoystickY() {
- return joystick_y - 126;
+ return joystick_y - 126;   
 }
 int DecodeByte(int input) {
     return (input ^ 0x17) + 0x17;
@@ -42,15 +42,15 @@ void SendZero() {
     I2C_1_MasterSendStart(I2C_SLAVE_ADDR, I2C_1_WRITE_XFER_MODE);
     I2C_1_MasterWriteByte(0x00);
     I2C_1_MasterSendStop();
-
+    
     int i = 0;
     do {
        i++;
     } while(i < 500);
 }
 void SendHandshake()
-{
-    I2C_1_MasterSendStart(I2C_SLAVE_ADDR, I2C_1_WRITE_XFER_MODE);
+{    
+    I2C_1_MasterSendStart(I2C_SLAVE_ADDR, I2C_1_WRITE_XFER_MODE);    
     I2C_1_MasterWriteByte(0x40);
     I2C_1_MasterWriteByte(0x00);
     I2C_1_MasterSendStop();

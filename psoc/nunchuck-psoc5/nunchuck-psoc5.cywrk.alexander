@@ -198,6 +198,39 @@
 <VisibleNodeIds>
 <v>nunchuck-psoc5</v>
 <v>nunchuck-psoc5\nunchuck-psoc5</v>
+<v>nunchuck-psoc5\nunchuck-psoc5\CortexM3</v>
+<v>nunchuck-psoc5\nunchuck-psoc5\CortexM3\ARM_GCC_473</v>
+<v>nunchuck-psoc5\nunchuck-psoc5\CortexM3\ARM_GCC_473\Debug</v>
+<v>nunchuck-psoc5\nunchuck-psoc5\CortexM3\ARM_GCC_473\Debug\Listing Files</v>
+<v>nunchuck-psoc5\nunchuck-psoc5\CortexM3\ARM_GCC_473\Debug\Listing Files\Cm3Start.lst</v>
+<v>nunchuck-psoc5\nunchuck-psoc5\CortexM3\ARM_GCC_473\Debug\Listing Files\controller.lst</v>
+<v>nunchuck-psoc5\nunchuck-psoc5\CortexM3\ARM_GCC_473\Debug\Listing Files\CyBootAsmGnu.lst</v>
+<v>nunchuck-psoc5\nunchuck-psoc5\CortexM3\ARM_GCC_473\Debug\Listing Files\CyDmac.lst</v>
+<v>nunchuck-psoc5\nunchuck-psoc5\CortexM3\ARM_GCC_473\Debug\Listing Files\cyfitter_cfg.lst</v>
+<v>nunchuck-psoc5\nunchuck-psoc5\CortexM3\ARM_GCC_473\Debug\Listing Files\CyFlash.lst</v>
+<v>nunchuck-psoc5\nunchuck-psoc5\CortexM3\ARM_GCC_473\Debug\Listing Files\CyLib.lst</v>
+<v>nunchuck-psoc5\nunchuck-psoc5\CortexM3\ARM_GCC_473\Debug\Listing Files\cymetadata.lst</v>
+<v>nunchuck-psoc5\nunchuck-psoc5\CortexM3\ARM_GCC_473\Debug\Listing Files\cyPm.lst</v>
+<v>nunchuck-psoc5\nunchuck-psoc5\CortexM3\ARM_GCC_473\Debug\Listing Files\CySpc.lst</v>
+<v>nunchuck-psoc5\nunchuck-psoc5\CortexM3\ARM_GCC_473\Debug\Listing Files\cyutils.lst</v>
+<v>nunchuck-psoc5\nunchuck-psoc5\CortexM3\ARM_GCC_473\Debug\Listing Files\I2C_1.lst</v>
+<v>nunchuck-psoc5\nunchuck-psoc5\CortexM3\ARM_GCC_473\Debug\Listing Files\I2C_1_BOOT.lst</v>
+<v>nunchuck-psoc5\nunchuck-psoc5\CortexM3\ARM_GCC_473\Debug\Listing Files\I2C_1_INT.lst</v>
+<v>nunchuck-psoc5\nunchuck-psoc5\CortexM3\ARM_GCC_473\Debug\Listing Files\I2C_1_MASTER.lst</v>
+<v>nunchuck-psoc5\nunchuck-psoc5\CortexM3\ARM_GCC_473\Debug\Listing Files\I2C_1_PM.lst</v>
+<v>nunchuck-psoc5\nunchuck-psoc5\CortexM3\ARM_GCC_473\Debug\Listing Files\I2C_1_SLAVE.lst</v>
+<v>nunchuck-psoc5\nunchuck-psoc5\CortexM3\ARM_GCC_473\Debug\Listing Files\isr_1.lst</v>
+<v>nunchuck-psoc5\nunchuck-psoc5\CortexM3\ARM_GCC_473\Debug\Listing Files\main.lst</v>
+<v>nunchuck-psoc5\nunchuck-psoc5\CortexM3\ARM_GCC_473\Debug\Listing Files\SCL.lst</v>
+<v>nunchuck-psoc5\nunchuck-psoc5\CortexM3\ARM_GCC_473\Debug\Listing Files\SDA.lst</v>
+<v>nunchuck-psoc5\nunchuck-psoc5\CortexM3\ARM_GCC_473\Debug\Listing Files\Timer_1.lst</v>
+<v>nunchuck-psoc5\nunchuck-psoc5\CortexM3\ARM_GCC_473\Debug\Listing Files\Timer_1_PM.lst</v>
+<v>nunchuck-psoc5\nunchuck-psoc5\CortexM3\ARM_GCC_473\Debug\Listing Files\V_OUTPUT.lst</v>
+<v>nunchuck-psoc5\nunchuck-psoc5\CortexM3\ARM_GCC_473\Debug\Listing Files\VDAC.lst</v>
+<v>nunchuck-psoc5\nunchuck-psoc5\CortexM3\ARM_GCC_473\Debug\Listing Files\VDAC_PM.lst</v>
+<v>nunchuck-psoc5\nunchuck-psoc5\CortexM3\ARM_GCC_473\Debug\nunchuck-psoc5.elf</v>
+<v>nunchuck-psoc5\nunchuck-psoc5\CortexM3\ARM_GCC_473\Debug\nunchuck-psoc5.hex</v>
+<v>nunchuck-psoc5\nunchuck-psoc5\CortexM3\ARM_GCC_473\Debug\nunchuck-psoc5.map</v>
 <v>nunchuck-psoc5\nunchuck-psoc5\nunchuck-psoc5.rpt</v>
 <v>nunchuck-psoc5\nunchuck-psoc5\nunchuck-psoc5_timing.html</v>
 </VisibleNodeIds>
@@ -246,9 +279,10 @@
 <OpenDocs>
 <name v=".\nunchuck-psoc5.cydsn\TopDesign\TopDesign.cysch" />
 <name v=".\nunchuck-psoc5.cydsn\main.c" />
-<name v=".\nunchuck-psoc5.cydsn\nunchuck-psoc5.cydwr" />
 <name v=".\nunchuck-psoc5.cydsn\controller.c" />
 <name v=".\nunchuck-psoc5.cydsn\Generated_Source\PSoC5\I2C_1_MASTER.c" />
+<name v=".\nunchuck-psoc5.cydsn\nunchuck-psoc5.cydwr" />
+<name v=".\nunchuck-psoc5.cydsn\Generated_Source\PSoC5\I2C_1.h" />
 </OpenDocs>
 <config v="" />
 <AutoUpdate v="true" />
